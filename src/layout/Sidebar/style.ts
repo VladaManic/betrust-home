@@ -9,6 +9,7 @@ export const SidebarWrap = styled.div`
     height: 636px;
     padding-top: 20px;
     background-color: ${color.sidebarBg};
+    font-family: 'Open Sans', sans-serif;
 `
 
 export const UpperWrap = styled.div``
@@ -28,6 +29,7 @@ export const ListItem = styled.li`
 
     .nav-link {
         position: relative;
+        font-family: 'Open Sans', sans-serif;
         text-decoration: none;
         color: ${color.linksBlue};
 
@@ -58,7 +60,7 @@ export const DiscordLogo = styled.img`
 export const BugReportWrap = styled.p`
     margin-top: 20px;
     padding-bottom: 35px;
-    font-weight: 700;
+    //font-weight: 700;
     color: ${color.linksBlue};
 `
 
