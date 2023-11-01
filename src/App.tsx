@@ -13,10 +13,10 @@ function App() {
             <GeneralStyles />
             <GlobalFonts />
             <Sidebar />
-            <>
+            <div id="content-wrap">
                 <Header />
                 <Main />
-            </>
+            </div>
         </div>
     )
 }

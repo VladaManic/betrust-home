@@ -9,7 +9,7 @@ export const SidebarWrap = styled.div`
     height: 636px;
     padding-top: 20px;
     background-color: ${color.sidebarBg};
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans Bold', sans-serif;
 `
 
 export const UpperWrap = styled.div``
@@ -29,7 +29,7 @@ export const ListItem = styled.li`
 
     .nav-link {
         position: relative;
-        font-family: 'Open Sans', sans-serif;
+        font-family: 'Open Sans Bold', sans-serif;
         text-decoration: none;
         color: ${color.linksBlue};
 

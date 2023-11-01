@@ -39,9 +39,15 @@ export default createGlobalStyle`
     img {
         max-width: 100%;
         height: auto;
+        padding: 0;
+        margin: 0;
     }
 
     #app-wrapper {
         display: flex;
+    }
+
+    #content-wrap {
+       width: 100%;
     }
 `
