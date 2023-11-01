@@ -12,7 +12,7 @@ const Main = () => {
             <Routes>
                 <Route path="/" element={<InPlay />} />
                 <Route path="/pre-match/" element={<PreMatch />} />
-                <Route path="/btr-excange/" element={<BTRExcange />} />
+                <Route path="/btr-exchange/" element={<BTRExcange />} />
                 <Route path="/how-to-use/" element={<HowToUse />} />
                 <Route path="*" element={<Page404 />} />
             </Routes>
