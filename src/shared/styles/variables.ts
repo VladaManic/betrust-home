@@ -10,4 +10,5 @@ export const color = {
     countGreen: 'rgba(137, 193, 21, 1)',
     buttonBg: 'rgba(34, 40, 52, 1)',
     gradientBg: 'rgba(53, 21, 21, 1)',
+    regionTitleBg: 'rgba(28, 31, 36, 1)',
 }

@@ -25,7 +25,8 @@ export default createGlobalStyle`
         margin: 0;
     }
 
-    h2 {
+    h2, 
+    h3 {
         font-family: 'Open Sans Bold', sans-serif;
         font-size: 16px;
         line-height: 22px;
