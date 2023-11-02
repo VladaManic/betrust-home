@@ -9,4 +9,5 @@ export const color = {
     borderBlue: 'rgba(0, 113, 245, 1)',
     countGreen: 'rgba(137, 193, 21, 1)',
     buttonBg: 'rgba(34, 40, 52, 1)',
+    gradientBg: 'rgba(53, 21, 21, 1)',
 }

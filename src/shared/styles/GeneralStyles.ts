@@ -25,6 +25,12 @@ export default createGlobalStyle`
         margin: 0;
     }
 
+    h2 {
+        font-family: 'Open Sans Bold', sans-serif;
+        font-size: 16px;
+        line-height: 22px;
+    }
+
     p {
         font-size: 12px;
     }

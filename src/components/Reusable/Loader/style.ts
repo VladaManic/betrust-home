@@ -11,10 +11,10 @@ export const LoaderWrap = styled.div`
 export const LoaderInner = styled.div`
     width: 50px !important;
     height: 50px !important;
-    border: 6px solid ${color.defaultBg};
+    border: 8px solid ${color.defaultBg};
     border-radius: 50%;
-    border-top: 6px solid ${color.defaultText};
-    border-right: 6px solid ${color.defaultText};
+    border-top: 8px solid ${color.defaultText};
+    border-right: 8px solid ${color.defaultText};
     background: none !important;
     animation: spin 2s linear infinite;
 
