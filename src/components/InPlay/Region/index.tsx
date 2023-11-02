@@ -38,6 +38,7 @@ const Region = ({ singleRegion }: Props) => {
                     <Competition
                         key={singleCompetition.name}
                         singleCompetition={singleCompetition}
+                        regionName={singleRegion.name}
                     />
                 )
             )}

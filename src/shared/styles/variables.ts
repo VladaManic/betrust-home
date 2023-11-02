@@ -11,4 +11,5 @@ export const color = {
     buttonBg: 'rgba(34, 40, 52, 1)',
     gradientBg: 'rgba(53, 21, 21, 1)',
     regionTitleBg: 'rgba(28, 31, 36, 1)',
+    timeYellow: 'rgba(223, 188, 60, 1)',
 }

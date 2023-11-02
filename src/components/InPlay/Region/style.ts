@@ -1,7 +1,9 @@
 import styled from 'styled-components'
 import { color } from '../../../shared/styles/variables'
 
-export const RegionWrap = styled.div``
+export const RegionWrap = styled.div`
+    margin-bottom: 15px;
+`
 
 export const RegionTitleWrap = styled.div`
     display: flex;
