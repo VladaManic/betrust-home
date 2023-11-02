@@ -1,5 +1,13 @@
+import SportFilter from '../../components/InPlay/SportFilter'
+
+import { InPlayWrap } from './style'
+
 const InPlay = () => {
-    return <div>InPlay</div>
+    return (
+        <InPlayWrap>
+            <SportFilter />
+        </InPlayWrap>
+    )
 }
 
 export default InPlay

@@ -8,4 +8,5 @@ export const color = {
     balanceGray: 'rgba(180, 180, 180, 1)',
     borderBlue: 'rgba(0, 113, 245, 1)',
     countGreen: 'rgba(137, 193, 21, 1)',
+    buttonBg: 'rgba(34, 40, 52, 1)',
 }
