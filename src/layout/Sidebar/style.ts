@@ -6,7 +6,7 @@ export const SidebarWrap = styled.div`
     flex-direction: column;
     justify-content: space-between;
     width: 256px;
-    height: 636px;
+    height: 836px;
     padding-top: 20px;
     background-color: ${color.sidebarBg};
     font-family: 'Open Sans Bold', sans-serif;
