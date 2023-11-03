@@ -11,9 +11,14 @@ import {
     CompetitionArrow,
     CompetitionHeader,
     HeaderUp,
-    BetType,
     HeaderDown,
+    HeaderLeft,
+    HeaderRight,
+    BetHalfEmpty,
+    BetTypeWrap,
+    BetType,
     BetValue,
+    BetValueEmpty,
 } from './style'
 import { CompetitionObj, GameObj } from '../../../types/interfaces'
 
@@ -39,20 +44,32 @@ const Competition = ({ singleCompetition, regionName }: Props) => {
             </CompetitionTitleWrap>
             <CompetitionHeader>
                 <HeaderUp>
-                    <BetType>Winner</BetType>
-                    <BetType>Handicap</BetType>
-                    <BetType>Over / Under</BetType>
+                    <HeaderLeft></HeaderLeft>
+                    <HeaderRight>
+                        <BetHalfEmpty></BetHalfEmpty>
+                        <BetTypeWrap>
+                            <BetType>Winner</BetType>
+                            <BetType>Handicap</BetType>
+                            <BetType>Over / Under</BetType>
+                        </BetTypeWrap>
+                        <BetValueEmpty></BetValueEmpty>
+                    </HeaderRight>
                 </HeaderUp>
                 <HeaderDown>
-                    <BetValue>1</BetValue>
-                    <BetValue>X</BetValue>
-                    <BetValue>2</BetValue>
-                    <BetValue>1</BetValue>
-                    <BetValue></BetValue>
-                    <BetValue>2</BetValue>
-                    <BetValue>Over</BetValue>
-                    <BetValue>O/U</BetValue>
-                    <BetValue>Under</BetValue>
+                    <HeaderLeft></HeaderLeft>
+                    <HeaderRight>
+                        <BetHalfEmpty></BetHalfEmpty>
+                        <BetValue className="event-header">1</BetValue>
+                        <BetValue className="event-header">X</BetValue>
+                        <BetValue className="event-header">2</BetValue>
+                        <BetValue className="event-header">1</BetValue>
+                        <BetValue className="event-header"></BetValue>
+                        <BetValue className="event-header">2</BetValue>
+                        <BetValue className="event-header">Over</BetValue>
+                        <BetValue className="event-header">O/U</BetValue>
+                        <BetValue className="event-header">Under</BetValue>
+                        <BetValueEmpty></BetValueEmpty>
+                    </HeaderRight>
                 </HeaderDown>
             </CompetitionHeader>
             {singleCompetition.game.map((singleGame: GameObj) => (

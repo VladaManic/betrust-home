@@ -43,22 +43,62 @@ export const CompetitionHeader = styled.div`
 
 export const HeaderUp = styled.div`
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     height: 50%;
-`
-
-export const BetType = styled.p`
-    color: ${color.balanceGray};
 `
 
 export const HeaderDown = styled.div`
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     height: 50%;
 `
 
-export const BetValue = styled.p`
-    color: ${color.linksBlue};
+export const HeaderLeft = styled.div`
+    display: flex;
+    width: 15%;
+`
+
+export const HeaderRight = styled.div`
+    display: flex;
+    flex: 1;
+
+    .event-header {
+        width: 10%;
+        margin-right: 5px;
+        text-align: center;
+        color: ${color.linksBlue};
+
+        &:nth-of-type(4),
+        &:nth-of-type(7) {
+            margin-right: 20px;
+        }
+
+        &:last-of-type {
+            margin-right: 5px;
+        }
+    }
+`
+
+export const BetHalfEmpty = styled.p`
+    width: 57px;
+`
+
+export const BetTypeWrap = styled.div`
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+`
+
+export const BetType = styled.p`
+    width: 31%;
+    text-align: center;
+    color: ${color.balanceGray};
+`
+
+export const BetValue = styled.p``
+
+export const BetValueEmpty = styled.p`
+    width: 30px;
 `
