@@ -12,4 +12,5 @@ export const color = {
     gradientBg: 'rgba(53, 21, 21, 1)',
     regionTitleBg: 'rgba(28, 31, 36, 1)',
     timeYellow: 'rgba(223, 188, 60, 1)',
+    eventBlue: '#4A5A7B',
 }
