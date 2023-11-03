@@ -1,3 +1,4 @@
+import { orderBy } from 'lodash'
 import chooseFlag from '../../../utils/chooseFlag'
 
 import Competition from '../Competition'
@@ -19,6 +20,9 @@ interface Props {
 }
 
 const Region = ({ singleRegion }: Props) => {
+    //Sort competitions by order
+    const competionsSorted = orderBy(singleRegion.competition, ['order'])
+
     return (
         <RegionWrap>
             <RegionTitleWrap>
@@ -33,15 +37,13 @@ const Region = ({ singleRegion }: Props) => {
                     <RegionArrow src={arrowIcon} alt="Arrow icon" />
                 </RegionArrowWrap>
             </RegionTitleWrap>
-            {singleRegion.competition.map(
-                (singleCompetition: CompetitionObj) => (
-                    <Competition
-                        key={singleCompetition.name}
-                        singleCompetition={singleCompetition}
-                        regionName={singleRegion.name}
-                    />
-                )
-            )}
+            {competionsSorted.map((singleCompetition: CompetitionObj) => (
+                <Competition
+                    key={singleCompetition.name}
+                    singleCompetition={singleCompetition}
+                    regionName={singleRegion.name}
+                />
+            ))}
         </RegionWrap>
     )
 }
