@@ -15,7 +15,7 @@ export default createGlobalStyle`
         height: 100%;
         background-color: ${color.defaultBg};
         font-size: 100%;
-        font-family: 'Roboto', sans-serif;
+        font-family: 'Axiforma', sans-serif;
 				color: ${color.defaultText};
     }
 
@@ -23,6 +23,13 @@ export default createGlobalStyle`
     h2,
     p {
         margin: 0;
+    }
+
+    h2, 
+    h3 {
+        font-family: 'Open Sans Bold', sans-serif;
+        font-size: 16px;
+        line-height: 22px;
     }
 
     p {
@@ -39,9 +46,15 @@ export default createGlobalStyle`
     img {
         max-width: 100%;
         height: auto;
+        padding: 0;
+        margin: 0;
     }
 
     #app-wrapper {
         display: flex;
+    }
+
+    #content-wrap {
+       width: 100%;
     }
 `
