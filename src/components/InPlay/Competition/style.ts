@@ -25,6 +25,7 @@ export const FilterBtn = styled.button`
 
 export const CompetitionArrowWrap = styled.div`
     display: flex;
+    cursor: pointer;
 `
 
 export const CompetitionCount = styled.p`

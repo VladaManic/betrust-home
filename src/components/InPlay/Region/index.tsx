@@ -1,4 +1,5 @@
 import { orderBy } from 'lodash'
+import useAccordion from '../../../hooks/useAccordion'
 import chooseFlag from '../../../utils/chooseFlag'
 
 import Competition from '../Competition'
@@ -20,12 +21,15 @@ interface Props {
 }
 
 const Region = ({ singleRegion }: Props) => {
+    const { opened, setOpened } = useAccordion(false)
     //Sort competitions by order
     const competionsSorted = orderBy(singleRegion.competition, ['order'])
 
     return (
         <RegionWrap>
-            <RegionTitleWrap>
+            <RegionTitleWrap
+                onClick={() => setOpened((curr: boolean) => !curr)}
+            >
                 <RegionTitleInner>
                     <RegionFlag
                         src={chooseFlag(singleRegion.name)}
@@ -37,13 +41,19 @@ const Region = ({ singleRegion }: Props) => {
                     <RegionArrow src={arrowIcon} alt="Arrow icon" />
                 </RegionArrowWrap>
             </RegionTitleWrap>
-            {competionsSorted.map((singleCompetition: CompetitionObj) => (
-                <Competition
-                    key={singleCompetition.name}
-                    singleCompetition={singleCompetition}
-                    regionName={singleRegion.name}
-                />
-            ))}
+            {opened && (
+                <>
+                    {competionsSorted.map(
+                        (singleCompetition: CompetitionObj) => (
+                            <Competition
+                                key={singleCompetition.name}
+                                singleCompetition={singleCompetition}
+                                regionName={singleRegion.name}
+                            />
+                        )
+                    )}
+                </>
+            )}
         </RegionWrap>
     )
 }

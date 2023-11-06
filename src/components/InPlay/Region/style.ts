@@ -13,6 +13,7 @@ export const RegionTitleWrap = styled.div`
     padding-left: 15px;
     border-radius: 10px 10px 0 0;
     background-color: ${color.regionTitleBg};
+    cursor: pointer;
 `
 
 export const RegionTitleInner = styled.div`
