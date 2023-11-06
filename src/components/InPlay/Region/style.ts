@@ -3,6 +3,12 @@ import { color } from '../../../shared/styles/variables'
 
 export const RegionWrap = styled.div`
     margin-bottom: 15px;
+
+    &.active {
+        .region-arrow {
+            transform: rotate(180deg);
+        }
+    }
 `
 
 export const RegionTitleWrap = styled.div`

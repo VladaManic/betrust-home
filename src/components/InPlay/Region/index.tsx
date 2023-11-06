@@ -1,6 +1,7 @@
 import { orderBy } from 'lodash'
 import useAccordion from '../../../hooks/useAccordion'
 import chooseFlag from '../../../utils/chooseFlag'
+import clsx from 'clsx'
 
 import Competition from '../Competition'
 
@@ -26,7 +27,7 @@ const Region = ({ singleRegion }: Props) => {
     const competionsSorted = orderBy(singleRegion.competition, ['order'])
 
     return (
-        <RegionWrap>
+        <RegionWrap className={clsx(opened && 'active')}>
             <RegionTitleWrap
                 onClick={() => setOpened((curr: boolean) => !curr)}
             >
@@ -38,7 +39,11 @@ const Region = ({ singleRegion }: Props) => {
                     <RegionTitle>{singleRegion.name}</RegionTitle>
                 </RegionTitleInner>
                 <RegionArrowWrap>
-                    <RegionArrow src={arrowIcon} alt="Arrow icon" />
+                    <RegionArrow
+                        src={arrowIcon}
+                        alt="Arrow icon"
+                        className="region-arrow"
+                    />
                 </RegionArrowWrap>
             </RegionTitleWrap>
             {opened && (

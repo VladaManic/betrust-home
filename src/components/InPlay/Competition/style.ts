@@ -1,7 +1,13 @@
 import styled from 'styled-components'
 import { color } from '../../../shared/styles/variables'
 
-export const CompetitionWrap = styled.div``
+export const CompetitionWrap = styled.div`
+    &.active {
+        .competition-arrow {
+            transform: rotate(180deg);
+        }
+    }
+`
 
 export const CompetitionTitleWrap = styled.div`
     display: flex;
@@ -25,7 +31,6 @@ export const FilterBtn = styled.button`
 
 export const CompetitionArrowWrap = styled.div`
     display: flex;
-    cursor: pointer;
 `
 
 export const CompetitionCount = styled.p`
@@ -34,6 +39,7 @@ export const CompetitionCount = styled.p`
 
 export const CompetitionArrow = styled.img`
     display: inline-block;
+    cursor: pointer;
 `
 
 export const CompetitionHeader = styled.div`

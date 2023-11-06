@@ -1,4 +1,5 @@
 import useAccordion from '../../../hooks/useAccordion'
+import clsx from 'clsx'
 
 import Game from '../Game'
 
@@ -33,19 +34,22 @@ const Competition = ({ singleCompetition, regionName }: Props) => {
     const { opened, setOpened } = useAccordion(false)
 
     return (
-        <CompetitionWrap>
+        <CompetitionWrap className={clsx(opened && 'active')}>
             <CompetitionTitleWrap>
                 <CompetitionTitleInner>
                     <FilterBtn>{regionName}</FilterBtn>/
                     <FilterBtn>{singleCompetition.name}</FilterBtn>
                 </CompetitionTitleInner>
-                <CompetitionArrowWrap
-                    onClick={() => setOpened((curr: boolean) => !curr)}
-                >
+                <CompetitionArrowWrap>
                     <CompetitionCount>
                         {singleCompetition.game.length}
                     </CompetitionCount>
-                    <CompetitionArrow src={arrowIcon} alt="Arrow icon" />
+                    <CompetitionArrow
+                        src={arrowIcon}
+                        alt="Arrow icon"
+                        className="competition-arrow"
+                        onClick={() => setOpened((curr: boolean) => !curr)}
+                    />
                 </CompetitionArrowWrap>
             </CompetitionTitleWrap>
             {opened && (
