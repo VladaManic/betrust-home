@@ -30,7 +30,7 @@ function App() {
                 store.setSport(data[0])
                 store.setLoading(false)
             })
-            .catch((error) => handleError(error))
+            .catch((error) => handleError(error.message))
     }
     useEffect(() => {
         fetchData()
@@ -43,7 +43,13 @@ function App() {
             <Sidebar />
             <div id="content-wrap">
                 <Header />
-                {loading ? <Loader /> : error !== '' ? <Error /> : <Main />}
+                {loading ? (
+                    <Loader />
+                ) : error !== '' ? (
+                    <Error error={error} />
+                ) : (
+                    <Main />
+                )}
             </div>
         </div>
     )
