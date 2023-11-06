@@ -1,5 +1,5 @@
 import Title from '../Title'
-import AllMarkets from '../AllMarkets'
+import AllMarkets from '../ListOfAll'
 
 import { ContentWrap } from './style'
 

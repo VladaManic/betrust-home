@@ -4,21 +4,21 @@ import { orderBy } from 'lodash'
 
 import Region from '../Region'
 
-import { AllMarketsWrap } from './style'
+import { ListOfAllWrap } from './style'
 import { RegionObj } from '../../../types/interfaces'
 
-const AllMarkets = () => {
+const ListOfAll = () => {
     const games = store.sport
     //Sort regions by order
     const regionsSorted = orderBy(games.region, ['order'])
 
     return (
-        <AllMarketsWrap>
+        <ListOfAllWrap>
             {regionsSorted.map((singleRegion: RegionObj) => (
                 <Region key={singleRegion.name} singleRegion={singleRegion} />
             ))}
-        </AllMarketsWrap>
+        </ListOfAllWrap>
     )
 }
 
-export default observer(AllMarkets)
+export default observer(ListOfAll)
