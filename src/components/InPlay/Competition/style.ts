@@ -3,6 +3,11 @@ import { color } from '../../../shared/styles/variables'
 
 export const CompetitionWrap = styled.div`
     &.active {
+        .competition-title {
+            margin-bottom: 0;
+            border-radius: 10px 10px 0 0;
+        }
+
         .competition-arrow {
             transform: rotate(180deg);
         }

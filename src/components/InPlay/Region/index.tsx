@@ -29,6 +29,7 @@ const Region = ({ singleRegion }: Props) => {
     return (
         <RegionWrap className={clsx(opened && 'active')}>
             <RegionTitleWrap
+                className="region-title"
                 onClick={() => setOpened((curr: boolean) => !curr)}
             >
                 <RegionTitleInner>

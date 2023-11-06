@@ -35,7 +35,7 @@ const Competition = ({ singleCompetition, regionName }: Props) => {
 
     return (
         <CompetitionWrap className={clsx(opened && 'active')}>
-            <CompetitionTitleWrap>
+            <CompetitionTitleWrap className="competition-title">
                 <CompetitionTitleInner>
                     <FilterBtn>{regionName}</FilterBtn>/
                     <FilterBtn>{singleCompetition.name}</FilterBtn>

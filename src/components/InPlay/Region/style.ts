@@ -5,6 +5,10 @@ export const RegionWrap = styled.div`
     margin-bottom: 15px;
 
     &.active {
+        .region-title {
+            border-radius: 10px 10px 0 0;
+        }
+
         .region-arrow {
             transform: rotate(180deg);
         }
@@ -17,7 +21,7 @@ export const RegionTitleWrap = styled.div`
     align-items: center;
     padding-right: 15px;
     padding-left: 15px;
-    border-radius: 10px 10px 0 0;
+    border-radius: 10px;
     background-color: ${color.regionTitleBg};
     cursor: pointer;
 `
