@@ -22,14 +22,17 @@ interface Props {
 }
 
 const Game = ({ singleGame }: Props) => {
+    //Geting Winner event data for current game
     const winner = singleGame.market.filter(
         (singleMarket: MarketObj) => singleMarket.market_type === 'MatchResult'
     )
+    //Geting Handicap event data for current game
     const handicap = singleGame.market.filter(
         (singleMarket: MarketObj) =>
             singleMarket.market_type === 'AsianHandicap' &&
             singleMarket.optimal == true
     )
+    //Geting array of Over/Under events data for current game
     const overUnderArray = singleGame.market.filter(
         (singleMarket: MarketObj) => singleMarket.market_type === 'OverUnder'
     )

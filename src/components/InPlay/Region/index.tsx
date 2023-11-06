@@ -22,6 +22,7 @@ interface Props {
 }
 
 const Region = ({ singleRegion }: Props) => {
+    //Using custom hook for opening/closing region
     const { opened, setOpened } = useAccordion(false)
     //Sort competitions by order
     const competionsSorted = orderBy(singleRegion.competition, ['order'])

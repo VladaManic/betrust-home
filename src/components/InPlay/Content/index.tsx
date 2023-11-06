@@ -1,5 +1,5 @@
 import Title from '../Title'
-import AllMarkets from '../ListOfAll'
+import ListOfAll from '../ListOfAll'
 
 import { ContentWrap } from './style'
 
@@ -7,7 +7,7 @@ const Content = () => {
     return (
         <ContentWrap>
             <Title />
-            <AllMarkets />
+            <ListOfAll />
         </ContentWrap>
     )
 }

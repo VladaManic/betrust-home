@@ -31,6 +31,7 @@ interface Props {
 }
 
 const Competition = ({ singleCompetition, regionName }: Props) => {
+    //Using custom hook for opening/closing competition
     const { opened, setOpened } = useAccordion(false)
 
     return (

@@ -4,26 +4,35 @@ import { SportDataObj } from '../types/interfaces'
 
 class Store {
     private loadingState: boolean = true
+    private errorMsg: string = ''
     private sportData: SportDataObj = {}
 
     constructor() {
         makeAutoObservable(this)
     }
 
-    setData = (data: SportDataObj) => {
-        this.sportData = data
-    }
-
     setLoading = (state: boolean) => {
         this.loadingState = state
     }
 
-    get sport() {
-        return this.sportData
+    setError = (errorMsg: string) => {
+        this.errorMsg = errorMsg
+    }
+
+    setSport = (data: SportDataObj) => {
+        this.sportData = data
     }
 
     get loading() {
         return this.loadingState
+    }
+
+    get error() {
+        return this.errorMsg
+    }
+
+    get sport() {
+        return this.sportData
     }
 }
 

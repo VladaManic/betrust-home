@@ -10,12 +10,16 @@ import Sidebar from './layout/Sidebar'
 import Header from './layout/Header'
 import Main from './layout/Main'
 import Loader from './components/Reusable/Loader'
+import Error from './components/Reusable/ErrorComponent'
 
 function App() {
     const loading = store.loading
+    const error = store.error
 
     const handleError = async (error: string) => {
-        await console.log(error)
+        store.setError(error)
+        await store.setLoading(false)
+        console.log(error)
     }
 
     const fetchData = () => {
@@ -23,7 +27,7 @@ function App() {
             .then((response) => response.json())
             .then((data) => {
                 //console.log(data[0])
-                store.setData(data[0])
+                store.setSport(data[0])
                 store.setLoading(false)
             })
             .catch((error) => handleError(error))
@@ -39,7 +43,7 @@ function App() {
             <Sidebar />
             <div id="content-wrap">
                 <Header />
-                {loading ? <Loader /> : <Main />}
+                {loading ? <Loader /> : error !== '' ? <Error /> : <Main />}
             </div>
         </div>
     )
