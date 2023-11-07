@@ -16,7 +16,7 @@ export default createGlobalStyle`
         background-color: ${color.defaultBg};
         font-size: 100%;
         font-family: 'Axiforma', sans-serif;
-				color: ${color.defaultText};
+        color: ${color.defaultText};
     }
 
     h1,

@@ -6,6 +6,7 @@ import store from '../../store/store'
 import Title from '../../components/Reusable/Title'
 import Breadcrumb from '../../components/Reusable/Breadcrumb'
 import Competition from '../../components/Reusable/Competition'
+import EmptySingle from '../../components/Reusable/EmptySingle'
 
 import { SingleRegionWrap } from './style'
 import { RegionObj, CompetitionObj } from '../../types/interfaces'
@@ -27,14 +28,18 @@ const SingleRegion = () => {
         <SingleRegionWrap>
             <Title />
             <Breadcrumb regionName={regionName} competitionName={undefined} />
-            {currentRegion![0].competition.map(
-                (singleCompetition: CompetitionObj) => (
-                    <Competition
-                        key={singleCompetition.name}
-                        singleCompetition={singleCompetition}
-                        regionName={regionName}
-                    />
+            {currentRegion?.length !== 0 ? (
+                currentRegion![0].competition.map(
+                    (singleCompetition: CompetitionObj) => (
+                        <Competition
+                            key={singleCompetition.name}
+                            singleCompetition={singleCompetition}
+                            regionName={regionName}
+                        />
+                    )
                 )
+            ) : (
+                <EmptySingle text={'Region'} />
             )}
         </SingleRegionWrap>
     )
