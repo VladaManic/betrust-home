@@ -46,7 +46,9 @@ const Competition = ({ singleCompetition, regionName }: Props) => {
                         <FilterBtn>{regionName}</FilterBtn>
                     </NavLink>
                     /
-                    <NavLink to={`/competition/${singleCompetition.name}`}>
+                    <NavLink
+                        to={`/region/${regionName}/competition/${singleCompetition.name}`}
+                    >
                         <FilterBtn>{singleCompetition.name}</FilterBtn>
                     </NavLink>
                 </CompetitionTitleInner>

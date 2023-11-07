@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import { observer } from 'mobx-react'
 import store from '../../store/store'
-import { useParams } from 'react-router-dom'
 
 import Title from '../../components/Reusable/Title'
 import Breadcrumb from '../../components/Reusable/Breadcrumb'
@@ -26,7 +26,7 @@ const SingleRegion = () => {
     return (
         <SingleRegionWrap>
             <Title />
-            <Breadcrumb regionName={regionName} />
+            <Breadcrumb regionName={regionName} competitionName={undefined} />
             {currentRegion![0].competition.map(
                 (singleCompetition: CompetitionObj) => (
                     <Competition

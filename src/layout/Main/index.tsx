@@ -18,7 +18,7 @@ const Main = () => {
                 <Route path="/how-to-use/" element={<HowToUse />} />
                 <Route path="/region/:regionName" element={<SingleRegion />} />
                 <Route
-                    path="/competition/:competitionName"
+                    path="/region/:regionName/competition/:competitionName"
                     element={<SingleCompetition />}
                 />
                 <Route path="*" element={<Page404 />} />
