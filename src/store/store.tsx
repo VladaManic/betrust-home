@@ -6,6 +6,7 @@ class Store {
     private loadingState: boolean = true
     private errorMsg: string = ''
     private sportData: SportDataObj = {}
+    private titleText: string = 'Football - In Play'
 
     constructor() {
         makeAutoObservable(this)
@@ -23,6 +24,10 @@ class Store {
         this.sportData = data
     }
 
+    setTitle = (titleTxt: string) => {
+        this.titleText = titleTxt
+    }
+
     get loading() {
         return this.loadingState
     }
@@ -33,6 +38,10 @@ class Store {
 
     get sport() {
         return this.sportData
+    }
+
+    get title() {
+        return this.titleText
     }
 }
 

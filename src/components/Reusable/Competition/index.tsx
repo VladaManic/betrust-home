@@ -1,13 +1,16 @@
+import { NavLink } from 'react-router-dom'
 import useAccordion from '../../../hooks/useAccordion'
+import chooseFlag from '../../../utils/chooseFlag'
 import clsx from 'clsx'
 
-import Game from '../Game'
+import Game from '../../InPlay/Game'
 
 import arrowIcon from '../../../assets/img/arrow-small.svg'
 import {
     CompetitionWrap,
     CompetitionTitleWrap,
     CompetitionTitleInner,
+    RegionFlag,
     FilterBtn,
     CompetitionArrowWrap,
     CompetitionCount,
@@ -27,7 +30,7 @@ import { CompetitionObj, GameObj } from '../../../types/interfaces'
 
 interface Props {
     singleCompetition: CompetitionObj
-    regionName: string
+    regionName: string | undefined
 }
 
 const Competition = ({ singleCompetition, regionName }: Props) => {
@@ -38,8 +41,16 @@ const Competition = ({ singleCompetition, regionName }: Props) => {
         <CompetitionWrap className={clsx(opened && 'active')}>
             <CompetitionTitleWrap className="competition-title">
                 <CompetitionTitleInner>
-                    <FilterBtn>{regionName}</FilterBtn>/
-                    <FilterBtn>{singleCompetition.name}</FilterBtn>
+                    <RegionFlag src={chooseFlag(regionName)} alt={regionName} />
+                    <NavLink to={`/region/${regionName}`}>
+                        <FilterBtn>{regionName}</FilterBtn>
+                    </NavLink>
+                    /
+                    <NavLink
+                        to={`/region/${regionName}/competition/${singleCompetition.name}`}
+                    >
+                        <FilterBtn>{singleCompetition.name}</FilterBtn>
+                    </NavLink>
                 </CompetitionTitleInner>
                 <CompetitionArrowWrap>
                     <CompetitionCount>

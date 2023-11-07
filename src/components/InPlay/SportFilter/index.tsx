@@ -1,4 +1,4 @@
-import SportFilterBtn from '../../Reusable/SportFilterBtn'
+import SportFilterBtn from '../SportFilterBtn'
 
 import popularIcon from '../../../assets/img/fav.svg'
 import footballIcon from '../../../assets/img/fb.svg'
