@@ -3,7 +3,7 @@ import useAccordion from '../../../hooks/useAccordion'
 import chooseFlag from '../../../utils/chooseFlag'
 import clsx from 'clsx'
 
-import Competition from '../Competition'
+import Competition from '../../Reusable/Competition'
 
 import arrowIcon from '../../../assets/img/arrow.svg'
 import {

@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 
 import Title from '../../components/Reusable/Title'
 import Breadcrumb from '../../components/Reusable/Breadcrumb'
-import Competition from '../../components/InPlay/Competition'
+import Competition from '../../components/Reusable/Competition'
 
 import { SingleRegionWrap } from './style'
 import { RegionObj, CompetitionObj } from '../../types/interfaces'
