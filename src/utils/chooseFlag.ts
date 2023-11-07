@@ -1,8 +1,8 @@
 import italianFlag from '../assets/img/it.svg'
 import germanFlag from '../assets/img/de.svg'
-import tanzanianFlag from '../assets/img/us.svg'
+import tanzanianFlag from '../assets/img/tz.svg'
 
-const chooseFlag = (regionName: string) => {
+const chooseFlag = (regionName: string | undefined) => {
     let flag
     switch (regionName) {
         case 'Italy':

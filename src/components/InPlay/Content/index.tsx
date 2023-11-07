@@ -1,4 +1,4 @@
-import Title from '../Title'
+import Title from '../../Reusable/Title'
 import ListOfAll from '../ListOfAll'
 
 import { ContentWrap } from './style'

@@ -28,6 +28,11 @@ export const CompetitionTitleWrap = styled.div`
 
 export const CompetitionTitleInner = styled.div``
 
+export const RegionFlag = styled.img`
+    width: 14px;
+    margin-right: 5px;
+`
+
 export const FilterBtn = styled.button`
     margin-right: 3px;
     margin-left: 3px;
