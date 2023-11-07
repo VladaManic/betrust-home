@@ -25,9 +25,7 @@ class Store {
     }
 
     setTitle = (titleTxt: string) => {
-        //runInAction(() => {
         this.titleText = titleTxt
-        //})
     }
 
     get loading() {
