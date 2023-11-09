@@ -14,4 +14,5 @@ export const color = {
     timeYellow: '#dfbc3c',
     eventBlue: '#4A5A7B',
     halfGray: '#b4b4b4',
+    inputBlue: '#363d4d',
 }
