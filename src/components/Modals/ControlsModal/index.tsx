@@ -1,5 +1,4 @@
-import InputWrap from '../InputField'
-import SubmitBtn from '../SubmitBtn'
+import FormComponent from '../FormComponent'
 
 import {
     ModalWrap,
@@ -25,34 +24,25 @@ const ControlsModal = () => {
                     </TableRow>
                     <TableRow>
                         <TableCell>
-                            <InputWrap
-                                type="text"
+                            <FormComponent
                                 name="delete-region"
                                 placeholder="region id"
+                                value="DELETE"
                             />
                         </TableCell>
                         <TableCell>
-                            <SubmitBtn value="DELETE" />
-                        </TableCell>
-                        <TableCell>
-                            <InputWrap
-                                type="text"
+                            <FormComponent
                                 name="add-region"
                                 placeholder="sport id"
+                                value="ADD"
                             />
                         </TableCell>
                         <TableCell>
-                            <SubmitBtn value="ADD" />
-                        </TableCell>
-                        <TableCell>
-                            <InputWrap
-                                type="text"
+                            <FormComponent
                                 name="delete-region"
                                 placeholder="game id"
+                                value="UPDATE"
                             />
-                        </TableCell>
-                        <TableCell>
-                            <SubmitBtn value="UPDATE" />
                         </TableCell>
                     </TableRow>
                     <TableRow>
@@ -62,34 +52,25 @@ const ControlsModal = () => {
                     </TableRow>
                     <TableRow>
                         <TableCell>
-                            <InputWrap
-                                type="text"
+                            <FormComponent
                                 name="delete-league"
                                 placeholder="league id"
+                                value="DELETE"
                             />
                         </TableCell>
                         <TableCell>
-                            <SubmitBtn value="DELETE" />
-                        </TableCell>
-                        <TableCell>
-                            <InputWrap
-                                type="text"
+                            <FormComponent
                                 name="add-league"
                                 placeholder="region id"
+                                value="ADD"
                             />
                         </TableCell>
                         <TableCell>
-                            <SubmitBtn value="ADD" />
-                        </TableCell>
-                        <TableCell>
-                            <InputWrap
-                                type="text"
+                            <FormComponent
                                 name="update-score"
                                 placeholder="game id"
+                                value="UPDATE"
                             />
-                        </TableCell>
-                        <TableCell>
-                            <SubmitBtn value="UPDATE" />
                         </TableCell>
                     </TableRow>
                     <TableRow>
@@ -99,34 +80,25 @@ const ControlsModal = () => {
                     </TableRow>
                     <TableRow>
                         <TableCell>
-                            <InputWrap
-                                type="text"
+                            <FormComponent
                                 name="delete-game"
                                 placeholder="game id"
+                                value="DELETE"
                             />
                         </TableCell>
                         <TableCell>
-                            <SubmitBtn value="DELETE" />
-                        </TableCell>
-                        <TableCell>
-                            <InputWrap
-                                type="text"
+                            <FormComponent
                                 name="add-game"
                                 placeholder="league id"
+                                value="ADD"
                             />
                         </TableCell>
                         <TableCell>
-                            <SubmitBtn value="ADD" />
-                        </TableCell>
-                        <TableCell>
-                            <InputWrap
-                                type="text"
+                            <FormComponent
                                 name="update-time"
                                 placeholder="game id"
+                                value="UPDATE"
                             />
-                        </TableCell>
-                        <TableCell>
-                            <SubmitBtn value="UPDATE" />
                         </TableCell>
                     </TableRow>
                 </TableBody>

@@ -31,5 +31,5 @@ export const TableHeader = styled.th`
 `
 
 export const TableCell = styled.td`
-    flex-basis: 16.6%;
+    flex-basis: 33.3%;
 `
