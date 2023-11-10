@@ -22,10 +22,6 @@ export const TeamName = styled.p`
     line-height: 17px;
 `
 
-export const MatchTime = styled.p`
-    color: ${color.timeYellow};
-`
-
 export const AllEvents = styled.div`
     display: flex;
     align-items: center;

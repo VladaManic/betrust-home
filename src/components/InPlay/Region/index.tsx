@@ -1,7 +1,8 @@
+import { observer } from 'mobx-react'
 import { orderBy } from 'lodash'
+import clsx from 'clsx'
 import useAccordion from '../../../hooks/useAccordion'
 import chooseFlag from '../../../utils/chooseFlag'
-import clsx from 'clsx'
 
 import Competition from '../../Reusable/Competition'
 
@@ -65,4 +66,4 @@ const Region = ({ singleRegion }: Props) => {
     )
 }
 
-export default Region
+export default observer(Region)

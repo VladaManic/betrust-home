@@ -1,11 +1,12 @@
 import { observer } from 'mobx-react'
 import { orderBy } from 'lodash'
 
+import MatchTime from '../MatchTime'
+
 import {
     GameWrap,
     TeamsWrap,
     TeamName,
-    MatchTime,
     HalfTimeScore,
     ScoreWrap,
     ScoreHalf,
@@ -45,7 +46,7 @@ const Game = ({ singleGame }: Props) => {
             <TeamsWrap>
                 <TeamName>{singleGame.team1_name}</TeamName>
                 <TeamName>{singleGame.team2_name}</TeamName>
-                <MatchTime>{singleGame.info.current_game_time}'</MatchTime>
+                <MatchTime singleGame={singleGame} />
             </TeamsWrap>
             <AllEvents>
                 <HalfTimeScore>
