@@ -20,14 +20,17 @@ const FormComponent = ({ name, placeholder, value }: Props) => {
         const id = parseInt(inputVal.current!.value)
         //Different types of actions depending on submit btn clicked
         switch (name) {
+            case 'delete-game':
+                !store.setDeleteGame(id) && notificationError('game')
+                break
             case 'update-odd':
-                !store.setUpdateOdd(id) && notificationError()
+                !store.setUpdateOdd(id) && notificationError('game')
                 break
             case 'update-score':
-                !store.setUpdateScore(id) && notificationError()
+                !store.setUpdateScore(id) && notificationError('game')
                 break
             case 'update-time':
-                !store.setUpdateTime(id) && notificationError()
+                !store.setUpdateTime(id) && notificationError('game')
                 break
         }
     }
