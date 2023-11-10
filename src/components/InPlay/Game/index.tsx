@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react'
 import { orderBy } from 'lodash'
 
-import MatchTime from '../MatchTime'
+import MatchTime from '../GameItems/MatchTime'
 
 import {
     GameWrap,

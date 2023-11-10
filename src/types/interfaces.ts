@@ -1,3 +1,5 @@
+import { Theme, ToastPosition } from 'react-toastify'
+
 export type EventObj = {
     id: number
     type: string
@@ -37,4 +39,15 @@ export type RegionObj = {
 export type SportDataObj = {
     name?: string
     region?: RegionObj[]
+}
+
+export type ToastifyProps = {
+    position: ToastPosition | undefined
+    autoClose: number
+    hideProgressBar: boolean
+    closeOnClick: boolean
+    pauseOnHover: boolean
+    draggable: boolean
+    progress: undefined
+    theme: Theme | undefined
 }

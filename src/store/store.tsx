@@ -1,12 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { makeAutoObservable } from 'mobx'
 
-import {
-    SportDataObj,
-    RegionObj,
-    CompetitionObj,
-    GameObj,
-} from '../types/interfaces'
+import { SportDataObj } from '../types/interfaces'
 
 class Store {
     private loadingState: boolean = true
@@ -34,20 +28,20 @@ class Store {
         this.titleText = titleTxt
     }
 
-    setUpdate = (id: number) => {
-        this.sportData.region!.forEach(function (singleRegion: RegionObj) {
-            singleRegion.competition.forEach(function (
-                singleCompetition: CompetitionObj
-            ) {
-                singleCompetition.game.forEach(function (singleGame: GameObj) {
+    setUpdateTime = (id: number): boolean => {
+        for (const singleRegion of this.sportData.region!) {
+            for (const singleCompetition of singleRegion.competition) {
+                for (const singleGame of singleCompetition.game) {
                     if (singleGame.id === id) {
                         const newValue =
                             parseInt(singleGame.info.current_game_time) + 1
                         singleGame.info.current_game_time = newValue.toString()
+                        return true
                     }
-                })
-            })
-        })
+                }
+            }
+        }
+        return false
     }
 
     get loading() {

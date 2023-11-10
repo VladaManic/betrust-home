@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react'
 
 import { MatchTimeWrap } from './style'
-import { GameObj } from '../../../types/interfaces'
+import { GameObj } from '../../../../types/interfaces'
 
 interface Props {
     singleGame: GameObj
