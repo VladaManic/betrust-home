@@ -1,9 +1,8 @@
 import { useRef } from 'react'
 import { observer } from 'mobx-react'
 import store from '../../../store/store'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import { TOASTIFY_PARAMS } from '../../../constants/toastifyConstant'
+import { ToastContainer } from 'react-toastify'
+import notificationError from '../../../utils/notificationError'
 
 import { FormWrap, InputWrap, SubmitWrap } from './style'
 
@@ -21,15 +20,12 @@ const FormComponent = ({ name, placeholder, value }: Props) => {
         const id = parseInt(inputVal.current!.value)
         //Different types of actions depending on submit btn clicked
         switch (name) {
-            case 'update-time':
-                !store.setUpdateTime(id) &&
-                    toast.error(
-                        'Sorry, there is no game with that ID!',
-                        TOASTIFY_PARAMS
-                    )
+            case 'update-score':
+                !store.setUpdateScore(id) && notificationError()
                 break
-            default:
-                console.log(`Sorry, we are out of ${name}.`)
+            case 'update-time':
+                !store.setUpdateTime(id) && notificationError()
+                break
         }
     }
 

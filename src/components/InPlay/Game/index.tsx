@@ -2,6 +2,7 @@ import { observer } from 'mobx-react'
 import { orderBy } from 'lodash'
 
 import MatchTime from '../GameItems/MatchTime'
+import ScoreHalf from '../GameItems/ScoreHalf'
 
 import {
     GameWrap,
@@ -9,7 +10,7 @@ import {
     TeamName,
     HalfTimeScore,
     ScoreWrap,
-    ScoreHalf,
+    ScoreHalfWrap,
     HalfTitle,
     AllEvents,
     EventBtn,
@@ -51,24 +52,18 @@ const Game = ({ singleGame }: Props) => {
             <AllEvents>
                 <HalfTimeScore>
                     <ScoreWrap>
-                        <ScoreHalf>
-                            {singleGame.stats.score_set1.team1_value}
-                        </ScoreHalf>
-                        <ScoreHalf>
-                            {singleGame.stats.score_set2 !== undefined
-                                ? singleGame.stats.score_set2.team1_value
-                                : 0}
-                        </ScoreHalf>
+                        <ScoreHalf singleGame={singleGame} column={1} />
+                        <ScoreHalf singleGame={singleGame} column={2} />
                     </ScoreWrap>
                     <ScoreWrap>
-                        <ScoreHalf>
+                        <ScoreHalfWrap>
                             {singleGame.stats.score_set1.team2_value}
-                        </ScoreHalf>
-                        <ScoreHalf>
+                        </ScoreHalfWrap>
+                        <ScoreHalfWrap>
                             {singleGame.stats.score_set2 !== undefined
                                 ? singleGame.stats.score_set2.team2_value
                                 : 0}
-                        </ScoreHalf>
+                        </ScoreHalfWrap>
                     </ScoreWrap>
                     <ScoreWrap>
                         <HalfTitle>HT</HalfTitle>

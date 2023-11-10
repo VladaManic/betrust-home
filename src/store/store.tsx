@@ -28,6 +28,31 @@ class Store {
         this.titleText = titleTxt
     }
 
+    setUpdateScore = (id: number): boolean => {
+        for (const singleRegion of this.sportData.region!) {
+            for (const singleCompetition of singleRegion.competition) {
+                for (const singleGame of singleCompetition.game) {
+                    if (singleGame.id === id) {
+                        let newValue
+                        //If it's currently 2. half of the match
+                        if (singleGame.stats.score_set2 !== undefined) {
+                            newValue =
+                                singleGame.stats.score_set2.team1_value + 1
+                            singleGame.stats.score_set2.team1_value = newValue
+                            //If it's currently 1. half of the match
+                        } else {
+                            newValue =
+                                singleGame.stats.score_set1.team1_value + 1
+                            singleGame.stats.score_set1.team1_value = newValue
+                        }
+                        return true
+                    }
+                }
+            }
+        }
+        return false
+    }
+
     setUpdateTime = (id: number): boolean => {
         for (const singleRegion of this.sportData.region!) {
             for (const singleCompetition of singleRegion.competition) {
