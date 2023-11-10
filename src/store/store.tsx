@@ -1,6 +1,7 @@
 import { makeAutoObservable } from 'mobx'
+import { orderBy } from 'lodash'
 
-import { SportDataObj } from '../types/interfaces'
+import { SportDataObj, MarketObj } from '../types/interfaces'
 
 class Store {
     private loadingState: boolean = true
@@ -28,10 +29,38 @@ class Store {
         this.titleText = titleTxt
     }
 
+    setUpdateOdd = (id: number): boolean => {
+        for (const singleRegion of this.sportData.region!) {
+            for (const singleCompetition of singleRegion.competition) {
+                for (const singleGame of singleCompetition.game) {
+                    //Finding game with correct ID
+                    if (singleGame.id === id) {
+                        //Filtering all 'OverUnder' markets
+                        const overUnderArray = singleGame.market.filter(
+                            (singleMarket: MarketObj) =>
+                                singleMarket.market_type === 'OverUnder'
+                        )
+                        //Sorting all 'OverUnder' markets by order
+                        const overUnder = orderBy(overUnderArray, ['order'])
+                        //Looping through all events to find one of type 'Under'
+                        for (const singleEvent of overUnder[0].event) {
+                            if (singleEvent.type === 'Under') {
+                                singleEvent.price = 0
+                            }
+                        }
+                        return true
+                    }
+                }
+            }
+        }
+        return false
+    }
+
     setUpdateScore = (id: number): boolean => {
         for (const singleRegion of this.sportData.region!) {
             for (const singleCompetition of singleRegion.competition) {
                 for (const singleGame of singleCompetition.game) {
+                    //Finding game with correct ID
                     if (singleGame.id === id) {
                         let newValue
                         //If it's currently 2. half of the match
@@ -57,6 +86,7 @@ class Store {
         for (const singleRegion of this.sportData.region!) {
             for (const singleCompetition of singleRegion.competition) {
                 for (const singleGame of singleCompetition.game) {
+                    //Finding game with correct ID
                     if (singleGame.id === id) {
                         const newValue =
                             parseInt(singleGame.info.current_game_time) + 1

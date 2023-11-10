@@ -20,6 +20,9 @@ const FormComponent = ({ name, placeholder, value }: Props) => {
         const id = parseInt(inputVal.current!.value)
         //Different types of actions depending on submit btn clicked
         switch (name) {
+            case 'update-odd':
+                !store.setUpdateOdd(id) && notificationError()
+                break
             case 'update-score':
                 !store.setUpdateScore(id) && notificationError()
                 break

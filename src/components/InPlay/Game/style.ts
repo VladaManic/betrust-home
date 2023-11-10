@@ -34,9 +34,9 @@ export const AllEvents = styled.div`
             margin-right: 20px;
         }
 
-        &:last-of-type {
-            margin-right: 5px;
-        }
+        // &:last-of-type {
+        //     margin-right: 5px;
+        // }
     }
 `
 

@@ -39,7 +39,7 @@ const ControlsModal = () => {
                         </TableCell>
                         <TableCell>
                             <FormComponent
-                                name="delete-region"
+                                name="update-odd"
                                 placeholder="game id"
                                 value="UPDATE"
                             />

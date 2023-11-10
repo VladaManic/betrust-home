@@ -1,8 +1,9 @@
 import { observer } from 'mobx-react'
 import { orderBy } from 'lodash'
 
-import MatchTime from '../GameItems/MatchTime'
+import EventUnder from '../GameItems/EventUnder'
 import ScoreHalf from '../GameItems/ScoreHalf'
+import MatchTime from '../GameItems/MatchTime'
 
 import {
     GameWrap,
@@ -83,22 +84,13 @@ const Game = ({ singleGame }: Props) => {
                       ))}
                 {handicap[0] !== undefined ? (
                     <>
-                        <EventBtn
-                            className="event-btn"
-                            key={handicap[0].event[0].id}
-                        >
+                        <EventBtn className="event-btn">
                             {handicap[0].event[0].price}
                         </EventBtn>
-                        <EventBtnEmpty
-                            className="event-btn"
-                            key={handicap[0].id}
-                        >
+                        <EventBtnEmpty className="event-btn">
                             {handicap[0].base}
                         </EventBtnEmpty>
-                        <EventBtn
-                            className="event-btn"
-                            key={handicap[0].event[1].id}
-                        >
+                        <EventBtn className="event-btn">
                             {handicap[0].event[1].price}
                         </EventBtn>
                     </>
@@ -111,24 +103,13 @@ const Game = ({ singleGame }: Props) => {
                 )}
                 {
                     <>
-                        <EventBtn
-                            className="event-btn"
-                            key={overUnder[0].event[0].id}
-                        >
+                        <EventBtn className="event-btn">
                             {overUnder[0].event[0].price}
                         </EventBtn>
-                        <EventBtnEmpty
-                            className="event-btn"
-                            key={overUnder[0].id}
-                        >
+                        <EventBtnEmpty className="event-btn">
                             {overUnder[0].base}
                         </EventBtnEmpty>
-                        <EventBtn
-                            className="event-btn"
-                            key={overUnder[0].event[1].id}
-                        >
-                            {overUnder[0].event[1].price}
-                        </EventBtn>
+                        <EventUnder singleMarket={overUnder[0]} />
                     </>
                 }
                 <EventsCount>
