@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react'
 import { orderBy } from 'lodash'
 
 import {
@@ -144,4 +145,4 @@ const Game = ({ singleGame }: Props) => {
     )
 }
 
-export default Game
+export default observer(Game)

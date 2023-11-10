@@ -43,7 +43,6 @@ class Store {
                     if (singleGame.id === id) {
                         const newValue =
                             parseInt(singleGame.info.current_game_time) + 1
-                        console.log(newValue)
                         singleGame.info.current_game_time = newValue.toString()
                     }
                 })
