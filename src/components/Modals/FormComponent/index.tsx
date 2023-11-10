@@ -1,4 +1,6 @@
 import { useRef } from 'react'
+import { observer } from 'mobx-react'
+import store from '../../../store/store'
 
 import { FormWrap, InputWrap, SubmitWrap } from './style'
 
@@ -17,7 +19,8 @@ const FormComponent = ({ name, placeholder, value }: Props) => {
 
     const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        const val = inputVal.current!.value
+        const id = parseInt(inputVal.current!.value)
+        store.setUpdate(id)
     }
 
     return (
@@ -34,4 +37,4 @@ const FormComponent = ({ name, placeholder, value }: Props) => {
     )
 }
 
-export default FormComponent
+export default observer(FormComponent)
