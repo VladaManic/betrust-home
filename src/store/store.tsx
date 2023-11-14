@@ -29,6 +29,21 @@ class Store {
         this.titleText = titleTxt
     }
 
+    setDeleteLeague = (id: number): boolean => {
+        console.log(id)
+        for (const singleRegion of this.sportData.region!) {
+            for (let i = 0; i < singleRegion.competition.length; i++) {
+                //Finding competition with correct ID
+                if (singleRegion.competition[i].id === id) {
+                    // Removing game with the correct ID using splice
+                    singleRegion.competition.splice(i, 1)
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
     setDeleteGame = (id: number): boolean => {
         for (const singleRegion of this.sportData.region!) {
             for (const singleCompetition of singleRegion.competition) {

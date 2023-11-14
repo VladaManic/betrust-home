@@ -27,6 +27,7 @@ export type GameObj = {
 }
 
 export type CompetitionObj = {
+    id: number
     name: string
     game: GameObj[]
 }
