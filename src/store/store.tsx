@@ -29,13 +29,24 @@ class Store {
         this.titleText = titleTxt
     }
 
+    setDeleteRegion = (id: number): boolean => {
+        for (let i = 0; i < this.sportData.region!.length; i++) {
+            //Finding region with correct ID
+            if (this.sportData.region![i].id === id) {
+                // Removing region with the correct ID using splice
+                this.sportData.region!.splice(i, 1)
+                return true
+            }
+        }
+        return false
+    }
+
     setDeleteLeague = (id: number): boolean => {
-        console.log(id)
         for (const singleRegion of this.sportData.region!) {
             for (let i = 0; i < singleRegion.competition.length; i++) {
                 //Finding competition with correct ID
                 if (singleRegion.competition[i].id === id) {
-                    // Removing game with the correct ID using splice
+                    // Removing competition with the correct ID using splice
                     singleRegion.competition.splice(i, 1)
                     return true
                 }

@@ -33,6 +33,7 @@ export type CompetitionObj = {
 }
 
 export type RegionObj = {
+    id: number
     name: string
     competition: CompetitionObj[]
 }

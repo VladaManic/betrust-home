@@ -20,7 +20,9 @@ const SingleRegion = () => {
         (singelRegion: RegionObj) => singelRegion.name === regionName
     )
     //Sort competitions inside region
-    const competionsSorted = orderBy(currentRegion![0].competition, ['order'])
+    const competionsSorted =
+        currentRegion?.length !== 0 &&
+        orderBy(currentRegion![0].competition, ['order'])
 
     useEffect(() => {
         //Set new value for page title
@@ -32,13 +34,19 @@ const SingleRegion = () => {
             <Title />
             <Breadcrumb regionName={regionName} competitionName={undefined} />
             {currentRegion?.length !== 0 ? (
-                competionsSorted.map((singleCompetition: CompetitionObj) => (
-                    <Competition
-                        key={singleCompetition.name}
-                        singleCompetition={singleCompetition}
-                        regionName={regionName}
-                    />
-                ))
+                competionsSorted !== false ? (
+                    competionsSorted.map(
+                        (singleCompetition: CompetitionObj) => (
+                            <Competition
+                                key={singleCompetition.name}
+                                singleCompetition={singleCompetition}
+                                regionName={regionName}
+                            />
+                        )
+                    )
+                ) : (
+                    <EmptySingle text={'Region'} />
+                )
             ) : (
                 <EmptySingle text={'Region'} />
             )}
