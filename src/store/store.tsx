@@ -121,7 +121,6 @@ class Store {
                         //Changing property values for id and name
                         tanzaniaCopy.id = firstTanzaniaComp + 1
                         tanzaniaCopy.name = 'Added league'
-                        console.log(tanzaniaCopy)
                         //Adding new competition
                         for (const singleRegion of this.sportData.region!) {
                             if (singleRegion.id == id) {
