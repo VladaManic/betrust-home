@@ -29,6 +29,12 @@ const FormComponent = ({ name, placeholder, value }: Props) => {
             case 'delete-game':
                 !store.setDeleteGame(id) && notificationError('game')
                 break
+            case 'add-region':
+                !store.setAddRegion(id) && notificationError('sport')
+                break
+            case 'add-league':
+                !store.setAddLeague(id) && notificationError('region')
+                break
             case 'update-odd':
                 !store.setUpdateOdd(id) && notificationError('game')
                 break

@@ -1,12 +1,19 @@
 import { makeAutoObservable } from 'mobx'
 import { orderBy } from 'lodash'
 
-import { SportDataObj, MarketObj } from '../types/interfaces'
+import {
+    SportDataObj,
+    RegionObj,
+    CompetitionObj,
+    MarketObj,
+} from '../types/interfaces'
 
 class Store {
     private loadingState: boolean = true
     private errorMsg: string = ''
-    private sportData: SportDataObj = {}
+    private sportData: SportDataObj = {
+        id: 0,
+    }
     private titleText: string = 'Football - In Play'
 
     constructor() {
@@ -63,6 +70,65 @@ class Store {
                     if (singleCompetition.game[i].id === id) {
                         // Removing game with the correct ID using splice
                         singleCompetition.game.splice(i, 1)
+                        return true
+                    }
+                }
+            }
+        }
+        return false
+    }
+
+    setAddRegion = (id: number): boolean => {
+        const tanzaniaId = 2050001
+        //If provided ID is the same as football ID
+        if (this.sportData.id === id) {
+            //Nomber of regions already in object
+            const currentRegions = this.sportData.region!.length
+            //Getting Tanzania region object
+            const regionTanzania = this.sportData.region!.filter(
+                (singleRegion: RegionObj) => singleRegion.id === tanzaniaId
+            )
+            //Making copy of Tanzania region object
+            const tanzaniaCopy = { ...regionTanzania[0] }
+            //Changing property values for id and name
+            tanzaniaCopy.id = tanzaniaId + 1
+            tanzaniaCopy.name = 'Added region'
+            //Adding new region
+            this.sportData.region![currentRegions] = tanzaniaCopy
+            return true
+        }
+        return false
+    }
+
+    setAddLeague = (id: number): boolean => {
+        const tanzaniaId = 2050001
+        const firstTanzaniaComp = 20691
+        for (const singleRegion of this.sportData.region!) {
+            //Getting correct region
+            if (singleRegion.id === id) {
+                //Number of competitions already in object
+                const currentCompetitions = singleRegion.competition!.length
+                //Getting Tanzania first competition object
+                for (const singleRegion of this.sportData.region!) {
+                    if (singleRegion.id == tanzaniaId) {
+                        const competitionTanzania =
+                            singleRegion.competition!.filter(
+                                (singleCompetition: CompetitionObj) =>
+                                    singleCompetition.id === firstTanzaniaComp
+                            )
+                        //Making copy of Tanzania competition object
+                        const tanzaniaCopy = { ...competitionTanzania[0] }
+                        //Changing property values for id and name
+                        tanzaniaCopy.id = firstTanzaniaComp + 1
+                        tanzaniaCopy.name = 'Added league'
+                        console.log(tanzaniaCopy)
+                        //Adding new competition
+                        for (const singleRegion of this.sportData.region!) {
+                            if (singleRegion.id == id) {
+                                singleRegion.competition[currentCompetitions] =
+                                    tanzaniaCopy
+                            }
+                        }
                         return true
                     }
                 }

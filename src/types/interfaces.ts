@@ -39,6 +39,7 @@ export type RegionObj = {
 }
 
 export type SportDataObj = {
+    id: number
     name?: string
     region?: RegionObj[]
 }
