@@ -15,7 +15,7 @@ const Content = () => {
     return (
         <ContentWrap>
             {regionsSorted.map((singleRegion: RegionObj) => (
-                <Region key={singleRegion.name} singleRegion={singleRegion} />
+                <Region key={singleRegion.id} singleRegion={singleRegion} />
             ))}
         </ContentWrap>
     )

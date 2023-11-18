@@ -5,6 +5,7 @@ import {
     SportDataObj,
     RegionObj,
     CompetitionObj,
+    GameObj,
     MarketObj,
 } from '../types/interfaces'
 
@@ -91,7 +92,9 @@ class Store {
             //Making copy of Tanzania region object
             const tanzaniaCopy = { ...regionTanzania[0] }
             //Changing property values for id and name
-            tanzaniaCopy.id = tanzaniaId + 1
+            tanzaniaCopy.id = Math.floor(
+                Math.random() * (9999999 - 1000000 + 1) + 1000000
+            )
             tanzaniaCopy.name = 'Added region'
             //Adding new region
             this.sportData.region![currentRegions] = tanzaniaCopy
@@ -108,27 +111,68 @@ class Store {
             if (singleRegion.id === id) {
                 //Number of competitions already in object
                 const currentCompetitions = singleRegion.competition!.length
-                //Getting Tanzania first competition object
-                for (const singleRegion of this.sportData.region!) {
-                    if (singleRegion.id == tanzaniaId) {
+                //Getting Tanzania first competition object (for example)
+                for (const singleReg of this.sportData.region!) {
+                    if (singleReg.id == tanzaniaId) {
                         const competitionTanzania =
-                            singleRegion.competition!.filter(
+                            singleReg.competition!.filter(
                                 (singleCompetition: CompetitionObj) =>
                                     singleCompetition.id === firstTanzaniaComp
                             )
                         //Making copy of Tanzania competition object
                         const tanzaniaCopy = { ...competitionTanzania[0] }
                         //Changing property values for id and name
-                        tanzaniaCopy.id = firstTanzaniaComp + 1
+                        tanzaniaCopy.id = Math.floor(
+                            Math.random() * (99999 - 10000 + 1) + 10000
+                        )
                         tanzaniaCopy.name = 'Added league'
                         //Adding new competition
-                        for (const singleRegion of this.sportData.region!) {
-                            if (singleRegion.id == id) {
-                                singleRegion.competition[currentCompetitions] =
-                                    tanzaniaCopy
+                        singleRegion.competition[currentCompetitions] =
+                            tanzaniaCopy
+                        return true
+                    }
+                }
+            }
+        }
+        return false
+    }
+
+    setAddGame = (id: number): boolean => {
+        const tanzaniaId = 2050001
+        const firstTanzaniaComp = 20691
+        const tanzainaFirstGame = 19504055
+        for (const singleRegion of this.sportData.region!) {
+            for (const singleCompetition of singleRegion.competition!) {
+                //Finding competition with correct ID
+                if (singleCompetition.id === id) {
+                    //Number of games already in object
+                    const currentGames = singleCompetition.game!.length
+                    //Getting Tanzania first game of first competition object (for example)
+                    for (const singleRegion of this.sportData.region!) {
+                        if (singleRegion.id === tanzaniaId) {
+                            for (const singleComp of singleRegion.competition!) {
+                                if (singleComp.id === firstTanzaniaComp) {
+                                    const gameTanzania =
+                                        singleComp.game!.filter(
+                                            (singleGame: GameObj) =>
+                                                singleGame.id ===
+                                                tanzainaFirstGame
+                                        )
+                                    //Making copy of Tanzania game object
+                                    const tanzaniaCopy = { ...gameTanzania[0] }
+                                    //Changing property values for id and name
+                                    tanzaniaCopy.id = Math.floor(
+                                        Math.random() *
+                                            (99999999 - 10000000 + 1) +
+                                            10000000
+                                    )
+                                    //Adding new game
+                                    singleCompetition.game[currentGames] =
+                                        tanzaniaCopy
+                                }
+                                return true
                             }
                         }
-                        return true
                     }
                 }
             }
