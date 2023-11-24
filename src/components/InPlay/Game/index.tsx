@@ -1,10 +1,15 @@
 import { observer } from 'mobx-react'
 import { orderBy } from 'lodash'
 
-import EventUnder from '../GameItems/EventUnder'
-import ScoreHalf from '../GameItems/ScoreHalf'
 import MatchTime from '../GameItems/MatchTime'
+import ScoreHalf from '../GameItems/ScoreHalf'
+import EventBtnWinner from '../GameItems/EventBtnWinner'
+import EventBtnHandicap1 from '../GameItems/EventBtnHandicap1'
+import EventBtnHandicapBase from '../GameItems/EventBtnHandicapBase'
+import EventBtnHandicap2 from '../GameItems/EventBtnHandicap2'
+import EventUnder from '../GameItems/EventUnder'
 
+import emptyIcon from '../../../assets/img/empty.svg'
 import {
     GameWrap,
     TeamsWrap,
@@ -16,6 +21,7 @@ import {
     AllEvents,
     EventBtn,
     EventBtnEmpty,
+    EventEmptyIcon,
     EventsCount,
     EventsCountValue,
 } from './style'
@@ -73,31 +79,26 @@ const Game = ({ singleGame }: Props) => {
                 </HalfTimeScore>
                 {winner[0] !== undefined
                     ? winner[0].event.map((singleEvent: EventObj) => (
-                          <EventBtn className="event-btn" key={singleEvent.id}>
-                              {singleEvent.price}
-                          </EventBtn>
+                          <EventBtnWinner
+                              key={singleEvent.id}
+                              singleEvent={singleEvent}
+                          />
                       ))
                     : [...Array(3)].map((x, index) => (
                           <EventBtnEmpty className="event-btn" key={index}>
-                              ?
+                              <EventEmptyIcon src={emptyIcon} alt="Lock icon" />
                           </EventBtnEmpty>
                       ))}
                 {handicap[0] !== undefined ? (
                     <>
-                        <EventBtn className="event-btn">
-                            {handicap[0].event[0].price}
-                        </EventBtn>
-                        <EventBtnEmpty className="event-btn">
-                            {handicap[0].base}
-                        </EventBtnEmpty>
-                        <EventBtn className="event-btn">
-                            {handicap[0].event[1].price}
-                        </EventBtn>
+                        <EventBtnHandicap1 handicap={handicap[0]} />
+                        <EventBtnHandicapBase handicap={handicap[0]} />
+                        <EventBtnHandicap2 handicap={handicap[0]} />
                     </>
                 ) : (
                     [...Array(3)].map((x, index) => (
                         <EventBtnEmpty className="event-btn" key={index}>
-                            ?
+                            <EventEmptyIcon src={emptyIcon} alt="Lock icon" />
                         </EventBtnEmpty>
                     ))
                 )}

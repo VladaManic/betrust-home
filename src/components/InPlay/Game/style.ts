@@ -33,10 +33,6 @@ export const AllEvents = styled.div`
         &:nth-of-type(3n) {
             margin-right: 20px;
         }
-
-        // &:last-of-type {
-        //     margin-right: 5px;
-        // }
     }
 `
 
@@ -78,7 +74,10 @@ export const EventBtnEmpty = styled.button`
     height: 45px;
     width: 10%;
     color: ${color.defaultText};
+    cursor: auto;
 `
+
+export const EventEmptyIcon = styled.img``
 
 export const EventsCount = styled.div`
     display: flex;
