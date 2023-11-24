@@ -66,14 +66,6 @@ export const HalfTitle = styled.span`
     color: ${color.halfGray};
 `
 
-export const EventBtn = styled.button`
-    height: 45px;
-    width: 10%;
-    border: 1px solid ${color.eventBlue};
-    border-radius: 8px;
-    color: ${color.defaultText};
-`
-
 export const EventBtnEmpty = styled.button`
     height: 45px;
     width: 10%;

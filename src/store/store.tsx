@@ -83,7 +83,7 @@ class Store {
         const tanzaniaId = 2050001
         //If provided ID is the same as football ID
         if (this.sportData.id === id) {
-            //Nomber of regions already in object
+            //Number of regions already in object
             const currentRegions = this.sportData.region!.length
             //Getting Tanzania region object
             const regionTanzania = this.sportData.region!.filter(

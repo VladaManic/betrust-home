@@ -8,4 +8,9 @@ export const EventBtnWrap = styled.button`
     border: 1px solid ${color.eventBlue};
     border-radius: 8px;
     color: ${color.defaultText};
+    transition: all 0.4s ease;
+
+    &:hover {
+        opacity: 0.7;
+    }
 `
