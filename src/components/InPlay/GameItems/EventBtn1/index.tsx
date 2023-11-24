@@ -2,15 +2,15 @@ import { EventBtnWrap } from './style'
 import { MarketObj } from '../../../../types/interfaces'
 
 interface Props {
-    handicap: MarketObj
+    singleMarket: MarketObj
 }
 
-const EventBtnHandicap2 = ({ handicap }: Props) => {
+const EventBtn1 = ({ singleMarket }: Props) => {
     return (
         <EventBtnWrap className="event-btn">
-            {handicap.event[1].price}
+            {singleMarket.event[0].price}
         </EventBtnWrap>
     )
 }
 
-export default EventBtnHandicap2
+export default EventBtn1

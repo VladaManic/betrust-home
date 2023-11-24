@@ -1,16 +1,18 @@
+import { observer } from 'mobx-react'
+
 import { EventBtnWrap } from './style'
 import { MarketObj } from '../../../../types/interfaces'
 
 interface Props {
-    handicap: MarketObj
+    singleMarket: MarketObj
 }
 
-const EventBtnHandicap1 = ({ handicap }: Props) => {
+const EventBtn2 = ({ singleMarket }: Props) => {
     return (
         <EventBtnWrap className="event-btn">
-            {handicap.event[0].price}
+            {singleMarket.event[1].price}
         </EventBtnWrap>
     )
 }
 
-export default EventBtnHandicap1
+export default observer(EventBtn2)

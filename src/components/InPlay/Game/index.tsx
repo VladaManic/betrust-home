@@ -4,10 +4,9 @@ import { orderBy } from 'lodash'
 import MatchTime from '../GameItems/MatchTime'
 import ScoreHalf from '../GameItems/ScoreHalf'
 import EventBtnWinner from '../GameItems/EventBtnWinner'
-import EventBtnHandicap1 from '../GameItems/EventBtnHandicap1'
-import EventBtnHandicapBase from '../GameItems/EventBtnHandicapBase'
-import EventBtnHandicap2 from '../GameItems/EventBtnHandicap2'
-import EventUnder from '../GameItems/EventUnder'
+import EventBtn1 from '../GameItems/EventBtn1'
+import EventBtnBase from '../GameItems/EventBtnBase'
+import EventBtn2 from '../GameItems/EventBtn2'
 
 import emptyIcon from '../../../assets/img/empty.svg'
 import {
@@ -19,7 +18,6 @@ import {
     ScoreHalfWrap,
     HalfTitle,
     AllEvents,
-    EventBtn,
     EventBtnEmpty,
     EventEmptyIcon,
     EventsCount,
@@ -91,9 +89,9 @@ const Game = ({ singleGame }: Props) => {
                       ))}
                 {handicap[0] !== undefined ? (
                     <>
-                        <EventBtnHandicap1 handicap={handicap[0]} />
-                        <EventBtnHandicapBase handicap={handicap[0]} />
-                        <EventBtnHandicap2 handicap={handicap[0]} />
+                        <EventBtn1 singleMarket={handicap[0]} />
+                        <EventBtnBase singleMarket={handicap[0]} />
+                        <EventBtn2 singleMarket={handicap[0]} />
                     </>
                 ) : (
                     [...Array(3)].map((x, index) => (
@@ -104,13 +102,9 @@ const Game = ({ singleGame }: Props) => {
                 )}
                 {
                     <>
-                        <EventBtn className="event-btn">
-                            {overUnder[0].event[0].price}
-                        </EventBtn>
-                        <EventBtnEmpty className="event-btn">
-                            {overUnder[0].base}
-                        </EventBtnEmpty>
-                        <EventUnder singleMarket={overUnder[0]} />
+                        <EventBtn1 singleMarket={overUnder[0]} />
+                        <EventBtnBase singleMarket={overUnder[0]} />
+                        <EventBtn2 singleMarket={overUnder[0]} />
                     </>
                 }
                 <EventsCount>

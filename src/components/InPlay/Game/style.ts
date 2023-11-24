@@ -33,6 +33,10 @@ export const AllEvents = styled.div`
         &:nth-of-type(3n) {
             margin-right: 20px;
         }
+
+        &:nth-of-type(9) {
+            margin-right: 5px;
+        }
     }
 `
 
