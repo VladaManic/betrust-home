@@ -15,7 +15,6 @@ import {
     TeamName,
     HalfTimeScore,
     ScoreWrap,
-    ScoreHalfWrap,
     HalfTitle,
     AllEvents,
     EventBtnEmpty,
@@ -57,18 +56,28 @@ const Game = ({ singleGame }: Props) => {
             <AllEvents>
                 <HalfTimeScore>
                     <ScoreWrap>
-                        <ScoreHalf singleGame={singleGame} column={1} />
-                        <ScoreHalf singleGame={singleGame} column={2} />
+                        <ScoreHalf
+                            singleGame={singleGame}
+                            column={1}
+                            team={1}
+                        />
+                        <ScoreHalf
+                            singleGame={singleGame}
+                            column={2}
+                            team={1}
+                        />
                     </ScoreWrap>
                     <ScoreWrap>
-                        <ScoreHalfWrap>
-                            {singleGame.stats.score_set1.team2_value}
-                        </ScoreHalfWrap>
-                        <ScoreHalfWrap>
-                            {singleGame.stats.score_set2 !== undefined
-                                ? singleGame.stats.score_set2.team2_value
-                                : 0}
-                        </ScoreHalfWrap>
+                        <ScoreHalf
+                            singleGame={singleGame}
+                            column={1}
+                            team={2}
+                        />
+                        <ScoreHalf
+                            singleGame={singleGame}
+                            column={2}
+                            team={2}
+                        />
                     </ScoreWrap>
                     <ScoreWrap>
                         <HalfTitle>HT</HalfTitle>

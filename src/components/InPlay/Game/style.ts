@@ -53,12 +53,6 @@ export const ScoreWrap = styled.p`
     text-align: center;
 `
 
-export const ScoreHalfWrap = styled.span`
-    display: inline-block;
-    width: 50%;
-    text-align: center;
-`
-
 export const HalfTitle = styled.span`
     display: inline-block;
     width: 50%;
