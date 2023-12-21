@@ -1,6 +1,9 @@
+import { Theme, ToastPosition } from 'react-toastify'
+
 export type EventObj = {
     id: number
     type: string
+    name: string
     price: number
 }
 
@@ -25,16 +28,40 @@ export type GameObj = {
 }
 
 export type CompetitionObj = {
+    id: number
     name: string
     game: GameObj[]
 }
 
 export type RegionObj = {
+    id: number
     name: string
     competition: CompetitionObj[]
 }
 
 export type SportDataObj = {
+    id: number
     name?: string
     region?: RegionObj[]
+}
+
+export type BetSlipDataObj = {
+    id: string | undefined
+    subid: string | undefined
+    type: string | undefined
+    val: string | undefined
+    teams: string | undefined
+    price: string | undefined
+    game: string | undefined
+}
+
+export type ToastifyProps = {
+    position: ToastPosition | undefined
+    autoClose: number
+    hideProgressBar: boolean
+    closeOnClick: boolean
+    pauseOnHover: boolean
+    draggable: boolean
+    progress: undefined
+    theme: Theme | undefined
 }

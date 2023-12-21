@@ -1,6 +1,7 @@
 import italianFlag from '../assets/img/it.svg'
 import germanFlag from '../assets/img/de.svg'
 import tanzanianFlag from '../assets/img/tz.svg'
+import newFlag from '../assets/img/new-flag.svg'
 
 const chooseFlag = (regionName: string | undefined) => {
     let flag
@@ -13,6 +14,9 @@ const chooseFlag = (regionName: string | undefined) => {
             break
         case 'Tanzania':
             flag = tanzanianFlag
+            break
+        case 'Added region':
+            flag = newFlag
             break
     }
     return flag

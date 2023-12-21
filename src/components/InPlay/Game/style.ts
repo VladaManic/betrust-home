@@ -22,10 +22,6 @@ export const TeamName = styled.p`
     line-height: 17px;
 `
 
-export const MatchTime = styled.p`
-    color: ${color.timeYellow};
-`
-
 export const AllEvents = styled.div`
     display: flex;
     align-items: center;
@@ -38,7 +34,7 @@ export const AllEvents = styled.div`
             margin-right: 20px;
         }
 
-        &:last-of-type {
+        &:nth-of-type(9) {
             margin-right: 5px;
         }
     }
@@ -57,12 +53,6 @@ export const ScoreWrap = styled.p`
     text-align: center;
 `
 
-export const ScoreHalf = styled.span`
-    display: inline-block;
-    width: 50%;
-    text-align: center;
-`
-
 export const HalfTitle = styled.span`
     display: inline-block;
     width: 50%;
@@ -70,19 +60,14 @@ export const HalfTitle = styled.span`
     color: ${color.halfGray};
 `
 
-export const EventBtn = styled.button`
-    height: 45px;
-    width: 10%;
-    border: 1px solid ${color.eventBlue};
-    border-radius: 8px;
-    color: ${color.defaultText};
-`
-
 export const EventBtnEmpty = styled.button`
     height: 45px;
     width: 10%;
     color: ${color.defaultText};
+    cursor: auto;
 `
+
+export const EventEmptyIcon = styled.img``
 
 export const EventsCount = styled.div`
     display: flex;

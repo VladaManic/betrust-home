@@ -33,6 +33,7 @@ function App() {
             .catch((error) => handleError(error.message))
     }
     useEffect(() => {
+        //localStorage.clear()
         fetchData()
     }, [])
 

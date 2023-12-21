@@ -1,7 +1,8 @@
 import { NavLink } from 'react-router-dom'
+import { observer } from 'mobx-react'
+import clsx from 'clsx'
 import useAccordion from '../../../hooks/useAccordion'
 import chooseFlag from '../../../utils/chooseFlag'
-import clsx from 'clsx'
 
 import Game from '../../InPlay/Game'
 
@@ -111,4 +112,4 @@ const Competition = ({ singleCompetition, regionName }: Props) => {
     )
 }
 
-export default Competition
+export default observer(Competition)

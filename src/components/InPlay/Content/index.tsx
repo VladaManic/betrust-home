@@ -3,6 +3,8 @@ import store from '../../../store/store'
 import { orderBy } from 'lodash'
 
 import Region from '../Region'
+import Modal from '../../Reusable/Modal'
+import BetslipModal from '../../Modals/BetslipModal'
 
 import { ContentWrap } from './style'
 import { RegionObj } from '../../../types/interfaces'
@@ -15,8 +17,13 @@ const Content = () => {
     return (
         <ContentWrap>
             {regionsSorted.map((singleRegion: RegionObj) => (
-                <Region key={singleRegion.name} singleRegion={singleRegion} />
+                <Region key={singleRegion.id} singleRegion={singleRegion} />
             ))}
+            {store.betslip.length !== 0 && (
+                <Modal onClose={undefined} overlayDisplay={false}>
+                    <BetslipModal />
+                </Modal>
+            )}
         </ContentWrap>
     )
 }
