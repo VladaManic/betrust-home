@@ -1,5 +1,6 @@
 import { makeAutoObservable } from 'mobx'
 import { orderBy } from 'lodash'
+import isStorageSupported from '../utils/isStorageSupported'
 
 import {
     SportDataObj,
@@ -7,6 +8,8 @@ import {
     CompetitionObj,
     GameObj,
     MarketObj,
+    EventObj,
+    BetSlipDataObj,
 } from '../types/interfaces'
 
 class Store {
@@ -16,9 +19,27 @@ class Store {
         id: 0,
     }
     private titleText: string = 'Football - In Play'
+    private deletedGames: number[] = []
+    private betslipData: BetSlipDataObj[] = []
+    private acceptChangesVal: boolean = false
+    private acceptDeletesVal: boolean = false
 
     constructor() {
         makeAutoObservable(this)
+        //Checking if local-storage is available
+        if (isStorageSupported('localStorage')) {
+            try {
+                //Returning from localStorage already added odds
+                this.betslipData = JSON.parse(
+                    localStorage.getItem('odds-added') || ''
+                )
+            } catch (err) {
+                //No odds added jet
+                this.betslipData = []
+            }
+        } else {
+            this.betslipData = []
+        }
     }
 
     setLoading = (state: boolean) => {
@@ -37,12 +58,130 @@ class Store {
         this.titleText = titleTxt
     }
 
+    //Adding one new odd to betslip
+    setBetslip = (newOdd: BetSlipDataObj) => {
+        this.betslipData[this.betslipData.length] = newOdd
+        //Adding new odds set to localStorage
+        isStorageSupported('localStorage') &&
+            localStorage.setItem('odds-added', JSON.stringify(this.betslipData))
+    }
+
+    //Removinh one odd from betslip
+    setBetslipDeleteOne = (subId: string | undefined) => {
+        const betslipObject = this.betslipData
+        for (let i = 0; i < betslipObject.length; i++) {
+            //Finding region with correct ID
+            if (betslipObject[i].subid === subId) {
+                this.betslip.splice(i, 1)
+            }
+        }
+        //Adding new odds set to localStorage
+        isStorageSupported('localStorage') &&
+            localStorage.setItem('odds-added', JSON.stringify(this.betslipData))
+    }
+
+    //Removin all odds from betslip
+    setBetslipDeleteAll = () => {
+        while (this.betslipData.length > 0) {
+            this.betslipData.splice(0, 1)
+        }
+        //Adding new odds set to localStorage
+        isStorageSupported('localStorage') &&
+            localStorage.setItem('odds-added', JSON.stringify(this.betslipData))
+    }
+
+    //Visable changes for prices in betslip modal before accepting
+    setAcceptChanges = (param: boolean) => {
+        this.acceptChangesVal = param
+    }
+
+    //On accept btn click, sync price changes of sportData and betSlip
+    setChangesBetslip = () => {
+        //Looping through betslip data
+        for (const singleBetslip of this.betslipData) {
+            //Looping through sport data
+            for (const singleRegion of this.sport.region!) {
+                for (const singleCompetition of singleRegion.competition) {
+                    for (const singleGame of singleCompetition.game) {
+                        for (const singleMarket of singleGame.market) {
+                            if (
+                                singleBetslip.id === singleMarket.id.toString()
+                            ) {
+                                //Trying to find event with correct id
+                                const correctEvent = singleMarket.event.filter(
+                                    (singleEvent: EventObj) =>
+                                        singleEvent.id.toString() ===
+                                        singleBetslip.subid
+                                )
+                                //If event found, compare prices
+                                if (correctEvent[0] !== undefined) {
+                                    //If there is deference, sync prices
+                                    if (
+                                        singleBetslip.price !==
+                                        correctEvent[0].price.toString()
+                                    ) {
+                                        singleBetslip.price =
+                                            correctEvent[0].price.toString()
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        //Reset accept btn for new posible changes
+        this.acceptChangesVal = false
+    }
+
+    //On accept btn click, sync odd deletes of sportData and betSlip
+    setBetslipDeletes = () => {
+        let betslipObject = this.betslipData
+        //Looping through betslip data
+        for (const id of this.deletedGames) {
+            //Remove whole game with that id
+            betslipObject = betslipObject.filter(
+                (singleBetslip: BetSlipDataObj) =>
+                    singleBetslip.game !== id.toString()
+            )
+        }
+        this.betslipData = betslipObject
+
+        //Updating localStorage
+        isStorageSupported('localStorage') &&
+            localStorage.setItem('odds-added', JSON.stringify(betslipObject))
+
+        //Reset deleted games
+        this.deletedGames = []
+
+        //Reset accept btn for new posible deletes
+        this.acceptDeletesVal = false
+    }
+
     setDeleteRegion = (id: number): boolean => {
         for (let i = 0; i < this.sportData.region!.length; i++) {
             //Finding region with correct ID
             if (this.sportData.region![i].id === id) {
+                const currentRegion = this.sportData.region![i]
                 // Removing region with the correct ID using splice
                 this.sportData.region!.splice(i, 1)
+
+                //Showing accept btn in betslip if odds of this region are already added to betslip
+                for (const singleBetslip of this.betslipData) {
+                    for (const singleCompetition of currentRegion.competition) {
+                        for (const singleGame of singleCompetition.game) {
+                            if (
+                                singleGame.id.toString() === singleBetslip.game
+                            ) {
+                                this.acceptDeletesVal = true
+                                //Set game ids which need to be sync with betslip
+                                this.deletedGames.push(singleGame.id)
+                            }
+                        }
+                    }
+                }
+
                 return true
             }
         }
@@ -54,8 +193,23 @@ class Store {
             for (let i = 0; i < singleRegion.competition.length; i++) {
                 //Finding competition with correct ID
                 if (singleRegion.competition[i].id === id) {
+                    const currentCompetition = singleRegion.competition[i]
                     // Removing competition with the correct ID using splice
                     singleRegion.competition.splice(i, 1)
+
+                    //Showing accept btn in betslip if odds of this league are already added to betslip
+                    for (const singleBetslip of this.betslipData) {
+                        for (const singleGame of currentCompetition.game) {
+                            if (
+                                singleGame.id.toString() === singleBetslip.game
+                            ) {
+                                this.acceptDeletesVal = true
+                                //Set game ids which need to be sync with betslip
+                                this.deletedGames.push(singleGame.id)
+                            }
+                        }
+                    }
+
                     return true
                 }
             }
@@ -71,6 +225,16 @@ class Store {
                     if (singleCompetition.game[i].id === id) {
                         // Removing game with the correct ID using splice
                         singleCompetition.game.splice(i, 1)
+
+                        //Showing accept btn in betslip if odds of this game are already added to betslip
+                        for (const singleBetslip of this.betslipData) {
+                            if (singleBetslip.game === id.toString()) {
+                                this.acceptDeletesVal = true
+                                //Set game ids which need to be sync with betslip
+                                this.deletedGames.push(id)
+                            }
+                        }
+
                         return true
                     }
                 }
@@ -196,9 +360,20 @@ class Store {
                         //Looping through all events to find one of type 'Under'
                         for (const singleEvent of overUnder[0].event) {
                             if (singleEvent.type === 'Under') {
-                                singleEvent.price = 0
+                                singleEvent.price = 10
+
+                                //Showing accept btn in betslip if this odd is already added to betslip
+                                const possibleChanges = this.betslipData.filter(
+                                    (singleBetslip: BetSlipDataObj) =>
+                                        singleBetslip.subid ===
+                                        singleEvent.id.toString()
+                                )
+                                if (possibleChanges.length !== 0) {
+                                    this.acceptChangesVal = true
+                                }
                             }
                         }
+
                         return true
                     }
                 }
@@ -264,6 +439,31 @@ class Store {
 
     get title() {
         return this.titleText
+    }
+
+    get gamesRemoved() {
+        return this.deletedGames
+    }
+
+    get betslip() {
+        return this.betslipData
+    }
+
+    get acceptChanges() {
+        return this.acceptChangesVal
+    }
+
+    get acceptDeletes() {
+        return this.acceptDeletesVal
+    }
+
+    oddIsDisabled(id: number): boolean {
+        for (const singleBetslip of this.betslipData) {
+            if (singleBetslip.subid === id.toString()) {
+                return true
+            }
+        }
+        return false
     }
 }
 

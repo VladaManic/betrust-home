@@ -7,6 +7,8 @@ import Title from '../../components/Reusable/Title'
 import Breadcrumb from '../../components/Reusable/Breadcrumb'
 import Competition from '../../components/Reusable/Competition'
 import EmptySingle from '../../components/Reusable/EmptySingle'
+import Modal from '../../components/Reusable/Modal'
+import BetslipModal from '../../components/Modals/BetslipModal'
 
 import { SingleCompetitionWrap } from './style'
 import { RegionObj, CompetitionObj } from '../../types/interfaces'
@@ -52,6 +54,11 @@ const SingleCompetition = () => {
                 )
             ) : (
                 <EmptySingle text={'Competition'} />
+            )}
+            {store.betslip.length !== 0 && (
+                <Modal onClose={undefined} overlayDisplay={false}>
+                    <BetslipModal />
+                </Modal>
             )}
         </SingleCompetitionWrap>
     )

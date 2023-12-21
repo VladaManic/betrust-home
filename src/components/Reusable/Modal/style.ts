@@ -14,8 +14,8 @@ export const Overlay = styled.div`
 
 export const ModalWrap = styled.div`
     position: fixed;
-    top: 80%;
+    top: 100%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -100%);
     z-index: 1000;
 `

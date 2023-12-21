@@ -10,10 +10,15 @@ interface Props {
     name: string
     placeholder: string
     value: string
+    closeModal: () => void
 }
 
-const FormComponent = ({ name, placeholder, value }: Props) => {
+const FormComponent = ({ name, placeholder, value, closeModal }: Props) => {
     const inputVal = useRef<HTMLInputElement | null>(null)
+
+    const closeModalHandler = () => {
+        closeModal()
+    }
 
     const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -21,31 +26,49 @@ const FormComponent = ({ name, placeholder, value }: Props) => {
         //Different types of actions depending on submit btn clicked
         switch (name) {
             case 'delete-region':
-                !store.setDeleteRegion(id) && notificationError('region')
+                !store.setDeleteRegion(id)
+                    ? notificationError('region')
+                    : closeModalHandler()
                 break
             case 'delete-league':
-                !store.setDeleteLeague(id) && notificationError('league')
+                !store.setDeleteLeague(id)
+                    ? notificationError('league')
+                    : closeModalHandler()
                 break
             case 'delete-game':
-                !store.setDeleteGame(id) && notificationError('game')
+                !store.setDeleteGame(id)
+                    ? notificationError('game')
+                    : closeModalHandler()
                 break
             case 'add-region':
-                !store.setAddRegion(id) && notificationError('sport')
+                !store.setAddRegion(id)
+                    ? notificationError('sport')
+                    : closeModalHandler()
                 break
             case 'add-league':
-                !store.setAddLeague(id) && notificationError('region')
+                !store.setAddLeague(id)
+                    ? notificationError('region')
+                    : closeModalHandler()
                 break
             case 'add-game':
-                !store.setAddGame(id) && notificationError('league')
+                !store.setAddGame(id)
+                    ? notificationError('league')
+                    : closeModalHandler()
                 break
             case 'update-odd':
-                !store.setUpdateOdd(id) && notificationError('game')
+                !store.setUpdateOdd(id)
+                    ? notificationError('game')
+                    : closeModalHandler()
                 break
             case 'update-score':
-                !store.setUpdateScore(id) && notificationError('game')
+                !store.setUpdateScore(id)
+                    ? notificationError('game')
+                    : closeModalHandler()
                 break
             case 'update-time':
-                !store.setUpdateTime(id) && notificationError('game')
+                !store.setUpdateTime(id)
+                    ? notificationError('game')
+                    : closeModalHandler()
                 break
         }
     }

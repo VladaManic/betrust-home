@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import FormComponent from '../FormComponent'
 
 import {
@@ -11,7 +12,11 @@ import {
     TableCell,
 } from './style'
 
-const ControlsModal = () => {
+interface Props {
+    closeModal: () => void
+}
+
+const ControlsModal = ({ closeModal }: Props) => {
     return (
         <ModalWrap>
             <TableWrap>
@@ -28,6 +33,7 @@ const ControlsModal = () => {
                                 name="delete-region"
                                 placeholder="region id"
                                 value="DELETE"
+                                closeModal={closeModal}
                             />
                         </TableCell>
                         <TableCell>
@@ -35,6 +41,7 @@ const ControlsModal = () => {
                                 name="add-region"
                                 placeholder="sport id"
                                 value="ADD"
+                                closeModal={closeModal}
                             />
                         </TableCell>
                         <TableCell>
@@ -42,6 +49,7 @@ const ControlsModal = () => {
                                 name="update-odd"
                                 placeholder="game id"
                                 value="UPDATE"
+                                closeModal={closeModal}
                             />
                         </TableCell>
                     </TableRow>
@@ -56,6 +64,7 @@ const ControlsModal = () => {
                                 name="delete-league"
                                 placeholder="league id"
                                 value="DELETE"
+                                closeModal={closeModal}
                             />
                         </TableCell>
                         <TableCell>
@@ -63,6 +72,7 @@ const ControlsModal = () => {
                                 name="add-league"
                                 placeholder="region id"
                                 value="ADD"
+                                closeModal={closeModal}
                             />
                         </TableCell>
                         <TableCell>
@@ -70,6 +80,7 @@ const ControlsModal = () => {
                                 name="update-score"
                                 placeholder="game id"
                                 value="UPDATE"
+                                closeModal={closeModal}
                             />
                         </TableCell>
                     </TableRow>
@@ -84,6 +95,7 @@ const ControlsModal = () => {
                                 name="delete-game"
                                 placeholder="game id"
                                 value="DELETE"
+                                closeModal={closeModal}
                             />
                         </TableCell>
                         <TableCell>
@@ -91,6 +103,7 @@ const ControlsModal = () => {
                                 name="add-game"
                                 placeholder="league id"
                                 value="ADD"
+                                closeModal={closeModal}
                             />
                         </TableCell>
                         <TableCell>
@@ -98,6 +111,7 @@ const ControlsModal = () => {
                                 name="update-time"
                                 placeholder="game id"
                                 value="UPDATE"
+                                closeModal={closeModal}
                             />
                         </TableCell>
                     </TableRow>

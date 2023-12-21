@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react'
+import store from '../../../store/store'
 import { orderBy } from 'lodash'
 
 import MatchTime from '../GameItems/MatchTime'
@@ -33,6 +34,9 @@ const Game = ({ singleGame }: Props) => {
     const winner = singleGame.market.filter(
         (singleMarket: MarketObj) => singleMarket.market_type === 'MatchResult'
     )
+    //Sorting Winner events by order
+    const winnerEventsSorted =
+        winner[0] !== undefined ? orderBy(winner[0].event, ['order']) : []
     //Geting Handicap event data for current game
     const handicap = singleGame.market.filter(
         (singleMarket: MarketObj) =>
@@ -45,6 +49,23 @@ const Game = ({ singleGame }: Props) => {
     )
     //Sorting all 'OverUnder' markets by order
     const overUnder = orderBy(overUnderArray, ['order'])
+
+    const onClickHandler = (
+        e:
+            | React.MouseEvent<HTMLButtonElement>
+            | React.TouchEvent<HTMLButtonElement>
+    ) => {
+        const newOdd = {
+            id: e.currentTarget.dataset.id,
+            subid: e.currentTarget.dataset.subid,
+            type: e.currentTarget.dataset.type,
+            val: e.currentTarget.dataset.val,
+            teams: e.currentTarget.dataset.teams,
+            price: e.currentTarget.dataset.price,
+            game: e.currentTarget.dataset.game,
+        }
+        store.setBetslip(newOdd)
+    }
 
     return (
         <GameWrap>
@@ -85,10 +106,17 @@ const Game = ({ singleGame }: Props) => {
                     </ScoreWrap>
                 </HalfTimeScore>
                 {winner[0] !== undefined
-                    ? winner[0].event.map((singleEvent: EventObj) => (
+                    ? winnerEventsSorted.map((singleEvent: EventObj) => (
                           <EventBtnWinner
                               key={singleEvent.id}
+                              singleMarket={winner[0]}
                               singleEvent={singleEvent}
+                              type="Winner"
+                              val={singleEvent.name}
+                              team1={singleGame.team1_name}
+                              team2={singleGame.team2_name}
+                              gameId={singleGame.id}
+                              onClick={onClickHandler}
                           />
                       ))
                     : [...Array(3)].map((x, index) => (
@@ -98,9 +126,30 @@ const Game = ({ singleGame }: Props) => {
                       ))}
                 {handicap[0] !== undefined ? (
                     <>
-                        <EventBtn1 singleMarket={handicap[0]} />
-                        <EventBtnBase singleMarket={handicap[0]} />
-                        <EventBtn2 singleMarket={handicap[0]} />
+                        <EventBtn1
+                            singleMarket={handicap[0]}
+                            type="Handicap"
+                            team1={singleGame.team1_name}
+                            team2={singleGame.team2_name}
+                            gameId={singleGame.id}
+                            onClick={onClickHandler}
+                        />
+                        <EventBtnBase
+                            singleMarket={handicap[0]}
+                            type="Handicap"
+                            team1={singleGame.team1_name}
+                            team2={singleGame.team2_name}
+                            gameId={singleGame.id}
+                            onClick={onClickHandler}
+                        />
+                        <EventBtn2
+                            singleMarket={handicap[0]}
+                            type="Handicap"
+                            team1={singleGame.team1_name}
+                            team2={singleGame.team2_name}
+                            gameId={singleGame.id}
+                            onClick={onClickHandler}
+                        />
                     </>
                 ) : (
                     [...Array(3)].map((x, index) => (
@@ -111,9 +160,30 @@ const Game = ({ singleGame }: Props) => {
                 )}
                 {
                     <>
-                        <EventBtn1 singleMarket={overUnder[0]} />
-                        <EventBtnBase singleMarket={overUnder[0]} />
-                        <EventBtn2 singleMarket={overUnder[0]} />
+                        <EventBtn1
+                            singleMarket={overUnder[0]}
+                            type="Over / Under"
+                            team1={singleGame.team1_name}
+                            team2={singleGame.team2_name}
+                            gameId={singleGame.id}
+                            onClick={onClickHandler}
+                        />
+                        <EventBtnBase
+                            singleMarket={overUnder[0]}
+                            type="Over / Under"
+                            team1={singleGame.team1_name}
+                            team2={singleGame.team2_name}
+                            gameId={singleGame.id}
+                            onClick={onClickHandler}
+                        />
+                        <EventBtn2
+                            singleMarket={overUnder[0]}
+                            type="Over / Under"
+                            team1={singleGame.team1_name}
+                            team2={singleGame.team2_name}
+                            gameId={singleGame.id}
+                            onClick={onClickHandler}
+                        />
                     </>
                 }
                 <EventsCount>

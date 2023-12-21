@@ -4,17 +4,19 @@ import { Overlay, ModalWrap } from './style'
 
 interface Props {
     children: JSX.Element
-    onClose: React.MouseEventHandler<HTMLDivElement>
+    onClose: React.MouseEventHandler<HTMLDivElement> | undefined
     overlayDisplay: boolean
 }
 
-const Modal = ({ children, onClose, overlayDisplay }: Props) => {
+const Modal = ({ children, onClose = undefined, overlayDisplay }: Props) => {
+    const elementAppend = document.getElementById('content-wrap')
+
     return ReactDom.createPortal(
         <>
             {overlayDisplay && <Overlay onClick={onClose} />}
             <ModalWrap>{children}</ModalWrap>
         </>,
-        document.body
+        elementAppend!
     )
 }
 

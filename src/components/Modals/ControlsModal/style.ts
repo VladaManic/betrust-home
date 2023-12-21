@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { color } from '../../../shared/styles/variables'
 
 export const ModalWrap = styled.div`
+    psition: fixed;
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 20px;

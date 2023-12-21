@@ -12,4 +12,13 @@ export const EventBtnWrap = styled.button`
     &:hover {
         opacity: 0.7;
     }
+
+    &.disabled {
+        pointer-events: none;
+        cursor: auto;
+    }
+
+    &.disabled:hover {
+        opacity: 1;
+    }
 `

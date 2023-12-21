@@ -15,4 +15,10 @@ export const color = {
     eventBlue: '#4A5A7B',
     halfGray: '#b4b4b4',
     inputBlue: '#363d4d',
+    removeBlue: '#2894D0',
+    typeBlue: '#94ACE0',
+    payoutGreen: '#1BDEEA',
+    btnGray: '#6F6F6F',
+    btnBlue: '#0B396D',
+    scrollBlue: '#084B9B',
 }

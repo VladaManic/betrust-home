@@ -19,6 +19,10 @@ export default createGlobalStyle`
         color: ${color.defaultText};
     }
 
+    #content-wrap {
+        position: relative;
+    }
+
     h1,
     h2,
     p {

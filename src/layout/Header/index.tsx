@@ -33,7 +33,7 @@ const Header = () => {
             </HeaderInner>
             {openModal && (
                 <Modal onClose={onCloseHandler} overlayDisplay={true}>
-                    <ControlsModal />
+                    <ControlsModal closeModal={onCloseHandler} />
                 </Modal>
             )}
         </HeaderWrap>
