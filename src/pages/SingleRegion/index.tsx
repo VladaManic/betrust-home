@@ -6,7 +6,7 @@ import { orderBy } from 'lodash'
 
 import Title from '../../components/Reusable/Title'
 import Breadcrumb from '../../components/Reusable/Breadcrumb'
-import Competition from '../../components/Reusable/Competition'
+import League from '../../components/Reusable/League'
 import EmptySingle from '../../components/Reusable/EmptySingle'
 import Modal from '../../components/Reusable/Modal'
 import BetslipModal from '../../components/Modals/BetslipModal'
@@ -39,7 +39,7 @@ const SingleRegion = () => {
                 competionsSorted !== false ? (
                     competionsSorted.map(
                         (singleCompetition: CompetitionObj) => (
-                            <Competition
+                            <League
                                 key={singleCompetition.name}
                                 singleCompetition={singleCompetition}
                                 regionName={regionName}

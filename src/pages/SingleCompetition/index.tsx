@@ -5,7 +5,7 @@ import store from '../../store/store'
 
 import Title from '../../components/Reusable/Title'
 import Breadcrumb from '../../components/Reusable/Breadcrumb'
-import Competition from '../../components/Reusable/Competition'
+import League from '../../components/Reusable/League'
 import EmptySingle from '../../components/Reusable/EmptySingle'
 import Modal from '../../components/Reusable/Modal'
 import BetslipModal from '../../components/Modals/BetslipModal'
@@ -45,7 +45,7 @@ const SingleCompetition = () => {
                 // If competition exists
                 currentCompetition !== false &&
                 currentCompetition.length !== 0 ? (
-                    <Competition
+                    <League
                         singleCompetition={currentCompetition[0]}
                         regionName={regionName}
                     />

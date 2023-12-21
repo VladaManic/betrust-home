@@ -34,7 +34,7 @@ interface Props {
     regionName: string | undefined
 }
 
-const Competition = ({ singleCompetition, regionName }: Props) => {
+const League = ({ singleCompetition, regionName }: Props) => {
     //Using custom hook for opening/closing competition
     const { opened, setOpened } = useAccordion(false)
 
@@ -112,4 +112,4 @@ const Competition = ({ singleCompetition, regionName }: Props) => {
     )
 }
 
-export default observer(Competition)
+export default observer(League)
