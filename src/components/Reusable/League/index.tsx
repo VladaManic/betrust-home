@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import useAccordion from '../../../hooks/useAccordion'
 import chooseFlag from '../../../utils/chooseFlag'
 
-import Game from '../../InPlay/Game'
+import GameLoop from '../GameLoop'
 
 import arrowIcon from '../../../assets/img/arrow-small.svg'
 import {
@@ -27,7 +27,8 @@ import {
     BetValue,
     BetValueEmpty,
 } from './style'
-import { CompetitionObj, GameObj } from '../../../types/interfaces'
+
+import { CompetitionObj } from '../../../types/interfaces'
 
 interface Props {
     singleCompetition: CompetitionObj
@@ -103,9 +104,7 @@ const League = ({ singleCompetition, regionName }: Props) => {
                             </HeaderRight>
                         </HeaderDown>
                     </CompetitionHeader>
-                    {singleCompetition.game.map((singleGame: GameObj) => (
-                        <Game key={singleGame.id} singleGame={singleGame} />
-                    ))}
+                    <GameLoop singleCompetition={singleCompetition} />
                 </>
             )}
         </CompetitionWrap>
