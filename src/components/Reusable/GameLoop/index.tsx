@@ -1,3 +1,5 @@
+import { observer } from 'mobx-react'
+
 import Game from '../../InPlay/Game'
 
 import { CompetitionObj, GameObj } from '../../../types/interfaces'
@@ -16,4 +18,4 @@ const GameLoop = ({ singleCompetition }: Props) => {
     )
 }
 
-export default GameLoop
+export default observer(GameLoop)

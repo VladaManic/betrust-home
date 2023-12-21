@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react'
 import { orderBy } from 'lodash'
 
 import League from '../../Reusable/League'
@@ -32,4 +33,4 @@ const Competition = ({ singleRegion, opened }: Props) => {
     )
 }
 
-export default Competition
+export default observer(Competition)
