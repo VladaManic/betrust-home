@@ -456,15 +456,6 @@ class Store {
     get acceptDeletes() {
         return this.acceptDeletesVal
     }
-
-    oddIsDisabled(id: number): boolean {
-        for (const singleBetslip of this.betslipData) {
-            if (singleBetslip.subid === id.toString()) {
-                return true
-            }
-        }
-        return false
-    }
 }
 
 const store = new Store()

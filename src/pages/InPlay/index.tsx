@@ -5,6 +5,7 @@ import store from '../../store/store'
 import SportFilter from '../../components/InPlay/SportFilter'
 import Title from '../../components/Reusable/Title'
 import Content from '../../components/InPlay/Content'
+import ModalBetslip from '../../components/InPlay/ModalBetslip'
 
 import { InPlayWrap } from './style'
 
@@ -19,6 +20,7 @@ const InPlay = () => {
             <SportFilter />
             <Title />
             <Content />
+            <ModalBetslip />
         </InPlayWrap>
     )
 }
