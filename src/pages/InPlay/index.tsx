@@ -12,7 +12,7 @@ import { InPlayWrap } from './style'
 const InPlay = () => {
     useEffect(() => {
         //Reset value for page title
-        store.setTitle(store.sport.name + ' - In Play')
+        store.setTitle(store.sportName + ' - In Play')
     }, [])
 
     return (

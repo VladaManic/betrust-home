@@ -4,7 +4,7 @@ import store from '../../../store/store'
 import League from '../../../components/Reusable/League'
 import EmptySingle from '../../../components/Reusable/EmptySingle'
 
-import { RegionObj, CompetitionObj } from '../../../types/interfaces'
+import { CompetitionObj } from '../../../types/interfaces'
 
 interface Props {
     regionName: string | undefined
@@ -12,10 +12,7 @@ interface Props {
 }
 
 const Competition = ({ regionName, competitionName }: Props) => {
-    //Get that region object from sportData store object
-    const currentRegion = store.sport.region?.filter(
-        (singelRegion: RegionObj) => singelRegion.name === regionName
-    )
+    const currentRegion = store.currentRegion(regionName)
     //Get that competition object if there is correct region object
     const currentCompetition =
         currentRegion?.length !== 0 &&

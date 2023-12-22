@@ -5,17 +5,14 @@ import { orderBy } from 'lodash'
 import League from '../../../components/Reusable/League'
 import EmptySingle from '../../../components/Reusable/EmptySingle'
 
-import { RegionObj, CompetitionObj } from '../../../types/interfaces'
+import { CompetitionObj } from '../../../types/interfaces'
 
 interface Props {
     regionName: string | undefined
 }
 
 const CompetitionLoop = ({ regionName }: Props) => {
-    //Get that region object from sportData store object
-    const currentRegion = store.sport.region?.filter(
-        (singelRegion: RegionObj) => singelRegion.name === regionName
-    )
+    const currentRegion = store.currentRegion(regionName)
     //Sort competitions inside region
     const competionsSorted =
         currentRegion?.length !== 0 &&

@@ -437,6 +437,16 @@ class Store {
         return this.sportData
     }
 
+    get sportName() {
+        return this.sportData.name
+    }
+
+    //Sort regions by order
+    get regionsSorted() {
+        const regionsSorted = orderBy(this.sport.region, ['order'])
+        return regionsSorted
+    }
+
     get title() {
         return this.titleText
     }
@@ -455,6 +465,14 @@ class Store {
 
     get acceptDeletes() {
         return this.acceptDeletesVal
+    }
+
+    //Get region object from sportData store object
+    currentRegion(regionName: string | undefined) {
+        const curRegion = this.sport.region?.filter(
+            (singelRegion: RegionObj) => singelRegion.name === regionName
+        )
+        return curRegion
     }
 }
 
