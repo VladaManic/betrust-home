@@ -15,7 +15,7 @@ import {
     OddType,
     OddTeams,
 } from './style'
-import { BetSlipDataObj, EventObj } from '../../../../types/interfaces'
+import { BetSlipDataObj } from '../../../../types/interfaces'
 
 interface Props {
     singleBetslip: BetSlipDataObj
@@ -27,36 +27,11 @@ const BetslipItem = ({ singleBetslip, acceptVal, gameId }: Props) => {
     const [priceVal, setPriceVal] = useState<string | undefined>(
         singleBetslip.price
     )
-
     //Getting price for odd from sport data for comparation
-    let currentPrice: number = 0
-    for (const singleRegion of store.sport.region!) {
-        for (const singleCompetition of singleRegion.competition) {
-            for (const singleGame of singleCompetition.game) {
-                for (const singleMarket of singleGame.market) {
-                    //Finding market with correct id
-                    if (singleMarket.id.toString() === singleBetslip.id) {
-                        //Trying to find event with correct id
-                        const correctEvent = singleMarket.event.filter(
-                            (singleEvent: EventObj) =>
-                                singleEvent.id.toString() ===
-                                singleBetslip.subid
-                        )
-                        //If event found, get it's price
-                        if (correctEvent[0] !== undefined) {
-                            currentPrice = correctEvent[0].price
-                            //If there is no event with that id, it means that it's Tied clicked and than base value is used
-                        } else {
-                            currentPrice = singleMarket.base
-                        }
-                    }
-                }
-            }
-        }
-    }
+    const currentPrice = store.currentPrice(singleBetslip)
 
     useEffect(() => {
-        setPriceVal(currentPrice.toString())
+        setPriceVal(currentPrice!.toString())
     }, [acceptVal])
 
     return (
@@ -86,7 +61,7 @@ const BetslipItem = ({ singleBetslip, acceptVal, gameId }: Props) => {
                                     ) &&
                                     'removed',
                                 store.acceptChanges &&
-                                    currentPrice.toString() !== priceVal &&
+                                    currentPrice!.toString() !== priceVal &&
                                     'change'
                             )}
                         >

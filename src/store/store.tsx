@@ -474,6 +474,36 @@ class Store {
         )
         return curRegion
     }
+
+    //Getting price for odd from sport data for comparation in betslip modal
+    currentPrice(singleBetslip: BetSlipDataObj) {
+        let currentPrice: number = 0
+        for (const singleRegion of store.sport.region!) {
+            for (const singleCompetition of singleRegion.competition) {
+                for (const singleGame of singleCompetition.game) {
+                    for (const singleMarket of singleGame.market) {
+                        //Finding market with correct id
+                        if (singleMarket.id.toString() === singleBetslip.id) {
+                            //Trying to find event with correct id
+                            const correctEvent = singleMarket.event.filter(
+                                (singleEvent: EventObj) =>
+                                    singleEvent.id.toString() ===
+                                    singleBetslip.subid
+                            )
+                            //If event found, get it's price
+                            if (correctEvent[0] !== undefined) {
+                                currentPrice = correctEvent[0].price
+                                //If there is no event with that id, it means that it's Tied clicked and than base value is used
+                            } else {
+                                currentPrice = singleMarket.base
+                            }
+                            return currentPrice
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 const store = new Store()
