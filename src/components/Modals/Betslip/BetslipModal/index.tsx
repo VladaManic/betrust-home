@@ -5,8 +5,7 @@ import clsx from 'clsx'
 import useAccordion from '../../../../hooks/useAccordion'
 
 import Betslips from '../Betslips'
-import AcceptChangesBtn from '../AcceptChangesBtn'
-import BetslipChangeable from '../BetslipChangeable'
+import BetslipFooterChangeable from '../BetslipFooterChangeable'
 
 import arrowIcon from '../../../../assets/img/arrow.svg'
 import {
@@ -24,7 +23,6 @@ import {
     TotalValue,
     PayoutWrap,
     TotalText,
-    AcceptText,
 } from './style'
 import { BetSlipDataObj, EventObj } from '../../../../types/interfaces'
 
@@ -85,12 +83,6 @@ const BetslipModal = () => {
         setAcceptVal(false)
     }
 
-    //Click on btn to accept incoming deletes
-    const onClickAcceptDelete = () => {
-        //Updating betslip
-        store.setBetslipDeletes()
-    }
-
     return (
         <BetslipWrap className={clsx(opened && 'active')}>
             <AcumulatorWrap onClick={() => setOpened((curr: boolean) => !curr)}>
@@ -135,30 +127,7 @@ const BetslipModal = () => {
                                 </TotalValue>
                             </PayoutWrap>
                         </FooterInner>
-                        {store.acceptChanges && (
-                            <>
-                                <AcceptText>
-                                    The line, odds, or availability of your
-                                    selection has changed.
-                                </AcceptText>
-                                <AcceptChangesBtn onClick={onClickAccept} />
-                            </>
-                        )}
-                        {store.acceptDeletes && (
-                            <>
-                                <AcceptText>
-                                    One (or more) of your games has been
-                                    suspended, and it will be removed from the
-                                    bet slip.
-                                </AcceptText>
-                                <AcceptChangesBtn
-                                    onClick={onClickAcceptDelete}
-                                />
-                            </>
-                        )}
-                        {!store.acceptChanges && !store.acceptDeletes && (
-                            <BetslipChangeable />
-                        )}
+                        <BetslipFooterChangeable onClick={onClickAccept} />
                     </BetslipFooter>
                 </>
             )}
