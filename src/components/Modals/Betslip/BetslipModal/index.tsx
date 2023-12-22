@@ -24,20 +24,14 @@ import {
     PayoutWrap,
     TotalText,
 } from './style'
-import { BetSlipDataObj } from '../../../../types/interfaces'
 
 const BetslipModal = () => {
     //Using custom hook for opening/closing acumulator modal
     const { opened, setOpened } = useAccordion(true)
     const [acceptVal, setAcceptVal] = useState<boolean>(false)
     //Calculating sum of prices from betslip
-    let sum: number = 0
-    store.betslip.forEach(
-        (singleBetslip: BetSlipDataObj) =>
-            (sum = sum! + parseFloat(singleBetslip.price!))
-    )
+    const sum = store.betslipSum
     const sumFormated = (Math.round(sum * 100) / 100).toFixed(2)
-
     //Calculating sum of prices from sport data for comparation
     const newSum = store.currentSum
 
@@ -56,7 +50,7 @@ const BetslipModal = () => {
             <AcumulatorWrap onClick={() => setOpened((curr: boolean) => !curr)}>
                 <AcumulatorText>
                     Acumulator (
-                    <AcumulatorSpan>{store.betslip.length}</AcumulatorSpan>) (
+                    <AcumulatorSpan>{store.betslipLength}</AcumulatorSpan>) (
                     <AcumulatorTotal>{sumFormated}</AcumulatorTotal>)
                 </AcumulatorText>
                 <AcumulatorArrow
