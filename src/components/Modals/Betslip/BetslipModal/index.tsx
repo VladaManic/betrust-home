@@ -31,7 +31,7 @@ const BetslipModal = () => {
     const { opened, setOpened } = useAccordion(true)
     const [acceptVal, setAcceptVal] = useState<boolean>(false)
     //Calculating sum of prices from betslip
-    let sum: number | undefined = 0
+    let sum: number = 0
     store.betslip.forEach(
         (singleBetslip: BetSlipDataObj) =>
             (sum = sum! + parseFloat(singleBetslip.price!))
