@@ -3,12 +3,11 @@ import { observer } from 'mobx-react'
 import store from '../../../../store/store'
 import clsx from 'clsx'
 
-import removeIcon from '../../../../assets/img/remove.svg'
+import RemoveBtn from '../RemoveBtn'
+
 import {
     SingleOddWrap,
     SingleOddInner,
-    RemoveIconWrap,
-    RemoveIcon,
     OddData,
     OddHeader,
     OddValue,
@@ -56,28 +55,14 @@ const BetslipItem = ({ singleBetslip, acceptVal, gameId }: Props) => {
         }
     }
 
-    //
-
     useEffect(() => {
         setPriceVal(currentPrice.toString())
     }, [acceptVal])
 
-    //Click on X to remove specific odd
-    const onClickHandler = () => {
-        const subId = singleBetslip.subid
-        store.setBetslipDeleteOne(subId)
-    }
-
     return (
         <SingleOddWrap>
             <SingleOddInner>
-                <RemoveIconWrap>
-                    <RemoveIcon
-                        src={removeIcon}
-                        alt="Remove icon"
-                        onClick={onClickHandler}
-                    />
-                </RemoveIconWrap>
+                <RemoveBtn singleBetslip={singleBetslip} />
                 <OddData>
                     <OddHeader>
                         <OddValue

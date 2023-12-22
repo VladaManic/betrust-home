@@ -4,7 +4,7 @@ import store from '../../../../store/store'
 import clsx from 'clsx'
 import useAccordion from '../../../../hooks/useAccordion'
 
-import BetslipItem from '../BetslipItem'
+import Betslips from '../Betslips'
 import AcceptChangesBtn from '../AcceptChangesBtn'
 import BetslipChangeable from '../BetslipChangeable'
 
@@ -18,7 +18,6 @@ import {
     AcumulatorArrow,
     OddsWrap,
     RemoveAll,
-    BetslipInner,
     BetslipFooter,
     FooterInner,
     TotalWrap,
@@ -112,18 +111,7 @@ const BetslipModal = () => {
                         <RemoveAll onClick={removeAllHandler}>
                             RemoveAll
                         </RemoveAll>
-                        <BetslipInner>
-                            {store.betslip.map(
-                                (singleBetlsip: BetSlipDataObj) => (
-                                    <BetslipItem
-                                        key={singleBetlsip.subid}
-                                        singleBetslip={singleBetlsip}
-                                        acceptVal={acceptVal}
-                                        gameId={singleBetlsip.game}
-                                    />
-                                )
-                            )}
-                        </BetslipInner>
+                        <Betslips acceptVal={acceptVal} />
                     </OddsWrap>
                     <BetslipFooter>
                         <FooterInner>

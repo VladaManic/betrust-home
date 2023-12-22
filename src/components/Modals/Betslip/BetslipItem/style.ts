@@ -10,15 +10,6 @@ export const SingleOddInner = styled.div`
     display: flex;
 `
 
-export const RemoveIconWrap = styled.div`
-    width: 25px;
-    text-align: center;
-`
-
-export const RemoveIcon = styled.img`
-    cursor: pointer;
-`
-
 export const OddData = styled.div`
     flex: 1;
 `

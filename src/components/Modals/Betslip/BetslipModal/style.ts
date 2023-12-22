@@ -65,11 +65,6 @@ export const RemoveAll = styled.button`
     color: ${color.removeBlue};
 `
 
-export const BetslipInner = styled.div`
-    max-height: 425px;
-    overflow: auto;
-`
-
 export const BetslipFooter = styled.div`
     padding-top: 15px;
     border-top: 1px solid ${color.linksBlue};
