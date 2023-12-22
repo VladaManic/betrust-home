@@ -22,7 +22,8 @@ function App() {
         console.log(error)
     }
 
-    const fetchData = () => {
+    useEffect(() => {
+        //localStorage.clear()
         fetch('http://localhost:4000/data')
             .then((response) => response.json())
             .then((data) => {
@@ -31,10 +32,6 @@ function App() {
                 store.setLoading(false)
             })
             .catch((error) => handleError(error.message))
-    }
-    useEffect(() => {
-        //localStorage.clear()
-        fetchData()
     }, [])
 
     return (
