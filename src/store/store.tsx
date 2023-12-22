@@ -100,7 +100,7 @@ class Store {
         //Looping through betslip data
         for (const singleBetslip of this.betslipData) {
             //Looping through sport data
-            for (const singleRegion of this.sport.region!) {
+            for (const singleRegion of this.sportData.region!) {
                 for (const singleCompetition of singleRegion.competition) {
                     for (const singleGame of singleCompetition.game) {
                         for (const singleMarket of singleGame.market) {
@@ -433,17 +433,13 @@ class Store {
         return this.errorMsg
     }
 
-    get sport() {
-        return this.sportData
-    }
-
     get sportName() {
         return this.sportData.name
     }
 
     //Sort regions by order
     get regionsSorted() {
-        const regionsSorted = orderBy(this.sport.region, ['order'])
+        const regionsSorted = orderBy(this.sportData.region, ['order'])
         return regionsSorted
     }
 
@@ -467,9 +463,44 @@ class Store {
         return this.acceptDeletesVal
     }
 
+    //Calculating sum of prices from sport data for comparation in betslip modal
+    get currentSum() {
+        let newSum: number = 0
+        let currentPrice: number = 0
+        for (const singleBetslip of this.betslipData) {
+            for (const singleRegion of this.sportData.region!) {
+                for (const singleCompetition of singleRegion.competition) {
+                    for (const singleGame of singleCompetition.game) {
+                        for (const singleMarket of singleGame.market) {
+                            if (
+                                singleBetslip.id === singleMarket.id.toString()
+                            ) {
+                                //Trying to find event with correct id
+                                const correctEvent = singleMarket.event.filter(
+                                    (singleEvent: EventObj) =>
+                                        singleEvent.id.toString() ===
+                                        singleBetslip.subid
+                                )
+                                //If event found, get it's price
+                                if (correctEvent[0] !== undefined) {
+                                    currentPrice = correctEvent[0].price
+                                    //If there is no event with that id, it means that it's Tied clicked and than base value is used
+                                } else {
+                                    currentPrice = singleMarket.base
+                                }
+                                newSum = newSum + currentPrice
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return newSum
+    }
+
     //Get region object from sportData store object
     currentRegion(regionName: string | undefined) {
-        const curRegion = this.sport.region?.filter(
+        const curRegion = this.sportData.region?.filter(
             (singelRegion: RegionObj) => singelRegion.name === regionName
         )
         return curRegion
@@ -478,7 +509,7 @@ class Store {
     //Getting price for odd from sport data for comparation in betslip modal
     currentPrice(singleBetslip: BetSlipDataObj) {
         let currentPrice: number = 0
-        for (const singleRegion of store.sport.region!) {
+        for (const singleRegion of this.sportData.region!) {
             for (const singleCompetition of singleRegion.competition) {
                 for (const singleGame of singleCompetition.game) {
                     for (const singleMarket of singleGame.market) {

@@ -24,49 +24,22 @@ import {
     PayoutWrap,
     TotalText,
 } from './style'
-import { BetSlipDataObj, EventObj } from '../../../../types/interfaces'
+import { BetSlipDataObj } from '../../../../types/interfaces'
 
 const BetslipModal = () => {
     //Using custom hook for opening/closing acumulator modal
     const { opened, setOpened } = useAccordion(true)
     const [acceptVal, setAcceptVal] = useState<boolean>(false)
     //Calculating sum of prices from betslip
-    let sum: number = 0
+    let sum: number | undefined = 0
     store.betslip.forEach(
         (singleBetslip: BetSlipDataObj) =>
-            (sum = sum + parseFloat(singleBetslip.price!))
+            (sum = sum! + parseFloat(singleBetslip.price!))
     )
     const sumFormated = (Math.round(sum * 100) / 100).toFixed(2)
 
     //Calculating sum of prices from sport data for comparation
-    let newSum: number = 0
-    let currentPrice: number = 0
-    for (const singleBetslip of store.betslip) {
-        for (const singleRegion of store.sport.region!) {
-            for (const singleCompetition of singleRegion.competition) {
-                for (const singleGame of singleCompetition.game) {
-                    for (const singleMarket of singleGame.market) {
-                        if (singleBetslip.id === singleMarket.id.toString()) {
-                            //Trying to find event with correct id
-                            const correctEvent = singleMarket.event.filter(
-                                (singleEvent: EventObj) =>
-                                    singleEvent.id.toString() ===
-                                    singleBetslip.subid
-                            )
-                            //If event found, get it's price
-                            if (correctEvent[0] !== undefined) {
-                                currentPrice = correctEvent[0].price
-                                //If there is no event with that id, it means that it's Tied clicked and than base value is used
-                            } else {
-                                currentPrice = singleMarket.base
-                            }
-                            newSum = newSum + currentPrice
-                        }
-                    }
-                }
-            }
-        }
-    }
+    const newSum = store.currentSum
 
     //Click on btn to accept incoming changes
     const onClickAccept = async () => {
