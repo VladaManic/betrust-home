@@ -6,7 +6,6 @@ import useAccordion from '../../../hooks/useAccordion'
 
 import BetslipItem from '../BetslipItem'
 import AcceptChangesBtn from '../AcceptChangesBtn'
-import AcceptDeletesBtn from '../AcceptDeletesBtn'
 import BetslipChangeable from '../BetslipChangeable'
 
 import arrowIcon from '../../../assets/img/arrow.svg'
@@ -164,7 +163,7 @@ const BetslipModal = () => {
                                     suspended, and it will be removed from the
                                     bet slip.
                                 </AcceptText>
-                                <AcceptDeletesBtn
+                                <AcceptChangesBtn
                                     onClick={onClickAcceptDelete}
                                 />
                             </>
