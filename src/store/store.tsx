@@ -447,10 +447,6 @@ class Store {
         return this.titleText
     }
 
-    get gamesRemoved() {
-        return this.deletedGames
-    }
-
     get betslip() {
         return this.betslipData
     }
@@ -533,6 +529,15 @@ class Store {
                     }
                 }
             }
+        }
+    }
+
+    //Check if game id needs to be sync with betslip
+    gameRemoved(gameId: number) {
+        if (this.deletedGames.includes(gameId)) {
+            return true
+        } else {
+            return false
         }
     }
 }

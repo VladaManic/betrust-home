@@ -44,9 +44,7 @@ const BetslipItem = ({ singleBetslip, acceptVal, gameId }: Props) => {
                             className={clsx(
                                 store.acceptDeletes &&
                                     gameId !== undefined &&
-                                    store.gamesRemoved.includes(
-                                        parseInt(gameId)
-                                    ) &&
+                                    store.gameRemoved(parseInt(gameId)) &&
                                     'removed'
                             )}
                         >
@@ -56,9 +54,7 @@ const BetslipItem = ({ singleBetslip, acceptVal, gameId }: Props) => {
                             className={clsx(
                                 store.acceptDeletes &&
                                     gameId !== undefined &&
-                                    store.gamesRemoved.includes(
-                                        parseInt(gameId)
-                                    ) &&
+                                    store.gameRemoved(parseInt(gameId)) &&
                                     'removed',
                                 store.acceptChanges &&
                                     currentPrice!.toString() !== priceVal &&
@@ -72,7 +68,7 @@ const BetslipItem = ({ singleBetslip, acceptVal, gameId }: Props) => {
                         className={clsx(
                             store.acceptDeletes &&
                                 gameId !== undefined &&
-                                store.gamesRemoved.includes(parseInt(gameId)) &&
+                                store.gameRemoved(parseInt(gameId)) &&
                                 'removed'
                         )}
                     >
@@ -82,7 +78,7 @@ const BetslipItem = ({ singleBetslip, acceptVal, gameId }: Props) => {
                         className={clsx(
                             store.acceptDeletes &&
                                 gameId !== undefined &&
-                                store.gamesRemoved.includes(parseInt(gameId)) &&
+                                store.gameRemoved(parseInt(gameId)) &&
                                 'removed'
                         )}
                     >
