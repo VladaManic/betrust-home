@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import { observer } from 'mobx-react'
-import store from '../../../store/store'
+import store from '../../../../store/store'
 import clsx from 'clsx'
-import useAccordion from '../../../hooks/useAccordion'
+import useAccordion from '../../../../hooks/useAccordion'
 
 import BetslipItem from '../BetslipItem'
 import AcceptChangesBtn from '../AcceptChangesBtn'
 import BetslipChangeable from '../BetslipChangeable'
 
-import arrowIcon from '../../../assets/img/arrow.svg'
+import arrowIcon from '../../../../assets/img/arrow.svg'
 import {
     BetslipWrap,
     AcumulatorWrap,
@@ -27,7 +27,7 @@ import {
     TotalText,
     AcceptText,
 } from './style'
-import { BetSlipDataObj, EventObj } from '../../../types/interfaces'
+import { BetSlipDataObj, EventObj } from '../../../../types/interfaces'
 
 const BetslipModal = () => {
     //Using custom hook for opening/closing acumulator modal

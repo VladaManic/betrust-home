@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import Modal from '../../../components/Reusable/Modal'
-import ControlsModal from '../../../components/Modals/ControlsModal'
+import ControlsModal from '../../Modals/Controls/ControlsModal'
 
 import { BtnWrap } from './style'
 

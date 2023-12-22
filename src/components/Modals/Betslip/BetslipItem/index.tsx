@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import { observer } from 'mobx-react'
-import store from '../../../store/store'
+import store from '../../../../store/store'
 import clsx from 'clsx'
 
-import removeIcon from '../../../assets/img/remove.svg'
+import removeIcon from '../../../../assets/img/remove.svg'
 import {
     SingleOddWrap,
     SingleOddInner,
@@ -16,7 +16,7 @@ import {
     OddType,
     OddTeams,
 } from './style'
-import { BetSlipDataObj, EventObj } from '../../../types/interfaces'
+import { BetSlipDataObj, EventObj } from '../../../../types/interfaces'
 
 interface Props {
     singleBetslip: BetSlipDataObj

@@ -1,8 +1,8 @@
 import { useRef } from 'react'
 import { observer } from 'mobx-react'
-import store from '../../../store/store'
+import store from '../../../../store/store'
 import { ToastContainer } from 'react-toastify'
-import notificationError from '../../../utils/notificationError'
+import notificationError from '../../../../utils/notificationError'
 
 import { FormWrap, InputWrap, SubmitWrap } from './style'
 

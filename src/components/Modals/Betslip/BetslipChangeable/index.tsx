@@ -1,4 +1,4 @@
-import balanceIcon from '../../../assets/img/balance-icon.svg'
+import balanceIcon from '../../../../assets/img/balance-icon.svg'
 import {
     BetslipChangeableWrap,
     InputWrap,

@@ -2,7 +2,7 @@ import { observer } from 'mobx-react'
 import store from '../../../store/store'
 
 import Modal from '../Modal'
-import BetslipModal from '../../Modals/BetslipModal'
+import BetslipModal from '../../Modals/Betslip/BetslipModal'
 
 const ModalBetslip = () => {
     return (
