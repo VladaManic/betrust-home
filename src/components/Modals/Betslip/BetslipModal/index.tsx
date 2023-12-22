@@ -4,6 +4,7 @@ import store from '../../../../store/store'
 import clsx from 'clsx'
 import useAccordion from '../../../../hooks/useAccordion'
 
+import RemoveAll from '../RemoveAll'
 import Betslips from '../Betslips'
 import BetslipFooterChangeable from '../BetslipFooterChangeable'
 
@@ -16,7 +17,6 @@ import {
     AcumulatorTotal,
     AcumulatorArrow,
     OddsWrap,
-    RemoveAll,
     BetslipFooter,
     FooterInner,
     TotalWrap,
@@ -68,11 +68,6 @@ const BetslipModal = () => {
         }
     }
 
-    //Click on 'Remove all' to remove all played odds at once
-    const removeAllHandler = () => {
-        store.setBetslipDeleteAll()
-    }
-
     //Click on btn to accept incoming changes
     const onClickAccept = async () => {
         //Sending props to child component to update prices
@@ -100,9 +95,7 @@ const BetslipModal = () => {
             {opened && (
                 <>
                     <OddsWrap>
-                        <RemoveAll onClick={removeAllHandler}>
-                            RemoveAll
-                        </RemoveAll>
+                        <RemoveAll />
                         <Betslips acceptVal={acceptVal} />
                     </OddsWrap>
                     <BetslipFooter>

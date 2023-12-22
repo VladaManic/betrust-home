@@ -56,15 +56,6 @@ export const OddsWrap = styled.div`
     }
 `
 
-export const RemoveAll = styled.button`
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-family: 'Axiforma', sans-serif;
-    font-size: 14px;
-    line-height: 22px;
-    color: ${color.removeBlue};
-`
-
 export const BetslipFooter = styled.div`
     padding-top: 15px;
     border-top: 1px solid ${color.linksBlue};
