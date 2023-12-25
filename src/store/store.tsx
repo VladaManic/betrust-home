@@ -508,12 +508,32 @@ class Store {
         return newSum
     }
 
-    //Get region object from sportData store object
-    currentRegion(regionName: string | undefined) {
+    //Get region object from sportData store object and sorted competitions in it
+    currentRegionAndCompetitionsSorted(regionName: string | undefined) {
         const curRegion = this.sportData.region?.filter(
             (singelRegion: RegionObj) => singelRegion.name === regionName
         )
-        return curRegion
+        const competionsSorted =
+            curRegion?.length !== 0 &&
+            orderBy(curRegion![0].competition, ['order'])
+        return { region: curRegion, competitionsSorted: competionsSorted }
+    }
+
+    //Get region object from sportData store object and filter competition from it
+    currentCompetition(
+        regionName: string | undefined,
+        competitionName: string | undefined
+    ) {
+        const curRegion = this.sportData.region?.filter(
+            (singelRegion: RegionObj) => singelRegion.name === regionName
+        )
+        const curCompetition =
+            curRegion?.length !== 0 &&
+            curRegion![0].competition.filter(
+                (singelCompetition: CompetitionObj) =>
+                    singelCompetition.name === competitionName
+            )
+        return { region: curRegion, competition: curCompetition }
     }
 
     //Getting price for odd from sport data for comparation in betslip modal

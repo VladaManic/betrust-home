@@ -4,32 +4,23 @@ import store from '../../../store/store'
 import League from '../../../components/Reusable/League'
 import EmptySingle from '../../../components/Reusable/EmptySingle'
 
-import { CompetitionObj } from '../../../types/interfaces'
-
 interface Props {
     regionName: string | undefined
     competitionName: string | undefined
 }
 
 const Competition = ({ regionName, competitionName }: Props) => {
-    const currentRegion = store.currentRegion(regionName)
-    //Get that competition object if there is correct region object
-    const currentCompetition =
-        currentRegion?.length !== 0 &&
-        currentRegion![0].competition.filter(
-            (singelCompetition: CompetitionObj) =>
-                singelCompetition.name === competitionName
-        )
+    const current = store.currentCompetition(regionName, competitionName)
 
     return (
         <>
             {/* If region exists */}
-            {currentRegion?.length !== 0 ? (
+            {current.region?.length !== 0 ? (
                 // If competition exists
-                currentCompetition !== false &&
-                currentCompetition.length !== 0 ? (
+                current.competition !== false &&
+                current.competition.length !== 0 ? (
                     <League
-                        singleCompetition={currentCompetition[0]}
+                        singleCompetition={current.competition[0]}
                         regionName={regionName}
                     />
                 ) : (
