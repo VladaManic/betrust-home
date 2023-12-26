@@ -82,9 +82,7 @@ class StoreBetslip {
 
     //Removin all odds from betslip by clicking 'Remova all'
     setBetslipDeleteAll = () => {
-        while (this.betslipData.length > 0) {
-            this.betslipData.splice(0, 1)
-        }
+        this.betslipData = []
         //Adding new odds set to localStorage
         isStorageSupported('localStorage') &&
             localStorage.setItem('odds-added', JSON.stringify(this.betslipData))
