@@ -1,13 +1,7 @@
 import { observer } from 'mobx-react'
-import store from '../../../../store/store'
-import clsx from 'clsx'
 
 import { EventBtnWrap } from './style'
-import {
-    MarketObj,
-    EventObj,
-    BetSlipDataObj,
-} from '../../../../types/interfaces'
+import { MarketObj, EventObj } from '../../../../types/interfaces'
 
 interface Props {
     singleMarket: MarketObj
@@ -31,20 +25,12 @@ const EventBtnWinner = ({
     onClick,
 }: Props) => {
     const teams = team1 + ' vs ' + team2
-    //Check if button is already clicked and if so, disable it
-    const disabledState = store.betslip.filter(
-        (singleOdd: BetSlipDataObj) =>
-            singleOdd.subid === singleEvent.id.toString()
-    )
 
     return (
         <EventBtnWrap
-            className={clsx(
-                'event-btn',
-                disabledState.length !== 0 && 'disabled'
-            )}
-            data-id={singleMarket.id}
-            data-subid={singleEvent.id}
+            className="event-btn"
+            data-marketid={singleMarket.id}
+            data-eventid={singleEvent.id}
             data-type={type}
             data-val={val}
             data-teams={teams}

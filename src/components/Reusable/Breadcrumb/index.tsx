@@ -1,3 +1,7 @@
+import { useEffect } from 'react'
+import store from '../../../store/store'
+import { observer } from 'mobx-react'
+
 import { BreadcrumbWrap, BreadcrumbItem } from './style'
 
 interface Props {
@@ -6,6 +10,15 @@ interface Props {
 }
 
 const Breadcrumb = ({ regionName, competitionName }: Props) => {
+    useEffect(() => {
+        //Set new value for page title
+        if (competitionName === undefined) {
+            store.setTitle(`${regionName} - In Play`)
+        } else {
+            store.setTitle(`${competitionName}`)
+        }
+    }, [competitionName, regionName])
+
     return (
         <BreadcrumbWrap>
             <BreadcrumbItem>Footeball &gt; </BreadcrumbItem>
@@ -20,4 +33,4 @@ const Breadcrumb = ({ regionName, competitionName }: Props) => {
     )
 }
 
-export default Breadcrumb
+export default observer(Breadcrumb)

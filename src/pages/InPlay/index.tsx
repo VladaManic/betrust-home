@@ -5,13 +5,14 @@ import store from '../../store/store'
 import SportFilter from '../../components/InPlay/SportFilter'
 import Title from '../../components/Reusable/Title'
 import Content from '../../components/InPlay/Content'
+import ModalBetslip from '../../components/Reusable/ModalBetslip'
 
 import { InPlayWrap } from './style'
 
 const InPlay = () => {
     useEffect(() => {
         //Reset value for page title
-        store.setTitle(store.sport.name + ' - In Play')
+        store.setTitle(store.sportName + ' - In Play')
     }, [])
 
     return (
@@ -19,6 +20,7 @@ const InPlay = () => {
             <SportFilter />
             <Title />
             <Content />
+            <ModalBetslip />
         </InPlayWrap>
     )
 }

@@ -1,10 +1,9 @@
 import { observer } from 'mobx-react'
-import { orderBy } from 'lodash'
 import clsx from 'clsx'
 import useAccordion from '../../../hooks/useAccordion'
 import chooseFlag from '../../../utils/chooseFlag'
 
-import Competition from '../../Reusable/Competition'
+import Competition from '../Competition'
 
 import arrowIcon from '../../../assets/img/arrow.svg'
 import {
@@ -16,7 +15,7 @@ import {
     RegionArrowWrap,
     RegionArrow,
 } from './style'
-import { RegionObj, CompetitionObj } from '../../../types/interfaces'
+import { RegionObj } from '../../../types/interfaces'
 
 interface Props {
     singleRegion: RegionObj
@@ -25,8 +24,6 @@ interface Props {
 const Region = ({ singleRegion }: Props) => {
     //Using custom hook for opening/closing region
     const { opened, setOpened } = useAccordion(false)
-    //Sort competitions by order
-    const competionsSorted = orderBy(singleRegion.competition, ['order'])
 
     return (
         <RegionWrap className={clsx(opened && 'active')}>
@@ -49,19 +46,7 @@ const Region = ({ singleRegion }: Props) => {
                     />
                 </RegionArrowWrap>
             </RegionTitleWrap>
-            {opened && (
-                <>
-                    {competionsSorted.map(
-                        (singleCompetition: CompetitionObj) => (
-                            <Competition
-                                key={singleCompetition.name}
-                                singleCompetition={singleCompetition}
-                                regionName={singleRegion.name}
-                            />
-                        )
-                    )}
-                </>
-            )}
+            <Competition singleRegion={singleRegion} opened={opened} />
         </RegionWrap>
     )
 }
