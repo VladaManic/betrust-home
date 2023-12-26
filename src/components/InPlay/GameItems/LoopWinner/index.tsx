@@ -27,18 +27,18 @@ const LoopWinner = ({ singleGame }: Props) => {
             | React.TouchEvent<HTMLButtonElement>
     ) => {
         //Getting rest of event ids of that market to remove it from betslip if they are already added
-        const subidsArray: (string | number | undefined)[] = []
+        const idsArray: (string | number | undefined)[] = []
         winnerEventsSorted.forEach((singleEvent: EventObj) =>
-            subidsArray.push(singleEvent.id)
+            idsArray.push(singleEvent.id)
         )
         const index =
-            e.currentTarget.dataset.subid !== undefined &&
-            subidsArray.indexOf(parseInt(e.currentTarget.dataset.subid))
-        index !== false && subidsArray.splice(index, 1)
+            e.currentTarget.dataset.eventid !== undefined &&
+            idsArray.indexOf(parseInt(e.currentTarget.dataset.eventid))
+        index !== false && idsArray.splice(index, 1)
         // Makin object with data for new odd
         const newOdd = {
-            id: e.currentTarget.dataset.id,
-            subid: e.currentTarget.dataset.subid,
+            marketId: e.currentTarget.dataset.marketid,
+            eventId: e.currentTarget.dataset.eventid,
             type: e.currentTarget.dataset.type,
             val: e.currentTarget.dataset.val,
             teams: e.currentTarget.dataset.teams,
@@ -47,8 +47,8 @@ const LoopWinner = ({ singleGame }: Props) => {
         }
         storeBetslip.setBetslip(
             newOdd,
-            e.currentTarget.dataset.subid,
-            subidsArray
+            e.currentTarget.dataset.eventid,
+            idsArray
         )
     }
 

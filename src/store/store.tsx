@@ -246,7 +246,7 @@ class Store {
                                 const possibleChanges =
                                     storeBetslip.betslip.filter(
                                         (singleBetslip: BetSlipDataObj) =>
-                                            singleBetslip.subid ===
+                                            singleBetslip.eventId ===
                                             singleEvent.id.toString()
                                     )
                                 if (possibleChanges.length !== 0) {

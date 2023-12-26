@@ -12,8 +12,8 @@ interface Props {
 const RemoveBtn = ({ singleBetslip }: Props) => {
     //Click on X to remove specific odd
     const onClickHandler = () => {
-        const subId = singleBetslip.subid
-        storeBetslip.setBetslipDeleteOne(subId)
+        const id = singleBetslip.eventId
+        storeBetslip.setBetslipDeleteOne(id)
     }
 
     return (

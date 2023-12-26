@@ -29,8 +29,8 @@ const EventBtn1 = ({
     return (
         <EventBtnWrap
             className="event-btn"
-            data-id={singleMarket.id}
-            data-subid={eventsSorted[0].id}
+            data-marketid={singleMarket.id}
+            data-eventid={eventsSorted[0].id}
             data-type={type}
             data-val={val}
             data-teams={teams}

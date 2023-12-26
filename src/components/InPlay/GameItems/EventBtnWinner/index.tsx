@@ -29,8 +29,8 @@ const EventBtnWinner = ({
     return (
         <EventBtnWrap
             className="event-btn"
-            data-id={singleMarket.id}
-            data-subid={singleEvent.id}
+            data-marketid={singleMarket.id}
+            data-eventid={singleEvent.id}
             data-type={type}
             data-val={val}
             data-teams={teams}

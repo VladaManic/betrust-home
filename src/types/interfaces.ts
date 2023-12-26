@@ -46,8 +46,8 @@ export type SportDataObj = {
 }
 
 export type BetSlipDataObj = {
-    id: string | undefined
-    subid: string | undefined
+    marketId: string | undefined
+    eventId: string | undefined
     type: string | undefined
     val: string | undefined
     teams: string | undefined

@@ -37,14 +37,14 @@ class StoreBetslip {
     //Adding new odd to betslip (if it is not aready there and removing rest from that market if already there)
     setBetslip = (
         newOdd: BetSlipDataObj,
-        subId: string | undefined,
-        restSubids: (string | number | undefined)[]
+        id: string | undefined,
+        restIds: (string | number | undefined)[]
     ) => {
         const betslipObject = this.betslipData
         let idExists: boolean = false
         for (let i = 0; i < betslipObject.length; i++) {
             //Finding region with correct ID. If it exists, remove it
-            if (betslipObject[i].subid === subId) {
+            if (betslipObject[i].eventId === id) {
                 idExists = true
                 this.betslipData.splice(i, 1)
             }
@@ -53,9 +53,9 @@ class StoreBetslip {
         if (idExists === false) {
             this.betslipData[this.betslipData.length] = newOdd
             //If other events from that market exist, remove them
-            restSubids.forEach((subid: string | number | undefined) => {
+            restIds.forEach((eventId: string | number | undefined) => {
                 for (let i = 0; i < betslipObject.length; i++) {
-                    if (betslipObject[i].subid === subid?.toString()) {
+                    if (betslipObject[i].eventId === eventId?.toString()) {
                         this.betslipData.splice(i, 1)
                     }
                 }
@@ -67,11 +67,11 @@ class StoreBetslip {
     }
 
     //Remove one odd from betslip by clicking 'X'
-    setBetslipDeleteOne = (subId: string | undefined) => {
+    setBetslipDeleteOne = (id: string | undefined) => {
         const betslipObject = this.betslipData
         for (let i = 0; i < betslipObject.length; i++) {
             //Finding region with correct ID
-            if (betslipObject[i].subid === subId) {
+            if (betslipObject[i].eventId === id) {
                 this.betslipData.splice(i, 1)
             }
         }
@@ -115,13 +115,14 @@ class StoreBetslip {
                     for (const singleGame of singleCompetition.game) {
                         for (const singleMarket of singleGame.market) {
                             if (
-                                singleBetslip.id === singleMarket.id.toString()
+                                singleBetslip.marketId ===
+                                singleMarket.id.toString()
                             ) {
                                 //Trying to find event with correct id
                                 const correctEvent = singleMarket.event.filter(
                                     (singleEvent: EventObj) =>
                                         singleEvent.id.toString() ===
-                                        singleBetslip.subid
+                                        singleBetslip.eventId
                                 )
                                 //If event found, compare prices
                                 if (correctEvent[0] !== undefined) {
@@ -205,13 +206,14 @@ class StoreBetslip {
                     for (const singleGame of singleCompetition.game) {
                         for (const singleMarket of singleGame.market) {
                             if (
-                                singleBetslip.id === singleMarket.id.toString()
+                                singleBetslip.marketId ===
+                                singleMarket.id.toString()
                             ) {
                                 //Trying to find event with correct id
                                 const correctEvent = singleMarket.event.filter(
                                     (singleEvent: EventObj) =>
                                         singleEvent.id.toString() ===
-                                        singleBetslip.subid
+                                        singleBetslip.eventId
                                 )
                                 //If event found, get it's price
                                 if (correctEvent[0] !== undefined) {
@@ -266,12 +268,15 @@ class StoreBetslip {
                 for (const singleGame of singleCompetition.game) {
                     for (const singleMarket of singleGame.market) {
                         //Finding market with correct id
-                        if (singleMarket.id.toString() === singleBetslip.id) {
+                        if (
+                            singleMarket.id.toString() ===
+                            singleBetslip.marketId
+                        ) {
                             //Trying to find event with correct id
                             const correctEvent = singleMarket.event.filter(
                                 (singleEvent: EventObj) =>
                                     singleEvent.id.toString() ===
-                                    singleBetslip.subid
+                                    singleBetslip.eventId
                             )
                             //If event found, get it's price
                             if (correctEvent[0] !== undefined) {

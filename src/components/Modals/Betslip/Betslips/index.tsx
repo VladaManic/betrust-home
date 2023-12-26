@@ -15,7 +15,7 @@ const Betslips = ({ acceptVal }: Props) => {
         <BetslipWrap>
             {storeBetslip.betslip.map((singleBetlsip: BetSlipDataObj) => (
                 <BetslipItem
-                    key={singleBetlsip.subid}
+                    key={singleBetlsip.eventId}
                     singleBetslip={singleBetlsip}
                     acceptVal={acceptVal}
                     gameId={singleBetlsip.game}
