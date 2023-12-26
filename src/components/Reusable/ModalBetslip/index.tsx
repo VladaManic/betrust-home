@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react'
-import store from '../../../store/store'
+import storeBetslip from '../../../store/storeBetslip'
 
 import Modal from '../Modal'
 import BetslipModal from '../../Modals/Betslip/BetslipModal'
@@ -7,7 +7,7 @@ import BetslipModal from '../../Modals/Betslip/BetslipModal'
 const ModalBetslip = () => {
     return (
         <>
-            {store.betslipLength !== 0 && (
+            {storeBetslip.betslipLength !== 0 && (
                 <Modal onClose={undefined} overlayDisplay={false}>
                     <BetslipModal />
                 </Modal>

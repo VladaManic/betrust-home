@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react'
-import store from '../../../../store/store'
+import storeBetslip from '../../../../store/storeBetslip'
 import { orderBy } from 'lodash'
 
 import EventBtnWinner from '../../GameItems/EventBtnWinner'
@@ -45,7 +45,11 @@ const LoopWinner = ({ singleGame }: Props) => {
             price: e.currentTarget.dataset.price,
             game: e.currentTarget.dataset.game,
         }
-        store.setBetslip(newOdd, e.currentTarget.dataset.subid, subidsArray)
+        storeBetslip.setBetslip(
+            newOdd,
+            e.currentTarget.dataset.subid,
+            subidsArray
+        )
     }
 
     return (

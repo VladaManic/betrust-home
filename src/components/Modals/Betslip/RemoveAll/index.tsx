@@ -1,12 +1,12 @@
 import { observer } from 'mobx-react'
-import store from '../../../../store/store'
+import storeBetslip from '../../../../store/storeBetslip'
 
 import { RemoveWrap } from './style'
 
 const RemoveAll = () => {
     //Click on 'Remove all' to remove all played odds at once
     const removeAllHandler = () => {
-        store.setBetslipDeleteAll()
+        storeBetslip.setBetslipDeleteAll()
     }
 
     return <RemoveWrap onClick={removeAllHandler}>RemoveAll</RemoveWrap>

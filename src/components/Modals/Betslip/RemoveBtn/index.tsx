@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react'
-import store from '../../../../store/store'
+import storeBetslip from '../../../../store/storeBetslip'
 
 import removeIcon from '../../../../assets/img/remove.svg'
 import { RemoveIconWrap, RemoveIcon } from './style'
@@ -13,7 +13,7 @@ const RemoveBtn = ({ singleBetslip }: Props) => {
     //Click on X to remove specific odd
     const onClickHandler = () => {
         const subId = singleBetslip.subid
-        store.setBetslipDeleteOne(subId)
+        storeBetslip.setBetslipDeleteOne(subId)
     }
 
     return (

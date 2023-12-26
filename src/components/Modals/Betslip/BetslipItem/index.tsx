@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { observer } from 'mobx-react'
-import store from '../../../../store/store'
+import storeBetslip from '../../../../store/storeBetslip'
 import clsx from 'clsx'
 
 import RemoveBtn from '../RemoveBtn'
@@ -28,7 +28,7 @@ const BetslipItem = ({ singleBetslip, acceptVal, gameId }: Props) => {
         singleBetslip.price
     )
     //Getting price for odd from sport data for comparation
-    const currentPrice = store.currentPrice(singleBetslip)
+    const currentPrice = storeBetslip.currentPrice(singleBetslip)
 
     useEffect(() => {
         setPriceVal(currentPrice!.toString())
@@ -42,9 +42,11 @@ const BetslipItem = ({ singleBetslip, acceptVal, gameId }: Props) => {
                     <OddHeader>
                         <OddValue
                             className={clsx(
-                                store.acceptDeletes &&
+                                storeBetslip.acceptDeletes &&
                                     gameId !== undefined &&
-                                    store.gameRemoved(parseInt(gameId)) &&
+                                    storeBetslip.gameRemoved(
+                                        parseInt(gameId)
+                                    ) &&
                                     'removed'
                             )}
                         >
@@ -52,11 +54,13 @@ const BetslipItem = ({ singleBetslip, acceptVal, gameId }: Props) => {
                         </OddValue>
                         <OddPrice
                             className={clsx(
-                                store.acceptDeletes &&
+                                storeBetslip.acceptDeletes &&
                                     gameId !== undefined &&
-                                    store.gameRemoved(parseInt(gameId)) &&
+                                    storeBetslip.gameRemoved(
+                                        parseInt(gameId)
+                                    ) &&
                                     'removed',
-                                store.acceptChanges &&
+                                storeBetslip.acceptChanges &&
                                     currentPrice!.toString() !== priceVal &&
                                     'change'
                             )}
@@ -66,9 +70,9 @@ const BetslipItem = ({ singleBetslip, acceptVal, gameId }: Props) => {
                     </OddHeader>
                     <OddType
                         className={clsx(
-                            store.acceptDeletes &&
+                            storeBetslip.acceptDeletes &&
                                 gameId !== undefined &&
-                                store.gameRemoved(parseInt(gameId)) &&
+                                storeBetslip.gameRemoved(parseInt(gameId)) &&
                                 'removed'
                         )}
                     >
@@ -76,9 +80,9 @@ const BetslipItem = ({ singleBetslip, acceptVal, gameId }: Props) => {
                     </OddType>
                     <OddTeams
                         className={clsx(
-                            store.acceptDeletes &&
+                            storeBetslip.acceptDeletes &&
                                 gameId !== undefined &&
-                                store.gameRemoved(parseInt(gameId)) &&
+                                storeBetslip.gameRemoved(parseInt(gameId)) &&
                                 'removed'
                         )}
                     >

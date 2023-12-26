@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react'
-import store from '../../../../store/store'
+import storeBetslip from '../../../../store/storeBetslip'
 
 import AcceptChangesBtn from '../AcceptChangesBtn'
 import BetslipChangeable from '../BetslipChangeable'
@@ -14,12 +14,12 @@ const BetslipFooterChangeable = ({ onClick }: Props) => {
     //Click on btn to accept incoming deletes
     const onClickHandler = () => {
         //Updating betslip
-        store.setBetslipDeletes()
+        storeBetslip.setBetslipDeletes()
     }
 
     return (
         <>
-            {store.acceptChanges && (
+            {storeBetslip.acceptChanges && (
                 <>
                     <AcceptText>
                         The line, odds, or availability of your selection has
@@ -28,7 +28,7 @@ const BetslipFooterChangeable = ({ onClick }: Props) => {
                     <AcceptChangesBtn onClick={onClick} />
                 </>
             )}
-            {store.acceptDeletes && (
+            {storeBetslip.acceptDeletes && (
                 <>
                     <AcceptText>
                         One (or more) of your games has been suspended, and it
@@ -37,7 +37,7 @@ const BetslipFooterChangeable = ({ onClick }: Props) => {
                     <AcceptChangesBtn onClick={onClickHandler} />
                 </>
             )}
-            {!store.acceptChanges && !store.acceptDeletes && (
+            {!storeBetslip.acceptChanges && !storeBetslip.acceptDeletes && (
                 <BetslipChangeable />
             )}
         </>

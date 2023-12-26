@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { observer } from 'mobx-react'
-import store from '../../../../store/store'
+import storeBetslip from '../../../../store/storeBetslip'
 import clsx from 'clsx'
 import useAccordion from '../../../../hooks/useAccordion'
 
@@ -30,17 +30,17 @@ const BetslipModal = () => {
     const { opened, setOpened } = useAccordion(true)
     const [acceptVal, setAcceptVal] = useState<boolean>(false)
     //Calculating sum of prices from betslip
-    const sum = store.betslipSum
+    const sum = storeBetslip.betslipSum
     const sumFormated = (Math.round(sum * 100) / 100).toFixed(2)
     //Calculating sum of prices from sport data for comparation
-    const newSum = store.currentSum
+    const newSum = storeBetslip.currentSum
 
     //Click on btn to accept incoming changes
     const onClickAccept = async () => {
         //Sending props to child component to update prices
         setAcceptVal(true)
         //Updating betslip
-        await store.setChangesBetslip()
+        await storeBetslip.setChangesBetslip()
         //Reset state for sending props to child component to update prices
         setAcceptVal(false)
     }
@@ -50,8 +50,10 @@ const BetslipModal = () => {
             <AcumulatorWrap onClick={() => setOpened((curr: boolean) => !curr)}>
                 <AcumulatorText>
                     Acumulator (
-                    <AcumulatorSpan>{store.betslipLength}</AcumulatorSpan>) (
-                    <AcumulatorTotal>{sumFormated}</AcumulatorTotal>)
+                    <AcumulatorSpan>
+                        {storeBetslip.betslipLength}
+                    </AcumulatorSpan>
+                    ) (<AcumulatorTotal>{sumFormated}</AcumulatorTotal>)
                 </AcumulatorText>
                 <AcumulatorArrow
                     src={arrowIcon}
@@ -72,7 +74,7 @@ const BetslipModal = () => {
                                 <TotalValue
                                     className={clsx(
                                         'total-text',
-                                        store.acceptChanges &&
+                                        storeBetslip.acceptChanges &&
                                             sum !== newSum &&
                                             'change'
                                     )}

@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react'
-import store from '../../../../store/store'
+import storeBetslip from '../../../../store/storeBetslip'
 
 import BetslipItem from '../BetslipItem'
 
@@ -13,7 +13,7 @@ interface Props {
 const Betslips = ({ acceptVal }: Props) => {
     return (
         <BetslipWrap>
-            {store.betslip.map((singleBetlsip: BetSlipDataObj) => (
+            {storeBetslip.betslip.map((singleBetlsip: BetSlipDataObj) => (
                 <BetslipItem
                     key={singleBetlsip.subid}
                     singleBetslip={singleBetlsip}
