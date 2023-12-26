@@ -66,7 +66,39 @@ class Store {
             localStorage.setItem('odds-added', JSON.stringify(this.betslipData))
     }
 
-    //Removinh one odd from betslip
+    //Adding new odd to betslip (if it is not aready there)
+    setBetslip1 = (
+        newOdd: BetSlipDataObj,
+        subId: string | undefined,
+        restSubids: (string | number | undefined)[]
+    ) => {
+        const betslipObject = this.betslipData
+        let idExists: boolean = false
+        for (let i = 0; i < betslipObject.length; i++) {
+            //Finding region with correct ID. If it exists, remove it
+            if (betslipObject[i].subid === subId) {
+                idExists = true
+                this.betslip.splice(i, 1)
+            }
+        }
+        //It that odd does't exist in betslip, add it
+        if (idExists === false) {
+            this.betslipData[this.betslipData.length] = newOdd
+            //If other events from that market exist, remove them
+            restSubids.forEach((subid: string | number | undefined) => {
+                for (let i = 0; i < betslipObject.length; i++) {
+                    if (betslipObject[i].subid === subid?.toString()) {
+                        this.betslip.splice(i, 1)
+                    }
+                }
+            })
+        }
+        //Adding new odds set to localStorage
+        isStorageSupported('localStorage') &&
+            localStorage.setItem('odds-added', JSON.stringify(this.betslipData))
+    }
+
+    //Remove one odd from betslip
     setBetslipDeleteOne = (subId: string | undefined) => {
         const betslipObject = this.betslipData
         for (let i = 0; i < betslipObject.length; i++) {
