@@ -6,7 +6,7 @@ import EventBtn1 from '../EventBtn1'
 import EventBtnBase from '../EventBtnBase'
 import EventBtn2 from '../EventBtn2'
 
-import { GameObj, MarketObj } from '../../../../types/interfaces'
+import { GameObj, MarketObj, EventObj } from '../../../../types/interfaces'
 
 interface Props {
     singleGame: GameObj
@@ -25,6 +25,30 @@ const LoopOverUnder = ({ singleGame }: Props) => {
             | React.MouseEvent<HTMLButtonElement>
             | React.TouchEvent<HTMLButtonElement>
     ) => {
+        //Getting rest of event ids of that market to remove it from betslip if they are already added
+        const subidsArray: (string | number | undefined)[] = []
+        if (e.currentTarget.dataset.base !== undefined) {
+            let baseBase
+            //Getting all of event ids from that market
+            overUnder[0].event.forEach(
+                (singleEvent: EventObj, index: number) => {
+                    if (index === 0) {
+                        baseBase = singleEvent.id
+                    }
+                    subidsArray.push(singleEvent.id)
+                }
+            )
+            //If clicked btn is not base
+            if (e.currentTarget.dataset.base === 'false') {
+                //Removing current id from array of event ids
+                const index =
+                    e.currentTarget.dataset.subid !== undefined &&
+                    subidsArray.indexOf(parseInt(e.currentTarget.dataset.subid))
+                index !== false && subidsArray.splice(index, 1)
+                //Make specific id by adding '1' at the end of first event
+                subidsArray.push(parseInt(baseBase!.toString() + '1'))
+            }
+        }
         const newOdd = {
             id: e.currentTarget.dataset.id,
             subid: e.currentTarget.dataset.subid,
@@ -34,7 +58,7 @@ const LoopOverUnder = ({ singleGame }: Props) => {
             price: e.currentTarget.dataset.price,
             game: e.currentTarget.dataset.game,
         }
-        store.setBetslip(newOdd)
+        store.setBetslip(newOdd, e.currentTarget.dataset.subid, subidsArray)
     }
 
     return (

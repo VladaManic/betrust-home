@@ -58,16 +58,8 @@ class Store {
         this.titleText = titleTxt
     }
 
-    //Adding one new odd to betslip
-    setBetslip = (newOdd: BetSlipDataObj) => {
-        this.betslipData[this.betslipData.length] = newOdd
-        //Adding new odds set to localStorage
-        isStorageSupported('localStorage') &&
-            localStorage.setItem('odds-added', JSON.stringify(this.betslipData))
-    }
-
-    //Adding new odd to betslip (if it is not aready there)
-    setBetslip1 = (
+    //Adding new odd to betslip (if it is not aready there and removing rest from that market)
+    setBetslip = (
         newOdd: BetSlipDataObj,
         subId: string | undefined,
         restSubids: (string | number | undefined)[]

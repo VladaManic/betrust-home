@@ -1,7 +1,5 @@
 import { observer } from 'mobx-react'
-import store from '../../../../store/store'
 import { orderBy } from 'lodash'
-import clsx from 'clsx'
 
 import { EventBtnWrap } from './style'
 import { MarketObj } from '../../../../types/interfaces'
@@ -27,14 +25,10 @@ const EventBtn2 = ({
     const eventsSorted = orderBy(singleMarket.event, ['order'])
     const val = type === 'Handicap' ? '2' : 'Under'
     const teams = team1 + ' vs ' + team2
-    //Check if button is already clicked and if so, disable it
-    const disabledState = store.betslip.some(function (item) {
-        return item.subid === eventsSorted[1].id.toString()
-    })
 
     return (
         <EventBtnWrap
-            className={clsx('event-btn', disabledState && 'disabled')}
+            className="event-btn"
             data-id={singleMarket.id}
             data-subid={eventsSorted[1].id}
             data-type={type}
@@ -42,6 +36,7 @@ const EventBtn2 = ({
             data-teams={teams}
             data-price={eventsSorted[1].price}
             data-game={gameId}
+            data-base={false}
             onClick={onClick}
         >
             {eventsSorted[1].price}

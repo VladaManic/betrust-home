@@ -45,7 +45,7 @@ const LoopWinner = ({ singleGame }: Props) => {
             price: e.currentTarget.dataset.price,
             game: e.currentTarget.dataset.game,
         }
-        store.setBetslip1(newOdd, e.currentTarget.dataset.subid, subidsArray)
+        store.setBetslip(newOdd, e.currentTarget.dataset.subid, subidsArray)
     }
 
     return (
