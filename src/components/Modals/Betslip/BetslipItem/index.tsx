@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import { observer } from 'mobx-react'
 import storeBetslip from '../../../../store/storeBetslip'
 import clsx from 'clsx'
@@ -19,21 +18,10 @@ import { BetSlipDataObj } from '../../../../types/interfaces'
 
 interface Props {
     singleBetslip: BetSlipDataObj
-    acceptVal: boolean
     gameId: string | undefined
 }
 
-const BetslipItem = ({ singleBetslip, acceptVal, gameId }: Props) => {
-    const [priceVal, setPriceVal] = useState<string | undefined>(
-        singleBetslip.price
-    )
-    //Getting price for odd from sport data for comparation
-    const currentPrice = storeBetslip.currentPrice(singleBetslip)
-
-    useEffect(() => {
-        setPriceVal(currentPrice!.toString())
-    }, [acceptVal])
-
+const BetslipItem = ({ singleBetslip, gameId }: Props) => {
     return (
         <SingleOddWrap>
             <SingleOddInner>
@@ -60,8 +48,8 @@ const BetslipItem = ({ singleBetslip, acceptVal, gameId }: Props) => {
                                         parseInt(gameId)
                                     ) &&
                                     'removed',
-                                storeBetslip.acceptChanges &&
-                                    currentPrice!.toString() !== priceVal &&
+                                singleBetslip.newPrice !== undefined &&
+                                    singleBetslip.newPrice !== null &&
                                     'change'
                             )}
                         >

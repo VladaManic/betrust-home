@@ -6,18 +6,13 @@ import BetslipItem from '../BetslipItem'
 import { BetslipWrap } from './style'
 import { BetSlipDataObj } from '../../../../types/interfaces'
 
-interface Props {
-    acceptVal: boolean
-}
-
-const Betslips = ({ acceptVal }: Props) => {
+const Betslips = () => {
     return (
         <BetslipWrap>
             {storeBetslip.betslip.map((singleBetlsip: BetSlipDataObj) => (
                 <BetslipItem
                     key={singleBetlsip.eventId}
                     singleBetslip={singleBetlsip}
-                    acceptVal={acceptVal}
                     gameId={singleBetlsip.game}
                 />
             ))}

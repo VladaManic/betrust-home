@@ -1,10 +1,9 @@
 import { makeAutoObservable } from 'mobx'
-import store from './store'
 import isStorageSupported from '../utils/isStorageSupported'
 import getBetslipSum from '../utils/getBetslipSum'
 import getSportSum from '../utils/getSportSum'
 
-import { EventObj, BetSlipDataObj } from '../types/interfaces'
+import { BetSlipDataObj } from '../types/interfaces'
 
 class StoreBetslip {
     private betslipData: BetSlipDataObj[] = []
@@ -101,6 +100,8 @@ class StoreBetslip {
                 singleBetslip.newPrice !== null
             ) {
                 singleBetslip.price = singleBetslip.newPrice.toString()
+                //Reset new price to null for new potential updtaes of price
+                singleBetslip.newPrice = null
             }
         }
     }
@@ -146,39 +147,6 @@ class StoreBetslip {
     //Calculating sum of prices for all sport data that are set to betslip (prices that are still not sync)
     get sportSum() {
         return this.betslipData.reduce(getSportSum, 0)
-    }
-
-    //Getting price for odd from sport data for comparation in betslip modal
-    currentPrice(singleBetslip: BetSlipDataObj) {
-        let currentPrice: number = 0
-        for (const singleRegion of store.sport.region!) {
-            for (const singleCompetition of singleRegion.competition) {
-                for (const singleGame of singleCompetition.game) {
-                    for (const singleMarket of singleGame.market) {
-                        //Finding market with correct id
-                        if (
-                            singleMarket.id.toString() ===
-                            singleBetslip.marketId
-                        ) {
-                            //Trying to find event with correct id
-                            const correctEvent = singleMarket.event.filter(
-                                (singleEvent: EventObj) =>
-                                    singleEvent.id.toString() ===
-                                    singleBetslip.eventId
-                            )
-                            //If event found, get it's price
-                            if (correctEvent[0] !== undefined) {
-                                currentPrice = correctEvent[0].price
-                                //If there is no event with that id, it means that it's Tied clicked and than base value is used
-                            } else {
-                                currentPrice = singleMarket.base
-                            }
-                            return currentPrice
-                        }
-                    }
-                }
-            }
-        }
     }
 
     //Check if game id needs to be sync with betslip

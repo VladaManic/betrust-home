@@ -249,7 +249,6 @@ class Store {
                                     storeBetslip.setAcceptChanges(true)
                                     //Adding new price to betslip for concrete bet
                                     correctBet[0].newPrice = 10
-                                    console.log(storeBetslip.betslip)
                                 }
                             }
                         }

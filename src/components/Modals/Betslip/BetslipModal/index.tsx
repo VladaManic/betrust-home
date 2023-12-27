@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { observer } from 'mobx-react'
 import storeBetslip from '../../../../store/storeBetslip'
 import clsx from 'clsx'
@@ -28,7 +27,6 @@ import {
 const BetslipModal = () => {
     //Using custom hook for opening/closing acumulator modal
     const { opened, setOpened } = useAccordion(true)
-    const [acceptVal, setAcceptVal] = useState<boolean>(false)
     //Calculating sum of prices from betslip
     const sum = storeBetslip.betslipSum
     const sumFormated = (Math.round(sum * 100) / 100).toFixed(2)
@@ -37,12 +35,9 @@ const BetslipModal = () => {
 
     //Click on btn to accept incoming changes
     const onClickAccept = async () => {
-        //Sending props to child component to update prices
-        setAcceptVal(true)
         //Updating betslip
-        await storeBetslip.setBetslipChanges()
-        //Reset state for sending props to child component to update prices
-        setAcceptVal(false)
+        storeBetslip.setBetslipChanges()
+        storeBetslip.setAcceptChanges(false)
     }
 
     return (
@@ -65,7 +60,7 @@ const BetslipModal = () => {
                 <>
                     <OddsWrap>
                         <RemoveAll />
-                        <Betslips acceptVal={acceptVal} />
+                        <Betslips />
                     </OddsWrap>
                     <BetslipFooter>
                         <FooterInner>
