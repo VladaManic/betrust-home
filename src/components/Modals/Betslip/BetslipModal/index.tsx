@@ -3,6 +3,7 @@ import { observer } from 'mobx-react'
 import storeBetslip from '../../../../store/storeBetslip'
 import clsx from 'clsx'
 import useAccordion from '../../../../hooks/useAccordion'
+import getBetslipSum from '../../../../utils/getBetslipSum'
 
 import RemoveAll from '../RemoveAll'
 import Betslips from '../Betslips'
@@ -30,7 +31,7 @@ const BetslipModal = () => {
     const { opened, setOpened } = useAccordion(true)
     const [acceptVal, setAcceptVal] = useState<boolean>(false)
     //Calculating sum of prices from betslip
-    const sum = storeBetslip.betslipSum
+    const sum = storeBetslip.betslip.reduce(getBetslipSum, 0)
     const sumFormated = (Math.round(sum * 100) / 100).toFixed(2)
     //Calculating sum of prices from sport data for comparation
     const newSum = storeBetslip.currentSum

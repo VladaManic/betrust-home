@@ -170,16 +170,6 @@ class StoreBetslip {
         return this.betslipData.length
     }
 
-    //Calculating sum of prices from betslip for comparation in betslip modal
-    get betslipSum() {
-        let sum: number = 0
-        this.betslipData.forEach(
-            (singleBetslip: BetSlipDataObj) =>
-                (sum = sum! + parseFloat(singleBetslip.price!))
-        )
-        return sum
-    }
-
     get acceptChanges() {
         return this.acceptChangesVal
     }
