@@ -1,6 +1,8 @@
 import { makeAutoObservable } from 'mobx'
 import store from './store'
 import isStorageSupported from '../utils/isStorageSupported'
+import getBetslipSum from '../utils/getBetslipSum'
+import getSportSum from '../utils/getSportSum'
 
 import { EventObj, BetSlipDataObj } from '../types/interfaces'
 
@@ -128,10 +130,6 @@ class StoreBetslip {
         return this.betslipData
     }
 
-    get betslipLength() {
-        return this.betslipData.length
-    }
-
     get acceptChanges() {
         return this.acceptChangesVal
     }
@@ -140,40 +138,14 @@ class StoreBetslip {
         return this.deletedGames
     }
 
-    //Calculating sum of prices from sport data for comparation in betslip modal
-    get currentSum() {
-        let newSum: number = 0
-        let currentPrice: number = 0
-        for (const singleBetslip of this.betslipData) {
-            for (const singleRegion of store.sport.region!) {
-                for (const singleCompetition of singleRegion.competition) {
-                    for (const singleGame of singleCompetition.game) {
-                        for (const singleMarket of singleGame.market) {
-                            if (
-                                singleBetslip.marketId ===
-                                singleMarket.id.toString()
-                            ) {
-                                //Trying to find event with correct id
-                                const correctEvent = singleMarket.event.filter(
-                                    (singleEvent: EventObj) =>
-                                        singleEvent.id.toString() ===
-                                        singleBetslip.eventId
-                                )
-                                //If event found, get it's price
-                                if (correctEvent[0] !== undefined) {
-                                    currentPrice = correctEvent[0].price
-                                    //If there is no event with that id, it means that it's Tied clicked and than base value is used
-                                } else {
-                                    currentPrice = singleMarket.base
-                                }
-                                newSum = newSum + currentPrice
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return newSum
+    //Calculating sum of prices for all bets in betslip
+    get betslipSum() {
+        return this.betslipData.reduce(getBetslipSum, 0)
+    }
+
+    //Calculating sum of prices for all sport data that are set to betslip (prices that are still not sync)
+    get sportSum() {
+        return this.betslipData.reduce(getSportSum, 0)
     }
 
     //Getting price for odd from sport data for comparation in betslip modal

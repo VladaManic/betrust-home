@@ -65,7 +65,7 @@ const BetslipItem = ({ singleBetslip, acceptVal, gameId }: Props) => {
                                     'change'
                             )}
                         >
-                            {priceVal}
+                            {singleBetslip.price}
                         </OddPrice>
                     </OddHeader>
                     <OddType

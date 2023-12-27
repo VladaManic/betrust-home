@@ -7,7 +7,7 @@ import BetslipModal from '../../Modals/Betslip/BetslipModal'
 const ModalBetslip = () => {
     return (
         <>
-            {storeBetslip.betslipLength !== 0 && (
+            {storeBetslip.betslip.length !== 0 && (
                 <Modal onClose={undefined} overlayDisplay={false}>
                     <BetslipModal />
                 </Modal>
