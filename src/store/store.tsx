@@ -331,6 +331,34 @@ class Store {
     get title() {
         return this.titleText
     }
+
+    //Get region object from sportData store object and sorted competitions in it
+    currentRegionAndCompetitionsSorted(regionName: string | undefined) {
+        const curRegion = this.sportData.region?.filter(
+            (singelRegion: RegionObj) => singelRegion.name === regionName
+        )
+        const competionsSorted =
+            curRegion?.length !== 0 &&
+            orderBy(curRegion![0].competition, ['order'])
+        return { region: curRegion, competitionsSorted: competionsSorted }
+    }
+
+    //Get region object from sportData store object and filter competition from it
+    currentCompetition(
+        regionName: string | undefined,
+        competitionName: string | undefined
+    ) {
+        const curRegion = this.sportData.region?.filter(
+            (singelRegion: RegionObj) => singelRegion.name === regionName
+        )
+        const curCompetition =
+            curRegion?.length !== 0 &&
+            curRegion![0].competition.filter(
+                (singelCompetition: CompetitionObj) =>
+                    singelCompetition.name === competitionName
+            )
+        return { region: curRegion, competition: curCompetition }
+    }
 }
 
 const store = new Store()

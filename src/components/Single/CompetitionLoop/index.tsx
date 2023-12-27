@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react'
-import storeBetslip from '../../../store/storeBetslip'
+import store from '../../../store/store'
 
 import League from '../../../components/Reusable/League'
 import EmptySingle from '../../../components/Reusable/EmptySingle'
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const CompetitionLoop = ({ regionName }: Props) => {
-    const current = storeBetslip.currentRegionAndCompetitionsSorted(regionName)
+    const current = store.currentRegionAndCompetitionsSorted(regionName)
 
     return (
         <>
