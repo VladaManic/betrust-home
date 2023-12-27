@@ -92,44 +92,15 @@ class StoreBetslip {
     }
 
     //On accept btn click, sync price changes of sportData and betSlip
-    setChangesBetslip = () => {
-        //Looping through betslip data
+    setBetslipChanges = () => {
         for (const singleBetslip of this.betslipData) {
-            //Looping through sport data
-            for (const singleRegion of store.sport.region!) {
-                for (const singleCompetition of singleRegion.competition) {
-                    for (const singleGame of singleCompetition.game) {
-                        for (const singleMarket of singleGame.market) {
-                            if (
-                                singleBetslip.marketId ===
-                                singleMarket.id.toString()
-                            ) {
-                                //Trying to find event with correct id
-                                const correctEvent = singleMarket.event.filter(
-                                    (singleEvent: EventObj) =>
-                                        singleEvent.id.toString() ===
-                                        singleBetslip.eventId
-                                )
-                                //If event found, compare prices
-                                if (correctEvent[0] !== undefined) {
-                                    //If there is deference, sync prices
-                                    if (
-                                        singleBetslip.price !==
-                                        correctEvent[0].price.toString()
-                                    ) {
-                                        singleBetslip.price =
-                                            correctEvent[0].price.toString()
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+            if (
+                singleBetslip.newPrice !== undefined &&
+                singleBetslip.newPrice !== null
+            ) {
+                singleBetslip.price = singleBetslip.newPrice.toString()
             }
         }
-
-        //Reset accept btn for new posible changes
-        this.acceptChangesVal = false
     }
 
     //On accept btn click, sync odd deletes of sportData and betSlip

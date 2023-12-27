@@ -240,14 +240,16 @@ class Store {
                                 singleEvent.price = 10
 
                                 //Showing accept btn in betslip if this odd is already added to betslip
-                                const possibleChanges =
-                                    storeBetslip.betslip.filter(
-                                        (singleBetslip: BetSlipDataObj) =>
-                                            singleBetslip.eventId ===
-                                            singleEvent.id.toString()
-                                    )
-                                if (possibleChanges.length !== 0) {
+                                const correctBet = storeBetslip.betslip.filter(
+                                    (singleBetslip: BetSlipDataObj) =>
+                                        singleBetslip.eventId ===
+                                        singleEvent.id.toString()
+                                )
+                                if (correctBet.length !== 0) {
                                     storeBetslip.setAcceptChanges(true)
+                                    //Adding new price to betslip for concrete bet
+                                    correctBet[0].newPrice = 10
+                                    console.log(storeBetslip.betslip)
                                 }
                             }
                         }

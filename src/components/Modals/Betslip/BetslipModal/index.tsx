@@ -41,7 +41,7 @@ const BetslipModal = () => {
         //Sending props to child component to update prices
         setAcceptVal(true)
         //Updating betslip
-        await storeBetslip.setChangesBetslip()
+        await storeBetslip.setBetslipChanges()
         //Reset state for sending props to child component to update prices
         setAcceptVal(false)
     }
