@@ -54,7 +54,6 @@ class Store {
                             if (
                                 singleGame.id.toString() === singleBetslip.game
                             ) {
-                                storeBetslip.setAcceptDeletes(true)
                                 //Set game ids which need to be sync with betslip
                                 storeBetslip.setRemovedGames(singleGame.id)
                             }
@@ -83,7 +82,6 @@ class Store {
                             if (
                                 singleGame.id.toString() === singleBetslip.game
                             ) {
-                                storeBetslip.setAcceptDeletes(true)
                                 //Set game ids which need to be sync with betslip
                                 storeBetslip.setRemovedGames(singleGame.id)
                             }
@@ -109,7 +107,6 @@ class Store {
                         //Showing accept btn in betslip if odds of this game are already added to betslip
                         for (const singleBetslip of storeBetslip.betslip) {
                             if (singleBetslip.game === id.toString()) {
-                                storeBetslip.setAcceptDeletes(true)
                                 //Set game ids which need to be sync with betslip
                                 storeBetslip.setRemovedGames(id)
                             }

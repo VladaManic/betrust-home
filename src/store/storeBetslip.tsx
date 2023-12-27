@@ -8,7 +8,6 @@ class StoreBetslip {
     private betslipData: BetSlipDataObj[] = []
     private deletedGames: number[] = []
     private acceptChangesVal: boolean = false
-    private acceptDeletesVal: boolean = false
 
     constructor() {
         makeAutoObservable(this)
@@ -92,11 +91,6 @@ class StoreBetslip {
         this.acceptChangesVal = param
     }
 
-    //Visable deletes for prices in betslip modal before accepting
-    setAcceptDeletes = (param: boolean) => {
-        this.acceptDeletesVal = param
-    }
-
     //On accept btn click, sync price changes of sportData and betSlip
     setChangesBetslip = () => {
         //Looping through betslip data
@@ -157,9 +151,6 @@ class StoreBetslip {
 
         //Reset deleted games
         this.deletedGames = []
-
-        //Reset accept btn for new posible deletes
-        this.acceptDeletesVal = false
     }
 
     get betslip() {
@@ -174,8 +165,8 @@ class StoreBetslip {
         return this.acceptChangesVal
     }
 
-    get acceptDeletes() {
-        return this.acceptDeletesVal
+    get deletedBets() {
+        return this.deletedGames
     }
 
     //Calculating sum of prices from sport data for comparation in betslip modal
