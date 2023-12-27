@@ -42,7 +42,7 @@ const BetslipItem = ({ singleBetslip, acceptVal, gameId }: Props) => {
                     <OddHeader>
                         <OddValue
                             className={clsx(
-                                storeBetslip.deletedBets.length > 0 &&
+                                storeBetslip.removedBets.length > 0 &&
                                     gameId !== undefined &&
                                     storeBetslip.gameRemoved(
                                         parseInt(gameId)
@@ -54,7 +54,7 @@ const BetslipItem = ({ singleBetslip, acceptVal, gameId }: Props) => {
                         </OddValue>
                         <OddPrice
                             className={clsx(
-                                storeBetslip.deletedBets.length > 0 &&
+                                storeBetslip.removedBets.length > 0 &&
                                     gameId !== undefined &&
                                     storeBetslip.gameRemoved(
                                         parseInt(gameId)
@@ -70,7 +70,7 @@ const BetslipItem = ({ singleBetslip, acceptVal, gameId }: Props) => {
                     </OddHeader>
                     <OddType
                         className={clsx(
-                            storeBetslip.deletedBets.length > 0 &&
+                            storeBetslip.removedBets.length > 0 &&
                                 gameId !== undefined &&
                                 storeBetslip.gameRemoved(parseInt(gameId)) &&
                                 'removed'
@@ -80,7 +80,7 @@ const BetslipItem = ({ singleBetslip, acceptVal, gameId }: Props) => {
                     </OddType>
                     <OddTeams
                         className={clsx(
-                            storeBetslip.deletedBets.length > 0 &&
+                            storeBetslip.removedBets.length > 0 &&
                                 gameId !== undefined &&
                                 storeBetslip.gameRemoved(parseInt(gameId)) &&
                                 'removed'

@@ -28,7 +28,7 @@ const BetslipFooterChangeable = ({ onClick }: Props) => {
                     <AcceptChangesBtn onClick={onClick} />
                 </>
             )}
-            {storeBetslip.deletedBets.length > 0 && (
+            {storeBetslip.removedBets.length > 0 && (
                 <>
                     <AcceptText>
                         One (or more) of your games has been suspended, and it
@@ -38,7 +38,7 @@ const BetslipFooterChangeable = ({ onClick }: Props) => {
                 </>
             )}
             {!storeBetslip.acceptChanges &&
-                storeBetslip.deletedBets.length === 0 && <BetslipChangeable />}
+                storeBetslip.removedBets.length === 0 && <BetslipChangeable />}
         </>
     )
 }

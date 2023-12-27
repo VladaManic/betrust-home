@@ -8,7 +8,7 @@ import { EventObj, BetSlipDataObj } from '../types/interfaces'
 
 class StoreBetslip {
     private betslipData: BetSlipDataObj[] = []
-    private deletedGames: number[] = []
+    private deletedBets: number[] = []
     private acceptChangesVal: boolean = false
 
     constructor() {
@@ -29,7 +29,7 @@ class StoreBetslip {
         }
     }
 
-    //Adding new odd to betslip (if it is not aready there and removing rest from that market if already there)
+    //Adding new odd to betslip (if it is not already there and removing rest from that market if already there)
     setBetslip = (
         newOdd: BetSlipDataObj,
         id: string | undefined,
@@ -85,7 +85,7 @@ class StoreBetslip {
 
     //Set game ids which are deleted and need to be sync with betslip
     setRemovedGames = (id: number) => {
-        this.deletedGames.push(id)
+        this.deletedBets.push(id)
     }
 
     //Visable changes for prices in betslip modal before accepting
@@ -109,7 +109,7 @@ class StoreBetslip {
     setBetslipDeletes = () => {
         let betslipObject = this.betslipData
         //Looping through betslip data
-        for (const id of this.deletedGames) {
+        for (const id of this.deletedBets) {
             //Remove whole game with that id
             betslipObject = betslipObject.filter(
                 (singleBetslip: BetSlipDataObj) =>
@@ -123,7 +123,7 @@ class StoreBetslip {
             localStorage.setItem('odds-added', JSON.stringify(betslipObject))
 
         //Reset deleted games
-        this.deletedGames = []
+        this.deletedBets = []
     }
 
     get betslip() {
@@ -134,8 +134,8 @@ class StoreBetslip {
         return this.acceptChangesVal
     }
 
-    get deletedBets() {
-        return this.deletedGames
+    get removedBets() {
+        return this.deletedBets
     }
 
     //Calculating sum of prices for all bets in betslip
@@ -183,7 +183,7 @@ class StoreBetslip {
 
     //Check if game id needs to be sync with betslip
     gameRemoved(gameId: number) {
-        if (this.deletedGames.includes(gameId)) {
+        if (this.deletedBets.includes(gameId)) {
             return true
         } else {
             return false
