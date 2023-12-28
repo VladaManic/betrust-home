@@ -1,34 +1,29 @@
 import { observer } from 'mobx-react'
-import store from '../../../store/store'
+import { orderBy } from 'lodash'
 
 import League from '../../../components/Reusable/League'
 import EmptySingle from '../../../components/Reusable/EmptySingle'
 
-import { CompetitionObj } from '../../../types/interfaces'
+import { RegionObj, CompetitionObj } from '../../../types/interfaces'
 
 interface Props {
+    region: RegionObj
     regionName: string | undefined
 }
 
-const CompetitionLoop = ({ regionName }: Props) => {
-    const current = store.currentRegionAndCompetitionsSorted(regionName)
+const CompetitionLoop = ({ region, regionName }: Props) => {
+    const competitionsSorted = orderBy(region.competition, ['order'])
 
     return (
         <>
-            {current.region?.length !== 0 ? (
-                current.competitionsSorted !== false ? (
-                    current.competitionsSorted.map(
-                        (singleCompetition: CompetitionObj) => (
-                            <League
-                                key={singleCompetition.name}
-                                singleCompetition={singleCompetition}
-                                regionName={regionName}
-                            />
-                        )
-                    )
-                ) : (
-                    <EmptySingle text={'Region'} />
-                )
+            {region.name === regionName ? (
+                competitionsSorted.map((singleCompetition: CompetitionObj) => (
+                    <League
+                        key={singleCompetition.name}
+                        singleCompetition={singleCompetition}
+                        regionName={region.name}
+                    />
+                ))
             ) : (
                 <EmptySingle text={'Region'} />
             )}

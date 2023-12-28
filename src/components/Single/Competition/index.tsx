@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react'
-import store from '../../../store/store'
+import { RegionObj, CompetitionObj } from '../../../types/interfaces'
 
 import League from '../../../components/Reusable/League'
 import EmptySingle from '../../../components/Reusable/EmptySingle'
@@ -7,27 +7,29 @@ import EmptySingle from '../../../components/Reusable/EmptySingle'
 interface Props {
     regionName: string | undefined
     competitionName: string | undefined
+    region: RegionObj
+    competition: CompetitionObj
 }
 
-const Competition = ({ regionName, competitionName }: Props) => {
-    const current = store.currentCompetition(regionName, competitionName)
-
+const Competition = ({
+    regionName,
+    competitionName,
+    region,
+    competition,
+}: Props) => {
     return (
         <>
-            {/* If region exists */}
-            {current.region?.length !== 0 ? (
-                // If competition exists
-                current.competition !== false &&
-                current.competition.length !== 0 ? (
+            {region.name === regionName ? (
+                competition.name === competitionName ? (
                     <League
-                        singleCompetition={current.competition[0]}
+                        singleCompetition={competition}
                         regionName={regionName}
                     />
                 ) : (
                     <EmptySingle text={'Competition'} />
                 )
             ) : (
-                <EmptySingle text={'Competition'} />
+                <EmptySingle text={'Region'} />
             )}
         </>
     )
