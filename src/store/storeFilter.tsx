@@ -1,8 +1,9 @@
 import { makeAutoObservable } from 'mobx'
 import store from './store'
 import isStorageSupported from '../utils/isStorageSupported'
+import { orderBy } from 'lodash'
 
-import { RegionObj, CompetitionObj } from '../types/interfaces'
+import { RegionObj, CompetitionObj, MarketObj } from '../types/interfaces'
 
 class StoreFilter {
     private filteredRegion: RegionObj = {
@@ -123,6 +124,49 @@ class StoreFilter {
             if (this.filteredCompetition.game[i].id === id) {
                 //Removing game with the correct ID using splice
                 this.filteredCompetition.game.splice(i, 1)
+            }
+        }
+    }
+
+    setUpdateOdd = (id: number) => {
+        //Update game for filtered region
+        for (const singleCompetition of this.filteredRegion.competition) {
+            for (const singleGame of singleCompetition.game) {
+                //Finding game with correct ID
+                if (singleGame.id === id) {
+                    //Filtering all 'OverUnder' markets
+                    const overUnderArray = singleGame.market.filter(
+                        (singleMarket: MarketObj) =>
+                            singleMarket.market_type === 'OverUnder'
+                    )
+                    //Sorting all 'OverUnder' markets by order
+                    const overUnder = orderBy(overUnderArray, ['order'])
+                    //Looping through all events to find one of type 'Under'
+                    for (const singleEvent of overUnder[0].event) {
+                        if (singleEvent.type === 'Under') {
+                            singleEvent.price = 10
+                        }
+                    }
+                }
+            }
+        }
+        //Update game for filtered competition
+        for (const singleGame of this.filteredCompetition.game) {
+            //Finding game with correct ID
+            if (singleGame.id === id) {
+                //Filtering all 'OverUnder' markets
+                const overUnderArray = singleGame.market.filter(
+                    (singleMarket: MarketObj) =>
+                        singleMarket.market_type === 'OverUnder'
+                )
+                //Sorting all 'OverUnder' markets by order
+                const overUnder = orderBy(overUnderArray, ['order'])
+                //Looping through all events to find one of type 'Under'
+                for (const singleEvent of overUnder[0].event) {
+                    if (singleEvent.type === 'Under') {
+                        singleEvent.price = 10
+                    }
+                }
             }
         }
     }

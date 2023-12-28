@@ -245,6 +245,7 @@ class Store {
                         for (const singleEvent of overUnder[0].event) {
                             if (singleEvent.type === 'Under') {
                                 singleEvent.price = 10
+                                storeFilter.setUpdateOdd(id)
 
                                 //Showing accept btn in betslip if this odd is already added to betslip
                                 const correctBet = storeBetslip.betslip.filter(
