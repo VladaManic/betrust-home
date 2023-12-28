@@ -128,6 +128,7 @@ class StoreFilter {
         }
     }
 
+    //Updating game in filtered region amd competition
     setUpdateOdd = (id: number) => {
         //Update game for filtered region
         for (const singleCompetition of this.filteredRegion.competition) {
