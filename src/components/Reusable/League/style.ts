@@ -37,6 +37,11 @@ export const FilterBtn = styled.button`
     margin-right: 3px;
     margin-left: 3px;
     color: ${color.activeBlue};
+    transition: all 0.4s ease;
+
+    &:hover {
+        opacity: 0.7;
+    }
 `
 
 export const CompetitionArrowWrap = styled.div`
