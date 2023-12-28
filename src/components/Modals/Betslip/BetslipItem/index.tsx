@@ -32,7 +32,7 @@ const BetslipItem = ({ singleBetslip, gameId }: Props) => {
                             className={clsx(
                                 storeBetslip.removedBets.length > 0 &&
                                     gameId !== undefined &&
-                                    storeBetslip.gameRemoved(
+                                    storeBetslip.removedBets.includes(
                                         parseInt(gameId)
                                     ) &&
                                     'removed'
@@ -44,7 +44,7 @@ const BetslipItem = ({ singleBetslip, gameId }: Props) => {
                             className={clsx(
                                 storeBetslip.removedBets.length > 0 &&
                                     gameId !== undefined &&
-                                    storeBetslip.gameRemoved(
+                                    storeBetslip.removedBets.includes(
                                         parseInt(gameId)
                                     ) &&
                                     'removed',
@@ -60,7 +60,9 @@ const BetslipItem = ({ singleBetslip, gameId }: Props) => {
                         className={clsx(
                             storeBetslip.removedBets.length > 0 &&
                                 gameId !== undefined &&
-                                storeBetslip.gameRemoved(parseInt(gameId)) &&
+                                storeBetslip.removedBets.includes(
+                                    parseInt(gameId)
+                                ) &&
                                 'removed'
                         )}
                     >
@@ -70,7 +72,9 @@ const BetslipItem = ({ singleBetslip, gameId }: Props) => {
                         className={clsx(
                             storeBetslip.removedBets.length > 0 &&
                                 gameId !== undefined &&
-                                storeBetslip.gameRemoved(parseInt(gameId)) &&
+                                storeBetslip.removedBets.includes(
+                                    parseInt(gameId)
+                                ) &&
                                 'removed'
                         )}
                     >

@@ -55,7 +55,7 @@ class Store {
                                 singleGame.id.toString() === singleBetslip.game
                             ) {
                                 //Set game ids which need to be sync with betslip
-                                storeBetslip.setRemovedGames(singleGame.id)
+                                storeBetslip.setRemovedBets(singleGame.id)
                             }
                         }
                     }
@@ -83,7 +83,7 @@ class Store {
                                 singleGame.id.toString() === singleBetslip.game
                             ) {
                                 //Set game ids which need to be sync with betslip
-                                storeBetslip.setRemovedGames(singleGame.id)
+                                storeBetslip.setRemovedBets(singleGame.id)
                             }
                         }
                     }
@@ -108,7 +108,7 @@ class Store {
                         for (const singleBetslip of storeBetslip.betslip) {
                             if (singleBetslip.game === id.toString()) {
                                 //Set game ids which need to be sync with betslip
-                                storeBetslip.setRemovedGames(id)
+                                storeBetslip.setRemovedBets(id)
                             }
                         }
 
@@ -246,6 +246,7 @@ class Store {
                                         singleEvent.id.toString()
                                 )
                                 if (correctBet.length !== 0) {
+                                    //It will become visable that there are prices to sync with betslip
                                     storeBetslip.setAcceptChanges(true)
                                     //Adding new price to betslip for concrete bet
                                     correctBet[0].newPrice = 10
@@ -310,10 +311,6 @@ class Store {
 
     get error() {
         return this.errorMsg
-    }
-
-    get sport() {
-        return this.sportData
     }
 
     get sportName() {

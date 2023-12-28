@@ -37,6 +37,7 @@ const BetslipModal = () => {
     const onClickAccept = async () => {
         //Updating betslip
         storeBetslip.setBetslipChanges()
+        //Reset visability for prices to sync with betslip
         storeBetslip.setAcceptChanges(false)
     }
 

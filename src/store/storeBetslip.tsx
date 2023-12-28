@@ -60,6 +60,16 @@ class StoreBetslip {
             localStorage.setItem('odds-added', JSON.stringify(this.betslipData))
     }
 
+    //Set game ids which are deleted and need to be sync with betslip
+    setRemovedBets = (id: number) => {
+        this.deletedBets.push(id)
+    }
+
+    //Visable changes for prices in betslip modal before accepting
+    setAcceptChanges = (param: boolean) => {
+        this.acceptChangesVal = param
+    }
+
     //Remove one odd from betslip by clicking 'X'
     setBetslipDeleteOne = (id: string | undefined) => {
         const betslipObject = this.betslipData
@@ -80,16 +90,6 @@ class StoreBetslip {
         //Adding new odds set to localStorage
         isStorageSupported('localStorage') &&
             localStorage.setItem('odds-added', JSON.stringify(this.betslipData))
-    }
-
-    //Set game ids which are deleted and need to be sync with betslip
-    setRemovedGames = (id: number) => {
-        this.deletedBets.push(id)
-    }
-
-    //Visable changes for prices in betslip modal before accepting
-    setAcceptChanges = (param: boolean) => {
-        this.acceptChangesVal = param
     }
 
     //On accept btn click, sync price changes of sportData and betSlip
@@ -119,10 +119,6 @@ class StoreBetslip {
         }
         this.betslipData = betslipObject
 
-        //Updating localStorage
-        isStorageSupported('localStorage') &&
-            localStorage.setItem('odds-added', JSON.stringify(betslipObject))
-
         //Reset deleted games
         this.deletedBets = []
     }
@@ -131,12 +127,12 @@ class StoreBetslip {
         return this.betslipData
     }
 
-    get acceptChanges() {
-        return this.acceptChangesVal
-    }
-
     get removedBets() {
         return this.deletedBets
+    }
+
+    get acceptChanges() {
+        return this.acceptChangesVal
     }
 
     //Calculating sum of prices for all bets in betslip
@@ -147,15 +143,6 @@ class StoreBetslip {
     //Calculating sum of prices for all sport data that are set to betslip (prices that are still not sync)
     get sportSum() {
         return this.betslipData.reduce(getSportSum, 0)
-    }
-
-    //Check if game id needs to be sync with betslip
-    gameRemoved(gameId: number) {
-        if (this.deletedBets.includes(gameId)) {
-            return true
-        } else {
-            return false
-        }
     }
 }
 
