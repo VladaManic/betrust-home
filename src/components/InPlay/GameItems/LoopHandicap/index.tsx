@@ -7,7 +7,7 @@ import EventBtn2 from '../EventBtn2'
 
 import emptyIcon from '../../../../assets/img/empty.svg'
 import { EventBtnEmpty, EventEmptyIcon } from './style'
-import { GameObj, MarketObj, EventObj } from '../../../../types/interfaces'
+import { GameObj, MarketObj } from '../../../../types/interfaces'
 
 interface Props {
     singleGame: GameObj
@@ -26,30 +26,6 @@ const LoopHandicap = ({ singleGame }: Props) => {
             | React.MouseEvent<HTMLButtonElement>
             | React.TouchEvent<HTMLButtonElement>
     ) => {
-        //Getting rest of event ids of that market to remove it from betslip if they are already added
-        const idsArray: (string | number | undefined)[] = []
-        if (e.currentTarget.dataset.base !== undefined) {
-            let baseBase
-            //Getting all of event ids from that market
-            handicap[0].event.forEach(
-                (singleEvent: EventObj, index: number) => {
-                    if (index === 0) {
-                        baseBase = singleEvent.id
-                    }
-                    idsArray.push(singleEvent.id)
-                }
-            )
-            //If clicked btn is not base
-            if (e.currentTarget.dataset.base === 'false') {
-                //Removing current id from array of event ids
-                const index =
-                    e.currentTarget.dataset.eventid !== undefined &&
-                    idsArray.indexOf(parseInt(e.currentTarget.dataset.eventid))
-                index !== false && idsArray.splice(index, 1)
-                //Make specific id by adding '1' at the end of first event
-                idsArray.push(parseInt(baseBase!.toString() + '1'))
-            }
-        }
         const newOdd = {
             marketId: e.currentTarget.dataset.marketid,
             eventId: e.currentTarget.dataset.eventid,
@@ -58,11 +34,13 @@ const LoopHandicap = ({ singleGame }: Props) => {
             teams: e.currentTarget.dataset.teams,
             price: e.currentTarget.dataset.price,
             game: e.currentTarget.dataset.game,
+            newPrice: null,
         }
         storeBetslip.setBetslip(
             newOdd,
             e.currentTarget.dataset.eventid,
-            idsArray
+            handicap[0].event,
+            e.currentTarget.dataset.base
         )
     }
 

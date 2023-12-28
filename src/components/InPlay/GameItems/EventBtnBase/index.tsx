@@ -22,6 +22,7 @@ const EventBtnBase = ({
 }: Props) => {
     const val = type === 'Handicap' ? 'Tied' : 'O/U'
     const teams = team1 + ' vs ' + team2
+    //Creating specific id for 'base' event by adding '1' to forst event in this market
     const baseVal = parseInt(singleMarket.event[0].id.toString() + '1')
 
     return (

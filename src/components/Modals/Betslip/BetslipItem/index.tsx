@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import { observer } from 'mobx-react'
 import storeBetslip from '../../../../store/storeBetslip'
 import clsx from 'clsx'
@@ -19,21 +18,10 @@ import { BetSlipDataObj } from '../../../../types/interfaces'
 
 interface Props {
     singleBetslip: BetSlipDataObj
-    acceptVal: boolean
     gameId: string | undefined
 }
 
-const BetslipItem = ({ singleBetslip, acceptVal, gameId }: Props) => {
-    const [priceVal, setPriceVal] = useState<string | undefined>(
-        singleBetslip.price
-    )
-    //Getting price for odd from sport data for comparation
-    const currentPrice = storeBetslip.currentPrice(singleBetslip)
-
-    useEffect(() => {
-        setPriceVal(currentPrice!.toString())
-    }, [acceptVal])
-
+const BetslipItem = ({ singleBetslip, gameId }: Props) => {
     return (
         <SingleOddWrap>
             <SingleOddInner>
@@ -42,9 +30,9 @@ const BetslipItem = ({ singleBetslip, acceptVal, gameId }: Props) => {
                     <OddHeader>
                         <OddValue
                             className={clsx(
-                                storeBetslip.acceptDeletes &&
+                                storeBetslip.removedBets.length > 0 &&
                                     gameId !== undefined &&
-                                    storeBetslip.gameRemoved(
+                                    storeBetslip.removedBets.includes(
                                         parseInt(gameId)
                                     ) &&
                                     'removed'
@@ -54,25 +42,27 @@ const BetslipItem = ({ singleBetslip, acceptVal, gameId }: Props) => {
                         </OddValue>
                         <OddPrice
                             className={clsx(
-                                storeBetslip.acceptDeletes &&
+                                storeBetslip.removedBets.length > 0 &&
                                     gameId !== undefined &&
-                                    storeBetslip.gameRemoved(
+                                    storeBetslip.removedBets.includes(
                                         parseInt(gameId)
                                     ) &&
                                     'removed',
-                                storeBetslip.acceptChanges &&
-                                    currentPrice!.toString() !== priceVal &&
+                                singleBetslip.newPrice !== undefined &&
+                                    singleBetslip.newPrice !== null &&
                                     'change'
                             )}
                         >
-                            {priceVal}
+                            {singleBetslip.price}
                         </OddPrice>
                     </OddHeader>
                     <OddType
                         className={clsx(
-                            storeBetslip.acceptDeletes &&
+                            storeBetslip.removedBets.length > 0 &&
                                 gameId !== undefined &&
-                                storeBetslip.gameRemoved(parseInt(gameId)) &&
+                                storeBetslip.removedBets.includes(
+                                    parseInt(gameId)
+                                ) &&
                                 'removed'
                         )}
                     >
@@ -80,9 +70,11 @@ const BetslipItem = ({ singleBetslip, acceptVal, gameId }: Props) => {
                     </OddType>
                     <OddTeams
                         className={clsx(
-                            storeBetslip.acceptDeletes &&
+                            storeBetslip.removedBets.length > 0 &&
                                 gameId !== undefined &&
-                                storeBetslip.gameRemoved(parseInt(gameId)) &&
+                                storeBetslip.removedBets.includes(
+                                    parseInt(gameId)
+                                ) &&
                                 'removed'
                         )}
                     >

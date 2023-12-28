@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { observer } from 'mobx-react'
 import store from '../../store/store'
+import storeFilter from '../../store/storeFilter'
 
 import SportFilter from '../../components/InPlay/SportFilter'
 import Title from '../../components/Reusable/Title'
@@ -13,6 +14,7 @@ const InPlay = () => {
     useEffect(() => {
         //Reset value for page title
         store.setTitle(store.sportName + ' - In Play')
+        storeFilter.setFilterReset()
     }, [])
 
     return (

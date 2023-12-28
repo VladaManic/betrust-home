@@ -53,6 +53,7 @@ export type BetSlipDataObj = {
     teams: string | undefined
     price: string | undefined
     game: string | undefined
+    newPrice: number | null
 }
 
 export type ToastifyProps = {

@@ -1,5 +1,6 @@
 import { makeAutoObservable } from 'mobx'
 import storeBetslip from './storeBetslip'
+import storeFilter from './storeFilter'
 import { orderBy } from 'lodash'
 
 import {
@@ -44,8 +45,11 @@ class Store {
             //Finding region with correct ID
             if (this.sportData.region![i].id === id) {
                 const currentRegion = this.sportData.region![i]
-                // Removing region with the correct ID using splice
+                //Removing region with the correct ID using splice
                 this.sportData.region!.splice(i, 1)
+
+                //Removing region from single page
+                storeFilter.setFilterReset()
 
                 //Showing accept btn in betslip if odds of this region are already added to betslip
                 for (const singleBetslip of storeBetslip.betslip) {
@@ -54,9 +58,8 @@ class Store {
                             if (
                                 singleGame.id.toString() === singleBetslip.game
                             ) {
-                                storeBetslip.setAcceptDeletes(true)
                                 //Set game ids which need to be sync with betslip
-                                storeBetslip.setRemovedGames(singleGame.id)
+                                storeBetslip.setRemovedBets(singleGame.id)
                             }
                         }
                     }
@@ -74,8 +77,11 @@ class Store {
                 //Finding competition with correct ID
                 if (singleRegion.competition[i].id === id) {
                     const currentCompetition = singleRegion.competition[i]
-                    // Removing competition with the correct ID using splice
+                    //Removing competition with the correct ID using splice
                     singleRegion.competition.splice(i, 1)
+
+                    //Removing competition from single page
+                    storeFilter.setFilterCompetitionReset()
 
                     //Showing accept btn in betslip if odds of this league are already added to betslip
                     for (const singleBetslip of storeBetslip.betslip) {
@@ -83,9 +89,8 @@ class Store {
                             if (
                                 singleGame.id.toString() === singleBetslip.game
                             ) {
-                                storeBetslip.setAcceptDeletes(true)
                                 //Set game ids which need to be sync with betslip
-                                storeBetslip.setRemovedGames(singleGame.id)
+                                storeBetslip.setRemovedBets(singleGame.id)
                             }
                         }
                     }
@@ -103,15 +108,17 @@ class Store {
                 for (let i = 0; i < singleCompetition.game.length; i++) {
                     //Finding game with correct ID
                     if (singleCompetition.game[i].id === id) {
-                        // Removing game with the correct ID using splice
+                        //Removing game with the correct ID using splice
                         singleCompetition.game.splice(i, 1)
+
+                        //Removing game from single page
+                        storeFilter.setRemoveGame(id)
 
                         //Showing accept btn in betslip if odds of this game are already added to betslip
                         for (const singleBetslip of storeBetslip.betslip) {
                             if (singleBetslip.game === id.toString()) {
-                                storeBetslip.setAcceptDeletes(true)
                                 //Set game ids which need to be sync with betslip
-                                storeBetslip.setRemovedGames(id)
+                                storeBetslip.setRemovedBets(id)
                             }
                         }
 
@@ -241,16 +248,19 @@ class Store {
                         for (const singleEvent of overUnder[0].event) {
                             if (singleEvent.type === 'Under') {
                                 singleEvent.price = 10
+                                storeFilter.setUpdateOdd(id)
 
                                 //Showing accept btn in betslip if this odd is already added to betslip
-                                const possibleChanges =
-                                    storeBetslip.betslip.filter(
-                                        (singleBetslip: BetSlipDataObj) =>
-                                            singleBetslip.eventId ===
-                                            singleEvent.id.toString()
-                                    )
-                                if (possibleChanges.length !== 0) {
+                                const correctBet = storeBetslip.betslip.filter(
+                                    (singleBetslip: BetSlipDataObj) =>
+                                        singleBetslip.eventId ===
+                                        singleEvent.id.toString()
+                                )
+                                if (correctBet.length !== 0) {
+                                    //It will become visable that there are prices to sync with betslip
                                     storeBetslip.setAcceptChanges(true)
+                                    //Adding new price to betslip for concrete bet
+                                    correctBet[0].newPrice = 10
                                 }
                             }
                         }
