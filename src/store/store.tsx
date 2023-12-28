@@ -47,6 +47,7 @@ class Store {
                 const currentRegion = this.sportData.region![i]
                 //Removing region with the correct ID using splice
                 this.sportData.region!.splice(i, 1)
+
                 //Removing region from single page
                 storeFilter.setFilterReset()
 
@@ -78,6 +79,7 @@ class Store {
                     const currentCompetition = singleRegion.competition[i]
                     //Removing competition with the correct ID using splice
                     singleRegion.competition.splice(i, 1)
+
                     //Removing competition from single page
                     storeFilter.setFilterCompetitionReset()
 
@@ -108,6 +110,7 @@ class Store {
                     if (singleCompetition.game[i].id === id) {
                         //Removing game with the correct ID using splice
                         singleCompetition.game.splice(i, 1)
+
                         //Removing game from single page
                         storeFilter.setRemoveGame(id)
 
