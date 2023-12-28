@@ -1,5 +1,6 @@
 import { makeAutoObservable } from 'mobx'
 import storeBetslip from './storeBetslip'
+import storeFilter from './storeFilter'
 import { orderBy } from 'lodash'
 
 import {
@@ -44,8 +45,10 @@ class Store {
             //Finding region with correct ID
             if (this.sportData.region![i].id === id) {
                 const currentRegion = this.sportData.region![i]
-                // Removing region with the correct ID using splice
+                //Removing region with the correct ID using splice
                 this.sportData.region!.splice(i, 1)
+                //Removing region from single page
+                storeFilter.setFilterReset()
 
                 //Showing accept btn in betslip if odds of this region are already added to betslip
                 for (const singleBetslip of storeBetslip.betslip) {
@@ -73,8 +76,10 @@ class Store {
                 //Finding competition with correct ID
                 if (singleRegion.competition[i].id === id) {
                     const currentCompetition = singleRegion.competition[i]
-                    // Removing competition with the correct ID using splice
+                    //Removing competition with the correct ID using splice
                     singleRegion.competition.splice(i, 1)
+                    //Removing competition from single page
+                    storeFilter.setFilterCompetitionReset()
 
                     //Showing accept btn in betslip if odds of this league are already added to betslip
                     for (const singleBetslip of storeBetslip.betslip) {
@@ -101,8 +106,10 @@ class Store {
                 for (let i = 0; i < singleCompetition.game.length; i++) {
                     //Finding game with correct ID
                     if (singleCompetition.game[i].id === id) {
-                        // Removing game with the correct ID using splice
+                        //Removing game with the correct ID using splice
                         singleCompetition.game.splice(i, 1)
+                        //Removing game from single page
+                        storeFilter.setRemoveGame(id)
 
                         //Showing accept btn in betslip if odds of this game are already added to betslip
                         for (const singleBetslip of storeBetslip.betslip) {

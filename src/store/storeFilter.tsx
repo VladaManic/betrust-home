@@ -78,6 +78,18 @@ class StoreFilter {
         )
     }
 
+    //Reseting filtering competition data
+    setFilterCompetitionReset = () => {
+        const resetCompetition = { id: 0, name: '', game: [] }
+        this.filteredCompetition = resetCompetition
+        //Reset filtered competition in localStorage
+        isStorageSupported('localStorage') &&
+            localStorage.setItem(
+                'filteredCompetition',
+                JSON.stringify(resetCompetition)
+            )
+    }
+
     //Reseting filtering region and competition data
     setFilterReset = () => {
         const resetRegion = {
@@ -85,13 +97,34 @@ class StoreFilter {
             name: '',
             competition: [],
         }
-        const restCompetition = { id: 0, name: '', game: [] }
         this.filteredRegion = resetRegion
-        this.filteredCompetition = restCompetition
-        //Reset filtered region and competition in localStorage
+        //Reset filtered region in localStorage
         isStorageSupported('localStorage') &&
             localStorage.setItem('filteredRegion', JSON.stringify(resetRegion))
-        localStorage.setItem('filteredCompetition', JSON.stringify(resetRegion))
+        //Reseting filtering competition data
+        this.setFilterCompetitionReset()
+    }
+
+    //Removing game from filtered region amd competition
+    setRemoveGame = (id: number) => {
+        //Remove game from filtered region
+        for (const singleCompetition of this.filteredRegion.competition) {
+            for (let i = 0; i < singleCompetition.game.length; i++) {
+                //Finding game with correct ID
+                if (singleCompetition.game[i].id === id) {
+                    //Removing game with the correct ID using splice
+                    singleCompetition.game.splice(i, 1)
+                }
+            }
+        }
+        //Remove game from filtered competition
+        for (let i = 0; i < this.filteredCompetition.game.length; i++) {
+            //Finding game with correct ID
+            if (this.filteredCompetition.game[i].id === id) {
+                //Removing game with the correct ID using splice
+                this.filteredCompetition.game.splice(i, 1)
+            }
+        }
     }
 
     get regionFiltered() {
